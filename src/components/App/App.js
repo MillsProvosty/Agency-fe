@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import "./App.css";
 import { FaHandsHelping } from "react-icons/fa";
 import { SignInForm } from '../SignInForm/SignInForm';
-import { SignUpModal } from '../SignUpModal/SignUpModal';
-import { NavLink, Route } from 'react-router-dom' 
+import { NavLink, Route } from 'react-router-dom';
+import Dashboard from '../Dashboard/Dashboard'
+
 
 class App extends Component {
   constructor() {
@@ -14,10 +15,12 @@ class App extends Component {
     }
   }
 
+  
+  
   displayForms = (userType) => {
     this.setState({hideLanding: !this.state.hideLanding, userType})
   }
-
+  
   render() {
     let forms = null
     if(this.state.hideLanding) {
@@ -40,6 +43,7 @@ class App extends Component {
       </>
       }
       {forms}
+      <Route exact path='/user-dashboard' component={Dashboard}/>
       </section>
     );
   }
