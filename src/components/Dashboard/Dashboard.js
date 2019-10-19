@@ -3,18 +3,19 @@ import "./Dashboard.css";
 import { FaHandsHelping } from "react-icons/fa";
 import {NavLink} from 'react-router-dom'
 
-function Dashboard() {
+const Dashboard = () => {
     return (
       <section className="Dashboard">
         <FaHandsHelping />
-        <NavLink>Schedule</NavLink>
+        {/* <NavLink>Schedule</NavLink>
         <NavLink>Tasks</NavLink>
         <NavLink>About</NavLink>
         <NavLink>Team</NavLink>
         <NavLink>History</NavLink>
-        <NavLink>Profile</NavLink>
+        <NavLink>Profile</NavLink> */}
+        <p>ima dashboard</p>
       </section>
     );
   }
   
-  export default Dashboard;
+export default Dashboard;

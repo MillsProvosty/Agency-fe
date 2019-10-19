@@ -31,6 +31,13 @@
       font-size: 2em;
       width: 175px;
       font-family: 'Quicksand', sans-serif;
+      border: 2px solid white;
+    }
+
+    & button:hover {
+      border: 2px solid darkblue;
+      color: darkblue;
+      background-color: white;
     }
 
     & .client {
