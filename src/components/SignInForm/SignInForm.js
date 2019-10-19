@@ -11,6 +11,7 @@ export class SignInForm extends Component {
   render() {
     return (
       <section>
+        <FaHandsHelping />
         <section>
           <h1>Sign In</h1>
           <input
