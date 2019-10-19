@@ -61,12 +61,12 @@ export class SignInForm extends Component {
               placeholder="Password"
               onChange={this.handleChange}
             />
-          <button onClick={this.displayDashboard}>Sign In</button>
+          <NavLink to='/user-dashboard'><button>Sign In</button></NavLink>
           </form>
         </section>
         <section>
-            <h1>Sign Up</h1>
-            <button onClick={this.displayModal}>Sign Up</button>
+          <h1>Sign Up</h1>
+          <button onClick={this.displayModal}>Sign Up</button>
         </section>
         </>
         }
