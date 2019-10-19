@@ -1,11 +1,21 @@
 import React, { Component } from "react";
 import "./SignUpModal.css";
-import { FaHandsHelping } from "react-icons/fa";
+import { Route } from 'react-router-dom';
+import Dashboard from '../Dashboard/Dashboard'
 
 export class SignUpModal extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {};
+  }
+
+  displayDashboard = e => {
+    e.preventDefault()
+    return (
+      <main>
+        <Route exact path='/dashboard' render={() => <Dashboard props={'user info here'} /> }/>
+      </main>
+    )
   }
 
   render() {
@@ -42,7 +52,7 @@ export class SignUpModal extends Component {
           name="confirmation"
           value={this.state.confirmation}
         />
-        <button>Submit!</button>
+        <button onClick={this.displayDashboard}>Submit!</button>
       </form>
     );
     //pronouns

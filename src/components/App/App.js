@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import "./App.css";
 import { FaHandsHelping } from "react-icons/fa";
-import { SignInForm } from '../SignInForm/SignInForm'
+import { SignInForm } from '../SignInForm/SignInForm';
+import { SignUpModal } from '../SignUpModal/SignUpModal';
+import { Route } from 'react-router-dom' 
 
 class App extends Component {
   constructor() {
@@ -20,7 +22,10 @@ class App extends Component {
     let forms = null
     if(this.state.hideLanding) {
       forms = (
-        <SignInForm props={this.state.userType} /> 
+        <>
+          <SignInForm props={this.state.userType} /> 
+          <Route exact path='/sign-up' render={() => <SignUpModal props={this.state.userType} />}/>
+        </>
       )
     }
     return (
