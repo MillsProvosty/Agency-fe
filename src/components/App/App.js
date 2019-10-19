@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import "./App.css";
+import React, {Component} from "react";
+import "./App.scss";
 import { FaHandsHelping } from "react-icons/fa";
 import { SignInForm } from '../SignInForm/SignInForm';
 import { SignUpModal } from '../SignUpModal/SignUpModal';
@@ -32,11 +32,12 @@ class App extends Component {
       <section className="App">
       {!forms && 
       <>
-        <FaHandsHelping />
-        <p>Agency is pretty frickin great</p>
+        <FaHandsHelping size={64}/>
+        <h1>Agency</h1>
+        <p>is pretty frickin great</p>
         <section>
-          <button onClick={() => this.displayForms('volunteer')}>Volunteer</button>
-          <button onClick={() => this.displayForms('client')}>Client</button>
+          <button className="volunteer" onClick={() => this.displayForms('volunteer')}>Volunteer</button>
+          <button className="client" onClick={() => this.displayForms('client')}>Client</button>
         </section>
       </>
       }

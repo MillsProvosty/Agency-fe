@@ -1,0 +1,42 @@
+.SignInForm {
+    height: auto;
+    background-color: white;
+    // border: 1px solid lightgrey;
+    // border-radius: 8px;
+    // display: flex;
+    // flex-direction: column;
+    // width: 500px;
+    // padding: 20px;
+    justify-content: center;
+
+    & .container{
+        display: flex;
+
+    }
+
+    & .sign-in, .sign-up {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 40vh;
+        
+        & form {
+            justify-content: space-around;
+
+            & input, button {
+                justify-content: space-around;
+                display: block;
+                width: 175px;
+            }
+
+            & input {
+                border-radius: 5px;
+                font-size: 1em;
+                height: 2em;
+            }
+
+
+        }
+    }
+}
