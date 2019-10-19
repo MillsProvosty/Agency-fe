@@ -2,15 +2,21 @@ import React, { Component } from "react";
 import "./SignInForm.css";
 import { FaHandsHelping } from "react-icons/fa";
 import { NavLink, Route } from 'react-router-dom'
-import Dashboard from '../Dashboard/Dashboard'
+import Dashboard from '../Dashboard/Dashboard';
+import { SignUpModal } from '../SignUpModal/SignUpModal'
 
 export class SignInForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      showSignUp: false
     };
+  }
+
+  displayModal = () => {
+    this.setState({showSignUp: true})
   }
 
   displayDashboard = e => {
@@ -27,9 +33,17 @@ export class SignInForm extends Component {
   }
 
   render() {
+    let modal = null
+    if(this.state.showSignUp) {
+      modal = ( 
+        <Route exact path='/user-form' render={() => <SignUpModal props={this.state.userType} />}/>
+      )
+    }
     return (
       <section>
         <FaHandsHelping />
+        {modal || 
+        <>
         <section>
           <h1>Sign In</h1>
           <form>
@@ -52,8 +66,10 @@ export class SignInForm extends Component {
         </section>
         <section>
             <h1>Sign Up</h1>
-            <NavLink to='/sign-up'>Sign Up</NavLink>
+            <button onClick={this.displayModal}>Sign Up</button>
         </section>
+        </>
+        }
       </section>
     );
   }
