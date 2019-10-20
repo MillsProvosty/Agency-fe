@@ -1,39 +1,3 @@
 .Dashboard {
   margin: 0;
-
-  & nav {
-    display: flex;
-    justify-content: space-between;
-    background-color: darkblue;
-    color: white;
-
-    & .links {
-      width: 60%;
-      display: flex;
-      justify-content: space-evenly;
-
-      & .dash-link {
-        font-size: 1.5em;
-        text-decoration: none;
-        color: white;
-        margin-top: 1.5em;
-        height: 1.5em;
-      }
-
-      & .dash-link:hover {
-        border-bottom: 1px solid white;
-        height: 1.5em;
-      }
-    }
-
-    & .logo {
-      display: flex;
-      margin: 20px;
-      font-size: 1.5em;
-
-      & p {
-        margin-left: 10px;
-      }
-    }
-  }
 }

@@ -2,24 +2,12 @@ import React from "react";
 import "./Dashboard.scss";
 import { FaHandsHelping } from "react-icons/fa";
 import { NavLink, Link } from "react-router-dom";
+import Nav from "../Nav/Nav";
 
 const Dashboard = () => {
   return (
     <section className="Dashboard">
-      <nav>
-        <section className="logo">
-          <FaHandsHelping size={64}/>
-          <p>Agency</p>
-        </section>
-        <section className="links">
-          <Link to="/" className="dash-link" activeClassName="chosen">Schedule</Link>
-          <Link to="/" className="dash-link" activeClassName="chosen">Tasks</Link>
-          <Link to="/" className="dash-link" activeClassName="chosen">About</Link>
-          <Link to="/" className="dash-link" activeClassName="chosen">Team</Link>
-          <Link to="/" className="dash-link" activeClassName="chosen">History</Link>
-          <Link to="/" className="dash-link" activeClassName="chosen">Profile</Link>
-        </section>
-      </nav>
+        <Nav />
       <section className="container-dash">
         <p>ima dashboard</p>
       </section>

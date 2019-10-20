@@ -4,6 +4,13 @@ import { FaHandsHelping } from "react-icons/fa";
 import { SignInForm } from "../SignInForm/SignInForm";
 import { NavLink, Route } from "react-router-dom";
 import Dashboard from "../Dashboard/Dashboard";
+import About from '../About/About'
+import Team from '../Team/Team'
+import Schedule from '../Schedule/Schedule'
+import History from '../History/History'
+import Tasks from '../Tasks/Tasks'
+
+
 
 class App extends Component {
   constructor() {
@@ -37,7 +44,7 @@ class App extends Component {
           <section className="main">
             <FaHandsHelping size={64} />
             <h1>Agency</h1>
-            <p>Support Others</p>
+            <p>A Support System In Places</p>
             <section>
               <NavLink
                 to="/user-form"
@@ -55,7 +62,14 @@ class App extends Component {
           </section>
         )}
         {forms}
+        {/* <Route exact path="/" component={App}/> */}
         <Route exact path="/user-dashboard" component={Dashboard} />
+        <Route exact path="/schedule" component={Schedule} />
+        <Route exact path="/tasks" component={Tasks} />
+        <Route exact path="/team" component={Team} />
+        <Route exact path="/profile" component={Dashboard} />
+        <Route exact path="/about" component={About} />
+        <Route exact path="/history" component={History} />
       </section>
     );
   }
