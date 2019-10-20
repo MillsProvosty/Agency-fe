@@ -5,24 +5,25 @@
 .App {
   text-align: center;
   height: 100vh;
-  margin: 100px;
-  font-family: 'Quicksand', sans-serif;
+  font-family: "Quicksand", sans-serif;
   color: darkblue;
 
-  & h1{
-    font-size: 6em;
-    margin:0;
+  & .main {
+    margin: 100px;
   }
-  
+
+  & h1 {
+    font-size: 6em;
+    margin: 0;
+  }
+
   & p {
-    font-size:2em;
+    font-size: 2em;
     margin: 2px;
   }
 
   & section {
-    margin: 10px;
     justify-content: space-around;
-
 
     & button {
       color: white;
@@ -30,7 +31,7 @@
       border-radius: 5px;
       font-size: 2em;
       width: 175px;
-      font-family: 'Quicksand', sans-serif;
+      font-family: "Quicksand", sans-serif;
       border: 2px solid white;
     }
 
@@ -42,13 +43,10 @@
 
     & .client {
       margin-left: 20px;
-
     }
 
     & .volunteer {
       margin-right: 20px;
     }
   }
-
 }
-

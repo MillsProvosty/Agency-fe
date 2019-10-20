@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import "./SignInForm.scss";
 import { FaHandsHelping } from "react-icons/fa";
-import { NavLink, Route } from "react-router-dom";
+import { NavLink, Route, Link } from "react-router-dom";
 import Dashboard from "../Dashboard/Dashboard";
-import { SignUpModal } from "../SignUpModal/SignUpModal";
+import { SignUpModal } from "../SignUp/SignUpModal";
+import Modal from "react-modal";
 
 export class SignInForm extends Component {
   constructor(props) {
@@ -11,12 +12,12 @@ export class SignInForm extends Component {
     this.state = {
       email: "",
       password: "",
-      showSignUp: false
+      modalIsOpen: false
     };
   }
 
   displayModal = () => {
-    this.setState({ showSignUp: true });
+    this.setState({ modalIsOpen: true });
   };
 
   displayDashboard = e => {
@@ -37,18 +38,22 @@ export class SignInForm extends Component {
   };
 
   render() {
-    let modal = null;
-    if (this.state.showSignUp) {
-      modal = (
-        <Route
-          exact
-          path="/user-form"
-          render={() => <SignUpModal props={this.state.userType} />}
-        />
-      );
-    }
+    // if (this.state.showSignUp) {
+    //   modal = (
+    //     <Route
+    //       exact
+    //       path="/user-form"
+    //       render={() => <SignUpModal props={this.state.userType} />}
+    //     />
+    //   );
+    // }
     return (
       <section className="SignInForm">
+        <section className="modal">
+          <Modal isOpen={this.state.modalIsOpen} displayDashboard={this.displayDashboard} className="react-modal">
+            <SignUpModal />
+          </Modal>
+        </section>
         <FaHandsHelping size={64} />
         <section className="container">
           <section className="titles">
@@ -73,9 +78,9 @@ export class SignInForm extends Component {
                   onChange={this.handleChange}
                 />
 
-                <NavLink to="/user-dashboard">
+                <Link to="/user-dashboard" style={{ textDecoration: 'none' }}>
                   <button>Sign In</button>
-                </NavLink>
+                </Link>
               </form>
             </section>
             <section className="sign-up">

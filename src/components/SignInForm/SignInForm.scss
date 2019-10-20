@@ -3,6 +3,14 @@
   background-color: white;
   justify-content: center;
 
+  & .modal {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
   & .container {
     width: 100%;
 
@@ -46,8 +54,8 @@
 
       & button {
         border: 2px solid white;
-
       }
+      
       & button:hover {
         border: 2px solid darkblue;
         color: darkblue;
@@ -59,8 +67,7 @@
         font-size: 1em;
         height: 2em;
         border: 1px solid darkgrey;
-        padding: 5px
-        // border-style: solid;
+        padding: 5px;
       }
     }
   }
