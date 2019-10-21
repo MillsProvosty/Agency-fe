@@ -19,8 +19,9 @@
 
   & .urls {
     display: flex;
-    // width: 100%;
+    width: 70%;
     justify-content: space-around;
+    margin: 0px auto;
     & .url {
       font-size: 1.5em;
     }
