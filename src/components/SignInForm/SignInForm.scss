@@ -1,0 +1,67 @@
+.SignInForm {
+  height: auto;
+  background-color: white;
+  justify-content: center;
+
+  & .container {
+    width: 100%;
+
+    & .titles {
+      display: flex;
+    }
+
+    & .forms {
+      display: flex;
+    }
+  }
+
+  & .sign-in {
+    border-right: 1px solid darkblue;
+  }
+
+  & .sign-in,
+  .sign-up {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 20vh;
+
+    & h1 {
+      display: flex;
+      align-content: flex-start;
+    }
+
+    & form {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+
+      & input,
+      button {
+        display: block;
+        width: 175px;
+        margin-bottom: 10px;
+      }
+
+      & button {
+        border: 2px solid white;
+
+      }
+      & button:hover {
+        border: 2px solid darkblue;
+        color: darkblue;
+        background-color: white;
+      }
+
+      & input {
+        border-radius: 5px;
+        font-size: 1em;
+        height: 2em;
+        border: 1px solid darkgrey;
+        padding: 5px
+        // border-style: solid;
+      }
+    }
+  }
+}
