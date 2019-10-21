@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./SignInForm.scss";
 import { FaHandsHelping } from "react-icons/fa";
 import { NavLink, Route, Link } from "react-router-dom";
-import Dashboard from "../Dashboard/Dashboard";
+import Dashboard from "../Profile/Profile";
 import { SignUpModal } from "../SignUp/SignUpModal";
 import Modal from "react-modal";
 
@@ -64,6 +64,7 @@ export class SignInForm extends Component {
             <section className="sign-in">
               <form>
                 <input
+                  tabIndex={0}
                   type="text"
                   value={this.state.email}
                   name="email"
@@ -71,14 +72,14 @@ export class SignInForm extends Component {
                   onChange={this.handleChange}
                 />
                 <input
+                  tabIndex={0}
                   type="text"
                   value={this.state.password}
                   name="password"
                   placeholder="Password"
                   onChange={this.handleChange}
                 />
-
-                <Link to="/user-dashboard" style={{ textDecoration: 'none' }}>
+                <Link to="/profile" tabIndex={0} style={{ textDecoration: 'none' }}>
                   <button>Sign In</button>
                 </Link>
               </form>

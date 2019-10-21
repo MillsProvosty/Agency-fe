@@ -6,18 +6,71 @@ import Nav from "../Nav/Nav";
 
 const Team = () => {
   return (
-    <section>
+    <section className="Team">
       <Nav />
-      <p>Back End:</p>
-      <p>Mills Provosty</p>
-      <a href="https://github.com/MillsProvosty">GitHub</a>
-      <p>Tay De Herrera</p>
-      <a href="https://github.com/tayjames">GitHub</a>
-      <p>Front End:</p>
-      <p>Aiden McKay</p>
-      <a href="https://github.com/JellyBeans1312">GitHub</a>
-      <p>Gregory Anderson</p>
-      <a href="https://github.com/gregoryanderson">GitHub</a>
+      <p className="program">Back End:</p>
+      <section className="back">
+        <section className="mills">
+          <p>Mills Provosty</p>
+          <img src="https://avatars0.githubusercontent.com/u/45856797?s=400&v=4"/>
+          <section className="urls">
+            <a className="url" href="https://github.com/MillsProvosty">
+              GitHub
+            </a>
+            <a
+              className="url"
+              href="https://www.linkedin.com/in/mills-provosty/"
+            >
+              LinkedIn
+            </a>
+          </section>
+        </section>
+        <section className="tay">
+          <p>Tay De Herrera</p>
+          <img src="https://avatars2.githubusercontent.com/u/47490116?s=400&v=4"/>
+          <section className="urls">
+            <a className="url" href="https://github.com/tayjames">
+              GitHub
+            </a>
+            <a
+              className="url"
+              href="https://www.linkedin.com/in/tay-deherrera/"
+            >
+              LinkedIn
+            </a>
+          </section>
+        </section>
+      </section>
+      <p className="program">Front End:</p>
+      <section className="front">
+        <section className="aidan">
+          <p>Aiden McKay</p>
+          <img src="https://avatars1.githubusercontent.com/u/27786530?s=400&v=4"/>
+          <section className="urls">
+            <a className="url" href="https://github.com/JellyBeans1312">
+              GitHub
+            </a>
+            <a className="url" href="https://www.linkedin.com/in/aidan-mckay/">
+              LinkedIn
+            </a>
+          </section>
+        </section>
+        <section className="greg">
+          <p>Gregory Anderson</p>
+          <img src="https://avatars1.githubusercontent.com/u/30326085?s=400&v=4"/>
+          <section className="urls">
+            <a className="url" href="https://github.com/gregoryanderson">
+              GitHub
+            </a>
+            <a
+              className="url"
+              href="https://www.linkedin.com/in/gregandersondev/"
+            >
+              LinkedIn
+            </a>
+          </section>
+        </section>
+      </section>
     </section>
   );
 };

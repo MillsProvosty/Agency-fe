@@ -6,15 +6,17 @@ import { NavLink, Link } from "react-router-dom";
 const Nav = () => {
   return (
     <section className="nav">
-      <section className="logo">
-        <FaHandsHelping size={64} />
-        <p>Agency</p>
-      </section>
+      <NavLink to="/about" style={{ textDecoration: 'none' }}>
+        <section className="logo">
+          <FaHandsHelping size={64} />
+          <p className="title">Agency</p>
+        </section>
+      </NavLink>
       <section className="links">
         <NavLink to="/about" className="dash-link">
           About
         </NavLink>
-        <NavLink to="/dashboard" className="dash-link">
+        <NavLink to="/profile" className="dash-link">
           Profile
         </NavLink>
         <NavLink to="/schedule" className="dash-link">

@@ -1,18 +1,18 @@
 import React from "react";
-import "./Dashboard.scss";
+import "./Profile.scss";
 import { FaHandsHelping } from "react-icons/fa";
 import { NavLink, Link } from "react-router-dom";
 import Nav from "../Nav/Nav";
 
-const Dashboard = () => {
+const Profile = () => {
   return (
-    <section className="Dashboard">
+    <section className="Profile">
         <Nav />
       <section className="container-dash">
-        <p>ima dashboard</p>
+        <p>ima Profile</p>
       </section>
     </section>
   );
 };
 
-export default Dashboard;
+export default Profile;

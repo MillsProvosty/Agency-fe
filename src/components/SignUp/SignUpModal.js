@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./SignUpModal.scss";
 import { Route } from "react-router-dom";
-import Dashboard from "../Dashboard/Dashboard";
+import Dashboard from "../Profile/Profile";
 import { NavLink, Link } from "react-router-dom";
 
 export class SignUpModal extends Component {

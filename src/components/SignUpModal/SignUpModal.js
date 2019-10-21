@@ -42,7 +42,7 @@ export class SignUpModal extends Component {
           name="confirmation"
           value={this.state.confirmation}
         />
-        <NavLink to='/user-dashboard'><button>Submit!</button></NavLink>
+        <NavLink to='/profile'><button>Submit!</button></NavLink>
       </form>
     );
     //pronouns

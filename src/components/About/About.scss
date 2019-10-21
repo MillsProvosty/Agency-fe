@@ -1,0 +1,39 @@
+.about {
+    font-size: 1em;
+
+    & span {
+        font-weight:bold
+    }
+
+    & .first {
+        margin-top: 1em;
+        font-size: 2.5em;
+    }
+
+    & .second, .third {
+        margin-top: 2em;
+    }
+
+    & .third {
+        margin-bottom: 2em;
+    }
+
+    & .options {
+        margin-top: 2em;
+        display: flex;
+
+        & .option-1, .option-2 {
+            margin-top: 1em;
+            width: 50%
+        }
+
+        & button {
+            margin-top: 1em;
+        }
+
+    }
+
+    & .option-1 {
+        border-right: 1px solid darkblue
+    }
+}

@@ -3,7 +3,7 @@ import "./App.scss";
 import { FaHandsHelping } from "react-icons/fa";
 import { SignInForm } from "../SignInForm/SignInForm";
 import { NavLink, Route } from "react-router-dom";
-import Dashboard from "../Dashboard/Dashboard";
+import Dashboard from "../Profile/Profile";
 import About from '../About/About'
 import Team from '../Team/Team'
 import Schedule from '../Schedule/Schedule'
@@ -45,7 +45,7 @@ class App extends Component {
             <FaHandsHelping size={64} />
             <h1>Agency</h1>
             <p>A Support System In Places</p>
-            <section>
+            <section className="buttons">
               <NavLink
                 to="/user-form"
                 onClick={() => this.displayForms("volunteer")}
@@ -63,7 +63,7 @@ class App extends Component {
         )}
         {forms}
         {/* <Route exact path="/" component={App}/> */}
-        <Route exact path="/user-dashboard" component={Dashboard} />
+        {/* <Route exact path="/user-dashboard" component={Dashboard} /> */}
         <Route exact path="/schedule" component={Schedule} />
         <Route exact path="/tasks" component={Tasks} />
         <Route exact path="/team" component={Team} />
