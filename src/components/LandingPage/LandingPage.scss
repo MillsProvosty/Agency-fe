@@ -61,7 +61,7 @@
   }
 }
 
-@media screen and (display: standalone) {
+@media all and (display: standalone) {
   .main {
     & h1 {
       margin: 0px 0px 30px -80px
