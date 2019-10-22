@@ -1,7 +1,6 @@
 import React from "react";
 import "./About.scss";
-import { FaHandsHelping } from "react-icons/fa";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Nav from "../Nav/Nav";
 
 const About = () => {
@@ -18,7 +17,6 @@ const About = () => {
             select the <span>Volunteer</span> button
           </p>
           <p>if you can lend a hand...</p>
-          {/* onClick={() => this.displayForms("volunteer")} */}
           <NavLink to="/user-form">
             <button className="about-button">Volunteer</button>
           </NavLink>
@@ -28,7 +26,6 @@ const About = () => {
             or, select the <span>Client</span> button
           </p>
           <p>if you would like some help!</p>
-          {/* onClick={() => this.displayForms("client")} */}
           <NavLink to="/user-form">
             <button className="about-button">Client</button>
           </NavLink>

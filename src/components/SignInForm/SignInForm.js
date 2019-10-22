@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import "./SignInForm.scss";
 import { FaHandsHelping } from "react-icons/fa";
-import { NavLink, Route, Link } from "react-router-dom";
-import Dashboard from "../Profile/Profile";
+import { Route, Link } from "react-router-dom";
+import Profile from "../Profile/Profile";
 import { SignUpModal } from "../SignUp/SignUpModal";
 import Modal from "react-modal";
 
@@ -20,14 +20,14 @@ export class SignInForm extends Component {
     this.setState({ modalIsOpen: true });
   };
 
-  displayDashboard = e => {
+  displayProfile = e => {
     e.preventDefault();
     return (
       <main>
         <Route
           exact
-          path="/dashboard"
-          render={() => <Dashboard props={"user info here"} />}
+          path="/profile"
+          render={() => <Profile props={"user info here"} />}
         />
       </main>
     );
@@ -38,19 +38,10 @@ export class SignInForm extends Component {
   };
 
   render() {
-    // if (this.state.showSignUp) {
-    //   modal = (
-    //     <Route
-    //       exact
-    //       path="/user-form"
-    //       render={() => <SignUpModal props={this.state.userType} />}
-    //     />
-    //   );
-    // }
     return (
       <section className="SignInForm">
         <section className="modal">
-          <Modal isOpen={this.state.modalIsOpen} displayDashboard={this.displayDashboard} className="react-modal">
+          <Modal isOpen={this.state.modalIsOpen} displayProfile={this.displayProfile} className="react-modal">
             <SignUpModal />
           </Modal>
         </section>

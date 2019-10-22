@@ -1,27 +1,12 @@
 import React, { Component } from "react";
 import "./SignUpModal.scss";
-import { Route } from "react-router-dom";
-import Dashboard from "../Profile/Profile";
-import { NavLink, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export class SignUpModal extends Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
-
-  // displayDashboard = e => {
-  //   e.preventDefault();
-  //   return (
-  //     <main>
-  //       <Route
-  //         exact
-  //         path="/dashboard"
-  //         render={() => <Dashboard props={"user info here"} />}
-  //       />
-  //     </main>
-  //   );
-  // };
 
   render() {
     return (
@@ -58,7 +43,7 @@ export class SignUpModal extends Component {
           value={this.state.confirmation}
         />
         <Link to="/profile">
-          <button onClick={this.props.displayDashboard}>Submit!</button>
+          <button>Submit!</button>
         </Link>
       </form>
     );
