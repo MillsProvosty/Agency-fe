@@ -2,10 +2,10 @@
   "short_name": "Agency",
   "name": "Agency",
   "icons": 
-    {
+    [{
      "48": "UnitedWorld.svg",
      "96": "UnitedWorld.svg"
-    },
+    }],
   "start_url": "/",
   "display": "fullscreen",
   "theme_color": "#0A008B",
