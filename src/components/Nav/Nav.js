@@ -6,7 +6,7 @@ import { NavLink, Link } from "react-router-dom";
 const Nav = () => {
   return (
     <section className="nav">
-      <NavLink to="/about" style={{ textDecoration: 'none' }}>
+      <NavLink to="/about" style={{ textDecoration: 'none' }} className='nav-link'>
         <section className="logo">
           <FaHandsHelping size={64} />
           <p className="title">Agency</p>
