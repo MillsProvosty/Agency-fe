@@ -8,11 +8,7 @@
   font-family: "Quicksand", sans-serif;
   color: darkblue;
 
-  & .main {
-    margin: 100px;
-  }
-
-  & h1 {
+  h1 {
     font-size: 6em;
     margin: 0;
   }
@@ -39,16 +35,6 @@
       border: 2px solid darkblue;
       color: darkblue;
       background-color: white;
-    }
-
-    & .client {
-      margin-left: 20px;
-      margin-top: 100px;
-    }
-
-    & .volunteer {
-      margin-top: 100px;
-      margin-right: 20px;
     }
   }
 }

@@ -57,8 +57,8 @@ export class SignInForm extends Component {
         <FaHandsHelping size={64} />
         <section className="container">
           <section className="titles">
-            <h1>Sign In</h1>
-            <h1>Sign Up</h1>
+            <h1 id='sign-in-header'>Sign In</h1>
+            <h1 id='sign-up-header'>Sign Up</h1>
           </section>
           <section className="forms">
             <section className="sign-in">

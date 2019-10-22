@@ -4,6 +4,10 @@
     font-weight: bold;
   }
 
+  & a, a:visited {
+    color: black;
+  }
+
   & .back,
   .front {
     display: flex;
@@ -31,5 +35,19 @@
       width: 15em;
       border-radius: 50%;
       border: 2px solid darkblue
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .Team {
+    p {
+      font-size : 2rem;
+      text-align: center;
+    }
+
+    & .back, .front {
+      display: block;
+      margin: 50px 70px;
+    }
   }
 }
