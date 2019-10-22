@@ -50,3 +50,12 @@
     padding: 10px;
   }
 }
+
+@media screen and (display: standalone) {
+  .SignUpModal {
+    margin: 130px 4px;
+    height: auto;
+    width: 98%;
+    padding: 10px;
+  }
+}
