@@ -7,7 +7,7 @@
      "96": "UnitedWorld.svg"
     }],
   "start_url": "/",
-  "display": "fullscreen",
+  "display": "standalone",
   "theme_color": "#0A008B",
   "background_color": "#ffffff"
 }
