@@ -57,7 +57,7 @@ export class SignUpModal extends Component {
           name="confirmation"
           value={this.state.confirmation}
         />
-        <Link to="/user-dashboard">
+        <Link to="/profile">
           <button onClick={this.props.displayDashboard}>Submit!</button>
         </Link>
       </form>
