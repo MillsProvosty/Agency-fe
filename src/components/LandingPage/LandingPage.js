@@ -5,6 +5,7 @@ import { FaHandsHelping } from "react-icons/fa";
 import styled from "styled-components";
 
 export const LandingPage = props => {
+
   const Button = styled.button`
     color: white;
     background-color: darkblue;
@@ -50,10 +51,10 @@ export const LandingPage = props => {
           to="/user-form"
           onClick={() => props.displayForms("volunteer")}
         >
-          <Button volunteer>Volunteer</Button>
+          <Button volunteer className="volunteer">Volunteer</Button>
         </NavLink>
         <NavLink to="/user-form" onClick={() => props.displayForms("client")}>
-          <Button client>Client</Button>
+          <Button client className="client">Client</Button>
         </NavLink>
       </section>
     </Section>
