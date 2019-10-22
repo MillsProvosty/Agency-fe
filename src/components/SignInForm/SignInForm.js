@@ -73,9 +73,6 @@ export class SignInForm extends Component {
                 <Link to="/profile" tabIndex={0} style={{ textDecoration: 'none' }}>
                   <button>Sign In</button>
                 </Link>
-                <NavLink to="/user-dashboard">
-                  <button>Sign In</button>
-                </NavLink>
               </form>
             </section>
             <section className="sign-up">
