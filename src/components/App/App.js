@@ -1,3 +1,4 @@
+
 import React, { Component } from "react";
 import "./App.scss";
 import { SignInForm } from "../SignInForm/SignInForm";
@@ -9,8 +10,6 @@ import Schedule from '../Schedule/Schedule'
 import History from '../History/History'
 import Tasks from '../Tasks/Tasks'
 import { LandingPage } from "../LandingPage/LandingPage";
-
-
 
 class App extends Component {
   constructor() {
@@ -50,6 +49,7 @@ class App extends Component {
         <Route exact path="/profile" component={Profile} />
         <Route exact path="/about" component={About} />
         <Route exact path="/history" component={History} />
+
       </section>
     );
   }
