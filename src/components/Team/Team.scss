@@ -1,0 +1,35 @@
+.Team {
+  & .program {
+    margin: 50px;
+    font-weight: bold;
+  }
+
+  & .back,
+  .front {
+    display: flex;
+    margin-bottom: 50px;
+  }
+
+  & .mills,
+  .tay,
+  .greg,
+  .aidan {
+    width: 50%;
+  }
+
+  & .urls {
+    display: flex;
+    width: 70%;
+    justify-content: space-around;
+    margin: 0px auto;
+    & .url {
+      font-size: 1.5em;
+    }
+  }
+
+  & img {
+      width: 15em;
+      border-radius: 50%;
+      border: 2px solid darkblue
+  }
+}

@@ -1,0 +1,48 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+  background-color: darkblue;
+  color: white;
+  height: 100px;
+
+  & .logo {
+    color: white;
+
+    & .title {
+      text-decoration: none;
+    }
+
+    & .title:hover {
+      border-bottom: 1px solid white;
+      height: 1.25em;
+    }
+  }
+
+  & .links {
+    width: 60%;
+    display: flex;
+    justify-content: space-evenly;
+
+    & .dash-link {
+      text-decoration: none;
+      font-size: 1.5em;
+      color: white;
+      margin-top: 1.5em;
+    }
+
+    & .dash-link:hover {
+      border-bottom: 1px solid white;
+      height: 1.5em;
+    }
+  }
+
+  & .logo {
+    display: flex;
+    margin: 20px;
+    font-size: 1.5em;
+
+    & p {
+      margin-left: 10px;
+    }
+  }
+}
