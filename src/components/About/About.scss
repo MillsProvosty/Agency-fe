@@ -39,6 +39,24 @@
 }
 
 @media screen and (max-width: 375px) {
+    .about {
+        & .options {
+            margin-top: 1rem;
+            display:block;
+            justify-content: center;
+            & .option-1, .option-2 {
+                margin: auto;
+                width: 80%
+            }
+            & .option-1 {
+                border-bottom: 1px solid darkblue;
+                border-right: none; 
+            }
+        }
+    }
+}
+
+@media screen and (display: standalone) {
     html, body {
         overflow-x: hidden;
       }

@@ -44,7 +44,7 @@ const Team = () => {
       <section className="front">
         <section className="aidan">
           <p>Aidan McKay</p>
-          <img src="https://avatars1.githubusercontent.com/u/27786530?s=400&v=4"alt='developer'/>
+          <img src="https://avatars1.githubusercontent.com/u/27786530?s=400&v=4"/>
           <section className="urls">
             <a className="url" href="https://github.com/JellyBeans1312">
               <FaGithub size={32} />
