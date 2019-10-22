@@ -1,5 +1,5 @@
 import React from 'react';
-import './LandingPage.css';
+import './LandingPage.scss';
 import { NavLink } from 'react-router-dom';
 import { FaHandsHelping } from 'react-icons/fa'
 
