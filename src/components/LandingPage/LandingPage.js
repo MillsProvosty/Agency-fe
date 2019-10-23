@@ -17,7 +17,9 @@ export const LandingPage = props => {
     margin-top: 100px;
     margin-right: ${props => (props.volunteer ? "20px" : "0px")};
     margin-left: ${props => (props.client ? "20px" : "0px")}
-
+    @media screen and (max-width: 375px) {
+      margin: ${props => (props.client ? "20px 0px 0px 0px" : "50px 20px 0px 0px")}
+    }
 
     :hover {
       border: 2px solid darkblue;
@@ -34,11 +36,17 @@ export const LandingPage = props => {
   const Header = styled.h1`
     font-size: 6em;
     margin: 0px;
+    @media screen and (max-width: 375px) {
+      margin: 0px 0px 30px -80px
+    }
   `;
 
   const Section = styled.section`
     margin: 100px;
     height: auto;
+    @media screen and (max-width: 375px) {
+      justify-content: space-around;
+    }
   `;
 
   return (
@@ -51,10 +59,10 @@ export const LandingPage = props => {
           to="/user-form"
           onClick={() => props.displayForms("volunteer")}
         >
-          <Button volunteer className="volunteer">Volunteer</Button>
+          <Button volunteer>Volunteer</Button>
         </NavLink>
         <NavLink to="/user-form" onClick={() => props.displayForms("client")}>
-          <Button client className="client">Client</Button>
+          <Button client>Client</Button>
         </NavLink>
       </section>
     </Section>
