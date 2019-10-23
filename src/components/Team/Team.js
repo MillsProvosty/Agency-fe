@@ -25,7 +25,7 @@ const Team = () => {
           </section>
         </section>
         <section className="tay">
-          <p>Tay De Herrera</p>
+          <p>Tay DeHerrera</p>
           <img src="https://avatars2.githubusercontent.com/u/47490116?s=400&v=4"alt='developer'/>
           <section className="urls">
             <a className="url" href="https://github.com/tayjames">
