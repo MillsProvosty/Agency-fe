@@ -56,7 +56,7 @@
     }
 }
 
-@media screen and (display: standalone) {
+@media screen and (display-mode: standalone) {
     html, body {
         overflow-x: hidden;
       }

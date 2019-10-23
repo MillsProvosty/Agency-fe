@@ -52,7 +52,7 @@
   }
 }
 
-@media screen and (display: standalone) {
+@media screen and (display-mode: standalone) {
   .Team {
     p {
       font-size : 2rem;

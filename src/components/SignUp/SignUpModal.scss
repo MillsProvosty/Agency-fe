@@ -51,7 +51,7 @@
   }
 }
 
-@media screen and (display: standalone) {
+@media screen and (display-mode: standalone) {
   .SignUpModal {
     margin: 130px 4px;
     height: auto;
