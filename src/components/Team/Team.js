@@ -58,7 +58,7 @@ const Team = () => {
           </URLSection>
         </Member>
         <Member className="tay">
-          <Program>Tay De Herrera</Program>
+          <Program>Tay DeHerrera</Program>
           <Image
             src="https://avatars2.githubusercontent.com/u/47490116?s=400&v=4"
             alt="developer"

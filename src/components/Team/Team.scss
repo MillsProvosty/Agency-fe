@@ -11,3 +11,17 @@
     }
   }
 }
+
+@media screen and (display-mode: standalone) {
+  .Team {
+    p {
+      font-size : 2rem;
+      text-align: center;
+    }
+
+    & .back, .front {
+      display: block;
+      margin: 50px 70px;
+    }
+  }
+}
