@@ -157,24 +157,23 @@ export class SignInForm extends Component {
 
   render() {
     return (
-      <SignIn className="SignInForm">
-        <ModalStyle className="modal">
+      <SignIn>
+        <ModalStyle>
           <Modal
             isOpen={this.state.modalIsOpen}
             displayProfile={this.displayProfile}
-            className="react-modal"
           >
             <SignUpModal />
           </Modal>
         </ModalStyle>
         <FaHandsHelping size={64} />
-        <Container className="container">
-          <Titles className="titles">
+        <Container>
+          <Titles>
             <Headers>Sign In</Headers>
             <Headers SignUp>Sign Up</Headers>
           </Titles>
-          <Titles second className="forms">
-            <SignsSection sign className="sign-in">
+          <Titles second >
+            <SignsSection sign >
               <Form>
                 <Input
                   tabIndex={0}
@@ -201,7 +200,7 @@ export class SignInForm extends Component {
                 </Link>
               </Form>
             </SignsSection>
-            <SignsSection className="sign-up">
+            <SignsSection>
               <Button onClick={this.displayModal}>Sign Up</Button>
             </SignsSection>
           </Titles>

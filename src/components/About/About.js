@@ -21,12 +21,34 @@ const BigLetters = styled.p`
 const Options = styled.section`
   margin-top: 2em;
   display: flex;
+  @media screen and (max-width: 375px) {
+    margin-top: 1rem;
+    display:block;
+    justify-content: center;
+  }
+  @media screen and (display-mode: standalone) {
+    margin-top: 1rem;
+    display:block;
+    justify-content: center;
+  }
 `;
 
 const MoreOptions = styled.section`
   margin-top: 1em;
   width: 50%;
   border-right: ${props => (props.one ? "1px solid darkblue" : "none")};
+  @media screen and (max-width: 375px) {
+    margin: auto;
+    width: 80%
+    border-bottom: ${props => (props.one ? "1px solid darkblue": "none")}
+    border-right: ${props => (props.one ? "none": '')}
+  }
+  @media screen and (display-mode: standalone) {
+    margin: auto;
+    width: 80%
+    border-bottom: ${props => (props.one ? "1px solid darkblue": "none")}
+    border-right: ${props => (props.one ? "none": '')}
+  }
 `;
 
 const PTag = styled.p`
@@ -34,60 +56,60 @@ const PTag = styled.p`
 `;
 
 const Button = styled.button`
-color: white;
-background-color: darkblue;
-border-radius: 5px;
-font-size: 2em;
-width: 175px;
-font-family: "Quicksand", sans-serif;
-border: 2px solid white;
-margin-top: 30px;
-margin-right: ${props => (props.volunteer ? "20px" : "0px")};
-margin-left: ${props => (props.client ? "20px" : "0px")}
+  color: white;
+  background-color: darkblue;
+  border-radius: 5px;
+  font-size: 2em;
+  width: 175px;
+  font-family: "Quicksand", sans-serif;
+  border: 2px solid white;
+  margin-top: 30px;
+  margin-right: ${props => (props.volunteer ? "20px" : "0px")};
+  margin-left: ${props => (props.client ? "20px" : "0px")}
 
 
-:hover {
-  border: 2px solid darkblue;
-  color: darkblue;
-  background-color: white;
+  :hover {
+    border: 2px solid darkblue;
+    color: darkblue;
+    background-color: white;
 }
 `;
 
 const About = () => {
   return (
-    <AboutSection className="about">
+    <AboutSection>
       <Nav />
-      <BigLetters first className="first">
+      <BigLetters first>
         <Bold>Agency</Bold> is a support networking service.
       </BigLetters>
-      <BigLetters second className="second">
+      <BigLetters second>
         To begin..
       </BigLetters>
-      <Options className="options">
-        <MoreOptions one className="option-1">
+      <Options>
+        <MoreOptions one>
           <PTag>
             select the <Bold>Volunteer</Bold> button
           </PTag>
           <PTag>if you can lend a hand...</PTag>
           <NavLink to="/user-form">
-            <Button className="about-button">Volunteer</Button>
+            <Button>Volunteer</Button>
           </NavLink>
         </MoreOptions>
-        <MoreOptions className="option-2">
+        <MoreOptions>
           <PTag>
             or, select the <Bold>Client</Bold> button
           </PTag>
           <PTag>if you would like some help!</PTag>
           <NavLink to="/user-form">
-            <Button className="about-button">Client</Button>
+            <Button>Client</Button>
           </NavLink>
         </MoreOptions>
       </Options>
-      <BigLetters second className="second">
+      <BigLetters second>
         Then, Sign-In to your account
       </BigLetters>
       <BigLetters> or Sign-Up if you haven't had the opportunity yet!</BigLetters>
-      <BigLetters second third className="third">
+      <BigLetters second third>
         Explore your profile and edit your settings!
       </BigLetters>
     </AboutSection>
