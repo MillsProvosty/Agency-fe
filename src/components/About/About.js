@@ -6,6 +6,9 @@ import styled from "styled-components";
 
 const AboutSection = styled.section`
   font-size: 1em;
+  @media screen and (max-width: 375px) {
+    font-size: .75em;
+  }
 `;
 
 const Bold = styled.span`
@@ -16,6 +19,12 @@ const BigLetters = styled.p`
   margin-top: ${props => (props.first ? "1em" : "2em")};
   font-size: ${props => (props.first ? "2.5em" : "1.5em")};
   margin-bottom: ${props => (props.third ? "2em" : "0em")};
+
+  @media screen and (max-width: 375px) {
+    margin-top: ${props => (props.first ? "1em" : "2em")};
+    font-size: ${props => (props.first || props.second ? "1.8em" : ".75em")};
+    margin-bottom: ${props => (props.third? "2em": "0em")};
+  }
 `;
 
 const Options = styled.section`
@@ -64,9 +73,9 @@ const Button = styled.button`
   font-family: "Quicksand", sans-serif;
   border: 2px solid white;
   margin-top: 30px;
+  margin-bottom: 20px;
   margin-right: ${props => (props.volunteer ? "20px" : "0px")};
   margin-left: ${props => (props.client ? "20px" : "0px")}
-
 
   :hover {
     border: 2px solid darkblue;
