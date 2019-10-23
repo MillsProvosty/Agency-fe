@@ -63,6 +63,7 @@
 
 @media (max-width: 375px) and (display-mode: standalone) {
   .main {
+    align-items: center;
     & h1 {
       margin: 0px 0px 30px -80px
     }
