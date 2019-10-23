@@ -27,6 +27,15 @@ const Container = styled.section`
 
 const Titles = styled.section`
   display: flex;
+  @media screen and (max-width: 375px) {
+    display: ${props => (props.second ? 'block': 'flex')}
+    margin: ${props => (props.second ? '0px 50%': 'none')}
+  }
+  @media screen and (display-mode: standalone) {
+    display: block;
+    margin: 0px 50%;
+  }
+
 `;
 
 const SignsSection = styled.section`
@@ -36,19 +45,48 @@ const SignsSection = styled.section`
   align-items: center;
   height: 20vh;
   border-right: ${props => (props.sign ? "1px solid darkblue" : "none")};
+  @media screen and (max-width: 375px) {
+    border-right: none;
+  }
+  @media screen and (display-mode: standalone) {
+    border-right: none;
+  }
 `;
 
 const Headers = styled.h1`
-font-size: 6em;
-margin: 0px;
+  font-size: 6em;
+  margin: 0px;
   display: flex;
   align-content: flex-start;
+  @media screen and (max-width: 375px) {
+    font-size: 3rem;
+    padding: 0px 5px;
+    margin-bottom: 20px;
+    display: ${props => (props.SignUp ? 'none': 'flex')}
+  }
+  @media screen and (display-mode: standalone) {
+    font-size: 3rem;
+    padding: 0px 5px;
+    margin-bottom: 20px;
+    display: ${props => (props.SignUp ? 'none': 'flex')}
+  }
 `;
 
 const Form = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  @media screen and (max-width: 375px) {
+    border-bottom: 2px solid darkblue;
+    padding-bottom: 30px;
+    margin-top: 20px;
+  }
+  @media screen and (display-mode: standalone) {
+    border-bottom: 2px solid darkblue;
+    padding-bottom: 30px;
+    margin-top: 20px;
+  }
+
 `;
 
 const Input = styled.input`
@@ -75,6 +113,14 @@ const Button = styled.button`
     border: 2px solid darkblue;
     color: darkblue;
     background-color: white;
+  }
+
+  @media screen and (max-width: 375px) {
+    margin-top: 10px
+  }
+
+  @media screen and (display-mode: standalone) {
+    margin-top: 10px
   }
 `;
 
@@ -124,10 +170,10 @@ export class SignInForm extends Component {
         <FaHandsHelping size={64} />
         <Container className="container">
           <Titles className="titles">
-            <Headers id="sign-in-header">Sign In</Headers>
-            <Headers id="sign-up-header">Sign Up</Headers>
+            <Headers>Sign In</Headers>
+            <Headers SignUp>Sign Up</Headers>
           </Titles>
-          <Titles className="forms">
+          <Titles second className="forms">
             <SignsSection sign className="sign-in">
               <Form>
                 <Input
