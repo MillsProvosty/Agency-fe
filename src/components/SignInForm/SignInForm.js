@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import "./SignInForm.scss";
 import { FaHandsHelping } from "react-icons/fa";
 import { Route, Link } from "react-router-dom";
@@ -6,6 +6,7 @@ import Profile from "../Profile/Profile";
 import { SignUpModal } from "../SignUp/SignUpModal";
 import Modal from "react-modal";
 import styled from "styled-components";
+import { getAllUsers } from '../../util/apiCalls'
 
 const SignIn = styled.section`
   height: auto;
@@ -124,21 +125,12 @@ const Button = styled.button`
   }
 `;
 
-export class SignInForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: "",
-      password: "",
-      modalIsOpen: false
-    };
-  }
+export const SignInForm = () => {
 
-  displayModal = () => {
-    this.setState({ modalIsOpen: true });
-  };
+  const [modalIsOpen, showModal] = useState(false)
+  // const [userEmail, ]
 
-  displayProfile = e => {
+  const displayProfile = e => {
     e.preventDefault();
     return (
       <main>
@@ -151,17 +143,15 @@ export class SignInForm extends Component {
     );
   };
 
-  handleChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
-  };
+  // const handleChange = e => {
+  //   this.setState({ [e.target.name]: e.target.value });
+  // };
 
-  render() {
     return (
       <SignIn>
         <ModalStyle>
           <Modal
-            isOpen={this.state.modalIsOpen}
-            displayProfile={this.displayProfile}
+            isOpen = {modalIsOpen}
           >
             <SignUpModal />
           </Modal>
@@ -196,16 +186,15 @@ export class SignInForm extends Component {
                   tabIndex={0}
                   style={{ textDecoration: "none" }}
                 >
-                  <Button>Sign In</Button>
+                  <Button onClick={getAllUsers()}>Sign In</Button>
                 </Link>
               </Form>
             </SignsSection>
             <SignsSection>
-              <Button onClick={this.displayModal}>Sign Up</Button>
+              <Button onClick={() => showModal(true)}>Sign Up</Button>
             </SignsSection>
           </Titles>
         </Container>
       </SignIn>
     );
   }
-}
