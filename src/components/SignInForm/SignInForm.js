@@ -7,6 +7,8 @@ import { SignUpModal } from "../SignUp/SignUpModal";
 import Modal from "react-modal";
 import styled from "styled-components";
 import { getAllUsers } from "../../util/apiCalls";
+import { useSignInForm } from "../../hooks/useForm";
+import { validate } from "../../hooks/signInFormValidationRules";
 
 const SignIn = styled.section`
   height: auto;
@@ -144,10 +146,16 @@ export const SignInForm = () => {
     password: ""
   });
 
-  const handleChange = e => {
-    e.preventDefault();
-    handleChangesInState({ ...inputValue, [e.target.name]: e.target.value });
-  };
+  const { values, errors, handleChange, handleSubmit } = useSignInForm(
+    login, validate
+  );
+  console.log('form values', values)
+  console.log('form errors', errors)
+
+
+  function login() {
+    console.log("No errors, submit callback called!");
+  }
 
   return (
     <SignIn>
@@ -166,27 +174,33 @@ export const SignInForm = () => {
           <SignsSection sign>
             <Form>
               <Input
+                autoComplete="off"
                 tabIndex={0}
-                type="text"
-                value={inputValue.email}
+                type="email"
+                value={values.email || ""}
                 name="email"
                 placeholder="example@email.com"
-                onChange={e => handleChange(e)}
+                onChange={handleChange}
+                required
               />
+              {errors.email && <p>{errors.email}</p>}
               <Input
+                autoComplete="off"
                 tabIndex={0}
                 type="text"
-                value={inputValue.password}
+                value={values.password || ""}
                 name="password"
                 placeholder="Password"
-                onChange={e => handleChange(e)}
+                onChange={handleChange}
+                required
               />
+              {errors.password && <p>{errors.password}</p>}
               <Link
                 to="/profile"
                 tabIndex={0}
                 style={{ textDecoration: "none" }}
               >
-                <Button onClick={getAllUsers()}>Sign In</Button>
+                <Button onClick={handleSubmit}>Sign In</Button>
               </Link>
             </Form>
           </SignsSection>
