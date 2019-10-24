@@ -8,27 +8,8 @@
   font-family: "Quicksand", sans-serif;
   color: darkblue;
 
-  h1 {
-    font-size: 6em;
-    margin: 0;
-  }
-  
-  section {
-    justify-content: space-around;
-    & button {
-      color: white;
-      background-color: darkblue;
-      border-radius: 5px;
-      font-size: 2em;
-      width: 175px;
-      font-family: "Quicksand", sans-serif;
-      border: 2px solid white;
-    }
 
-    & button:hover {
-      border: 2px solid darkblue;
-      color: darkblue;
-      background-color: white;
-    }
+  & section {
+    justify-content: space-around;
   }
 }
