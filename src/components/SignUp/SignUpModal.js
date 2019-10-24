@@ -100,37 +100,37 @@ export const SignUpModal = () => {
 
   
   return (
-    <form className="SignUpModal">
-      <p>Thanks for Signing Up!</p>
-      <input
+    <SignUpForm className="SignUpModal">
+      <PTag>Thanks for Signing Up!</PTag>
+      <Input
         type="text"
         placeholder="Enter your name"
         name="name"
         value={inputValue.name}
         onChange={e => handleChange(e)}
       />
-      <input
+      <Input
         type="text"
         placeholder="Enter your email"
         name="email"
         value={inputValue.email}
         onChange={e => handleChange(e)}
       />
-      <input
+      <Input
         type="text"
         placeholder="Enter your phone"
         name="phone"
         value={inputValue.phone}
         onChange={e => handleChange(e)}
       />
-      <input
+      <Input
         type="text"
         placeholder="Enter your password"
         name="password"
         value={inputValue.password}
         onChange={e => handleChange(e)}
       />
-      <input
+      <Input
         type="text"
         placeholder="Confirm your password"
         name="confirmation"
@@ -139,10 +139,10 @@ export const SignUpModal = () => {
       />
       {errorValue && <p>{errorValue}</p>}
       <Link to="/profile">
-        <button onClick={e => handleClick(e)} disabled={!errorValue}>
+        <Button onClick={e => handleClick(e)} disabled={!errorValue}>
           Submit!
-        </button>
+        </Button>
       </Link>
-    </form>
+    </SignUpForm>
   );
 };

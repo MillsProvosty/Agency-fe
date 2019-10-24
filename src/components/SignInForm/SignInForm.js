@@ -6,7 +6,7 @@ import Profile from "../Profile/Profile";
 import { SignUpModal } from "../SignUp/SignUpModal";
 import Modal from "react-modal";
 import styled from "styled-components";
-import { getAllUsers } from '../../util/apiCalls'
+import { getAllUsers } from "../../util/apiCalls";
 
 const SignIn = styled.section`
   height: auto;
@@ -29,8 +29,8 @@ const Container = styled.section`
 const Titles = styled.section`
   display: flex;
   @media screen and (max-width: 375px) {
-    display: ${props => (props.second ? 'block': 'flex')}
-    margin: ${props => (props.second ? '0px 50%': 'none')}
+    display: ${props => (props.second ? "block" : "flex")}
+    margin: ${props => (props.second ? "0px 50%" : "none")}
   }
   @media screen and (display-mode: standalone) {
     display: block;
@@ -63,13 +63,13 @@ const Headers = styled.h1`
     font-size: 3rem;
     padding: 0px 5px;
     margin-bottom: 20px;
-    display: ${props => (props.SignUp ? 'none': 'flex')}
+    display: ${props => (props.SignUp ? "none" : "flex")};
   }
   @media screen and (display-mode: standalone) {
     font-size: 3rem;
     padding: 0px 5px;
     margin-bottom: 20px;
-    display: ${props => (props.SignUp ? 'none': 'flex')}
+    display: ${props => (props.SignUp ? "none" : "flex")};
   }
 `;
 
@@ -87,7 +87,6 @@ const Form = styled.form`
     padding-bottom: 30px;
     margin-top: 20px;
   }
-
 `;
 
 const Input = styled.input`
@@ -117,19 +116,15 @@ const Button = styled.button`
   }
 
   @media screen and (max-width: 375px) {
-    margin-top: 10px
+    margin-top: 10px;
   }
 
   @media screen and (display-mode: standalone) {
-    margin-top: 10px
+    margin-top: 10px;
   }
 `;
 
 export const SignInForm = () => {
-
-  const [modalIsOpen, showModal] = useState(false)
-  // const [userEmail, ]
-
   const displayProfile = e => {
     e.preventDefault();
     return (
@@ -143,58 +138,63 @@ export const SignInForm = () => {
     );
   };
 
-  // const handleChange = e => {
-  //   this.setState({ [e.target.name]: e.target.value });
-  // };
+  const [modalIsOpen, showModal] = useState(false);
+  const [inputValue, handleChangesInState] = useState({
+    email: "",
+    password: ""
+  });
 
-    return (
-      <SignIn>
-        <ModalStyle>
-          <Modal
-            isOpen = {modalIsOpen}
-          >
-            <SignUpModal />
-          </Modal>
-        </ModalStyle>
-        <FaHandsHelping size={64} />
-        <Container>
-          <Titles>
-            <Headers>Sign In</Headers>
-            <Headers SignUp>Sign Up</Headers>
-          </Titles>
-          <Titles second >
-            <SignsSection sign >
-              <Form>
-                <Input
-                  tabIndex={0}
-                  type="text"
-                  value={this.state.email}
-                  name="email"
-                  placeholder="example@email.com"
-                  onChange={this.handleChange}
-                />
-                <Input
-                  tabIndex={0}
-                  type="text"
-                  value={this.state.password}
-                  name="password"
-                  placeholder="Password"
-                  onChange={this.handleChange}
-                />
-                <Link
-                  to="/profile"
-                  tabIndex={0}
-                  style={{ textDecoration: "none" }}
-                >
-                  <Button onClick={getAllUsers()}>Sign In</Button>
-                </Link>
-              </Form>
-            </SignsSection>
-            <SignsSection>
-              <Button onClick={() => showModal(true)}>Sign Up</Button>
-            </SignsSection>
-          </Titles>
-        </Container>
-      </SignIn>
-    );
-  }
+  const handleChange = e => {
+    e.preventDefault();
+    handleChangesInState({ ...inputValue, [e.target.name]: e.target.value });
+  };
+
+  return (
+    <SignIn>
+      <ModalStyle>
+        <Modal isOpen={modalIsOpen}>
+          <SignUpModal />
+        </Modal>
+      </ModalStyle>
+      <FaHandsHelping size={64} />
+      <Container>
+        <Titles>
+          <Headers>Sign In</Headers>
+          <Headers SignUp>Sign Up</Headers>
+        </Titles>
+        <Titles second>
+          <SignsSection sign>
+            <Form>
+              <Input
+                tabIndex={0}
+                type="text"
+                value={inputValue.email}
+                name="email"
+                placeholder="example@email.com"
+                onChange={e => handleChange(e)}
+              />
+              <Input
+                tabIndex={0}
+                type="text"
+                value={inputValue.password}
+                name="password"
+                placeholder="Password"
+                onChange={e => handleChange(e)}
+              />
+              <Link
+                to="/profile"
+                tabIndex={0}
+                style={{ textDecoration: "none" }}
+              >
+                <Button onClick={getAllUsers()}>Sign In</Button>
+              </Link>
+            </Form>
+          </SignsSection>
+          <SignsSection>
+            <Button onClick={() => showModal(true)}>Sign Up</Button>
+          </SignsSection>
+        </Titles>
+      </Container>
+    </SignIn>
+  );
+};
