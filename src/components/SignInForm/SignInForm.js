@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import "./SignInForm.scss";
 import { FaHandsHelping } from "react-icons/fa";
-import { Route, Link } from "react-router-dom";
+import { Route, NavLink, Redirect } from "react-router-dom";
 import Profile from "../Profile/Profile";
 import { SignUpModal } from "../SignUp/SignUpModal";
 import Modal from "react-modal";
 import styled from "styled-components";
 import { getAllUsers } from "../../util/apiCalls";
 import { useSignInForm } from "../../hooks/useForm";
-import { validate } from "../../hooks/signInFormValidationRules";
+import validate from "../../hooks/signInFormValidationRules";
 
 const SignIn = styled.section`
   height: auto;
@@ -127,18 +127,7 @@ const Button = styled.button`
 `;
 
 export const SignInForm = () => {
-  const displayProfile = e => {
-    e.preventDefault();
-    return (
-      <main>
-        <Route
-          exact
-          path="/profile"
-          render={() => <Profile props={"user info here"} />}
-        />
-      </main>
-    );
-  };
+
 
   const [modalIsOpen, showModal] = useState(false);
   const [inputValue, handleChangesInState] = useState({
@@ -146,15 +135,17 @@ export const SignInForm = () => {
     password: ""
   });
 
-  const { values, errors, handleChange, handleSubmit } = useSignInForm(
-    login, validate
-  );
-  console.log('form values', values)
-  console.log('form errors', errors)
+  const { values, errors, handleChange, handleSubmit } = useSignInForm(validate);
+
+  const [disabled, toggleDisabled] = useState(false)
 
 
-  function login() {
-    console.log("No errors, submit callback called!");
+  function setDisabled () {
+    if(!Object.keys(errors).length && values.password  && values.email) {
+      return false
+    } else {
+      return true
+    }
   }
 
   return (
@@ -195,13 +186,13 @@ export const SignInForm = () => {
                 required
               />
               {errors.password && <p>{errors.password}</p>}
-              <Link
-                to="/profile"
+              <NavLink
+                to='/profile'
                 tabIndex={0}
                 style={{ textDecoration: "none" }}
-              >
-                <Button onClick={handleSubmit}>Sign In</Button>
-              </Link>
+                >
+                <Button disabled={setDisabled()}>Sign In</Button>
+              </NavLink>
             </Form>
           </SignsSection>
           <SignsSection>
