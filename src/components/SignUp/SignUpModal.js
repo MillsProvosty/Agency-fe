@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./SignUpModal.scss";
 import { Link } from "react-router-dom";
-import styled from 'styled-components';
+import styled from "styled-components";
+import { useSignInForm } from "../../hooks/useForm";
+import validate from "../../hooks/signInFormValidationRules";
+import  {postAUser}  from "../../util/apiCalls";
 
 const SignUpForm = styled.form`
   margin: 50px auto;
@@ -17,25 +20,25 @@ const SignUpForm = styled.form`
   padding: 20px;
   font-family: "Quicksand", sans-serif;
   color: darkblue;
-  
+
   @media screen and (max-width: 375px) {
     margin: 130px 4px;
     height: auto;
     width: 98%;
     padding: 10px;
-}
+  }
 
-@media screen and (display-mode: standalone) {
+  @media screen and (display-mode: standalone) {
     margin: 130px 4px;
     height: auto;
     width: 98%;
     padding: 10px;
-}
-`
+  }
+`;
 
 const PTag = styled.p`
   font-size: 2em;
-`
+`;
 
 const Input = styled.input`
   border-radius: 5px;
@@ -44,9 +47,9 @@ const Input = styled.input`
   border: 1px solid darkgrey;
   padding: 5px;
   width: 300px;
-  font-family: 'Quicksand', sans-serif;
+  font-family: "Quicksand", sans-serif;
   margin-top: 10px;
-`
+`;
 
 const Button = styled.button`
   border-radius: 5px;
@@ -54,7 +57,7 @@ const Button = styled.button`
   height: 2em;
   padding: 5px;
   width: 300px;
-  font-family: 'Quicksand', sans-serif;
+  font-family: "Quicksand", sans-serif;
   margin-top: 10px;
   border: 2px solid white;
   color: white;
@@ -62,86 +65,120 @@ const Button = styled.button`
   margin-top: 30px
 
   :hover {
-  border: 2px solid darkblue;
-  color: darkblue;
-  background-color: white;
+    border: 2px solid darkblue;
+    color: darkblue;
+    background-color: white;
   }
-`
+`;
 
 export const SignUpModal = () => {
-  const [inputValue, handleChangesInState] = useState({
-    name: "",
-    phone: null,
-    email: "",
-    password: "",
-    confirmation: ""
-  });
-
   const [errorValue, showError] = useState("");
 
   const handleClick = e => {
     e.preventDefault();
- 
   };
 
-  const handleChange = e => {
-    e.preventDefault();
-    handleChangesInState({ ...inputValue, [e.target.name]: e.target.value });
-    doTheyMatch();
-  };
+  // const handleChange = e => {
+  //   e.preventDefault();
+  //   handleChangesInState({ ...inputValue, [e.target.name]: e.target.value });
+  //   doTheyMatch();
+  // };
 
-  const doTheyMatch = () => {
-    if (inputValue.password === inputValue.confirmation) {
-      showError("");
+  const { values, errors, handleChange } = useSignInForm(validate);
+
+  function setDisabled() {
+    console.log("errors", values.error);
+    console.log("values", values);
+
+    if (!values.error) {
+      console.log("false");
+      return false;
     } else {
-      showError("Passwords Do Not Match");
+      console.log("true");
+      return true;
     }
-  };
+  }
 
+  useEffect(
   
+    () => {
+      validate(values)
+      if(!values.error){
+        console.log('hooray mills is here')
+        setDisabled()
+      }
+    },
+    [values]
+  );
+
+  // const doTheyMatch = () => {
+  //   if (inputValue.password === inputValue.confirmation) {
+  //     showError("");
+  //   } else {
+  //     showError("Passwords Do Not Match");
+  //   }
+  // };
+console.log('these are values', values)
   return (
     <SignUpForm className="SignUpModal">
       <PTag>Thanks for Signing Up!</PTag>
       <Input
         type="text"
-        placeholder="Enter your name"
-        name="name"
-        value={inputValue.name}
-        onChange={e => handleChange(e)}
+        placeholder="Enter your First name"
+        name="firstname"
+        value={values.firstname || ""}
+        onChange={handleChange}
+        autoComplete="off"
+        required
+      />
+       <Input
+        type="text"
+        placeholder="Enter your Last name"
+        name="lastname"
+        value={values.lastname || ""}
+        onChange={handleChange}
+        autoComplete="off"
+        required
       />
       <Input
         type="text"
         placeholder="Enter your email"
         name="email"
-        value={inputValue.email}
-        onChange={e => handleChange(e)}
+        value={values.email || ""}
+        onChange={handleChange}
+        autoComplete="off"
+        required
       />
       <Input
         type="text"
         placeholder="Enter your phone"
         name="phone"
-        value={inputValue.phone}
-        onChange={e => handleChange(e)}
+        value={values.phone || ""}
+        onChange={handleChange}
+        autoComplete="off"
+        required
       />
       <Input
         type="text"
         placeholder="Enter your password"
         name="password"
-        value={inputValue.password}
-        onChange={e => handleChange(e)}
+        value={values.password || ""}
+        onChange={handleChange}
+        autoComplete="off"
+        required
       />
       <Input
         type="text"
         placeholder="Confirm your password"
         name="confirmation"
-        value={inputValue.confirmation}
-        onChange={e => handleChange(e)}
+        value={values.confirmation || ""}
+        onChange={handleChange}
+        autoComplete="off"
+        required
       />
-      {errorValue && <p>{errorValue}</p>}
+      {/* {errors && <p>{errors}</p>} */}
       <Link to="/profile">
-        <Button onClick={e => handleClick(e)} disabled={!errorValue}>
-          Submit!
-        </Button>
+        <Button disabled={setDisabled()} onClick={() => postAUser(values)}>Submit!</Button>
       </Link>
     </SignUpForm>
   );

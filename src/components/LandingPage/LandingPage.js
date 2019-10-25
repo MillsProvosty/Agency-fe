@@ -3,6 +3,7 @@ import "./LandingPage.scss";
 import { NavLink } from "react-router-dom";
 import { FaHandsHelping } from "react-icons/fa";
 import styled from "styled-components";
+import { getAllUsers, getSpecificUser, deleteAUser } from "../../util/apiCalls";
 
 export const LandingPage = props => {
 
@@ -51,6 +52,10 @@ export const LandingPage = props => {
 
   return (
     <Section>
+      <Button onClick={() => getAllUsers()}>Get All Users</Button>
+      <Button onClick={() => getSpecificUser(4)}>Get Single User</Button>
+      <Button onClick={() => deleteAUser(4)}>Delete a user</Button>
+      <Button onClick={() => getSpecificUser(3)}>Get Single User</Button>
       <FaHandsHelping size={64} />
       <Header>Agency</Header>
       <PTag>A Support System In Places</PTag>
