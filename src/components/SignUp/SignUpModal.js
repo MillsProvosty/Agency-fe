@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./SignUpModal.scss";
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
+import validate from '../../hooks/signInFormValidationRules';
+import { useSignInForm } from '../../hooks/useForm';
 
 const SignUpForm = styled.form`
   margin: 50px auto;
@@ -69,79 +71,86 @@ const Button = styled.button`
 `
 
 export const SignUpModal = () => {
-  const [inputValue, handleChangesInState] = useState({
-    name: "",
-    phone: null,
-    email: "",
-    password: "",
-    confirmation: ""
-  });
 
-  const [errorValue, showError] = useState("");
-
-  const handleClick = e => {
-    e.preventDefault();
- 
-  };
-
-  const handleChange = e => {
-    e.preventDefault();
-    handleChangesInState({ ...inputValue, [e.target.name]: e.target.value });
-    doTheyMatch();
-  };
-
-  const doTheyMatch = () => {
-    if (inputValue.password === inputValue.confirmation) {
-      showError("");
-    } else {
-      showError("Passwords Do Not Match");
-    }
-  };
-
+  const [ disabled, setDisabled ] = useState(true)
+  const { values, handleChange } = useSignInForm(validate);
   
+  function setSetDisabled() {
+    if (!values.error) {
+      setDisabled(false)
+    } else {
+      setDisabled(true);
+    }
+  }
+
+  useEffect(() => {
+      validate(values)
+      if(!values.error){
+        setSetDisabled()
+      }
+    }, [values]);
+
+
   return (
     <SignUpForm className="SignUpModal">
       <PTag>Thanks for Signing Up!</PTag>
       <Input
         type="text"
-        placeholder="Enter your name"
-        name="name"
-        value={inputValue.name}
-        onChange={e => handleChange(e)}
+        placeholder="Enter your First name"
+        name="firstname"
+        value={values.firstname || ""}
+        onChange={handleChange}
+        autoComplete="off"
+        required
+      />
+       <Input
+        type="text"
+        placeholder="Enter your Last name"
+        name="lastname"
+        value={values.lastname || ""}
+        onChange={handleChange}
+        autoComplete="off"
+        required
       />
       <Input
         type="text"
         placeholder="Enter your email"
         name="email"
-        value={inputValue.email}
-        onChange={e => handleChange(e)}
+        value={values.email || ""}
+        onChange={handleChange}
+        autoComplete="off"
+        required
       />
       <Input
         type="text"
         placeholder="Enter your phone"
         name="phone"
-        value={inputValue.phone}
-        onChange={e => handleChange(e)}
+        value={values.phone || ""}
+        onChange={handleChange}
+        autoComplete="off"
+        required
       />
       <Input
         type="text"
         placeholder="Enter your password"
         name="password"
-        value={inputValue.password}
-        onChange={e => handleChange(e)}
+        value={values.password || ""}
+        onChange={handleChange}
+        autoComplete="off"
+        required
       />
       <Input
         type="text"
         placeholder="Confirm your password"
         name="confirmation"
-        value={inputValue.confirmation}
-        onChange={e => handleChange(e)}
+        value={values.confirmation || ""}
+        onChange={handleChange}
+        autoComplete="off"
+        required
       />
-      {errorValue && <p>{errorValue}</p>}
+      {/* {errors && <p>{errors}</p>} */}
       <Link to="/profile">
-        <Button onClick={e => handleClick(e)} disabled={!errorValue}>
-          Submit!
-        </Button>
+        <Button disabled={disabled}>Submit!</Button>
       </Link>
     </SignUpForm>
   );

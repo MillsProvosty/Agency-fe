@@ -130,14 +130,8 @@ export const SignInForm = () => {
 
 
   const [modalIsOpen, showModal] = useState(false);
-  const [inputValue, handleChangesInState] = useState({
-    email: "",
-    password: ""
-  });
 
-  const { values, errors, handleChange, handleSubmit } = useSignInForm(validate);
-
-  const [disabled, toggleDisabled] = useState(false)
+  const { values, errors, handleChange} = useSignInForm(validate);
 
 
   function setDisabled () {
