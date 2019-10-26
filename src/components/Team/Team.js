@@ -2,17 +2,50 @@ import React from "react";
 import "./Team.scss";
 import { FaLinkedin, FaGithub } from "react-icons/fa";
 import Nav from "../Nav/Nav";
+import styled from "styled-components";
+
+const Program = styled.p`
+  margin: ${props => props.name ? '50px' : '0px'};
+  font-weight: ${props => props.name ? 'bold': ''};
+  font-size: ${props => props.name ? '2em' : '1.5em'}
+`;
+
+const ProgramSection = styled.section`
+  display: flex;
+  margin-bottom: 50px;
+`;
+
+const Member = styled.section`
+  width: 50%;
+`;
+
+const URLSection = styled.section`
+  display: flex;
+  width: 70%;
+  justify-content: space-around;
+  margin: 0px auto;
+`;
+
+const Image = styled.img`
+  width: 15em;
+  border-radius: 50%;
+  border: 2px solid darkblue;
+`;
+
 
 const Team = () => {
   return (
     <section className="Team">
       <Nav />
-      <p className="program">Back End:</p>
-      <section className="back">
-        <section className="mills">
-          <p>Mills Provosty</p>
-          <img src="https://avatars0.githubusercontent.com/u/45856797?s=400&v=4" alt='developer'/>
-          <section className="urls">
+      <Program name className="program">Back End:</Program>
+      <ProgramSection className="back">
+        <Member className="mills">
+          <Program>Mills Provosty</Program>
+          <Image
+            src="https://avatars0.githubusercontent.com/u/45856797?s=400&v=4"
+            alt="developer"
+          />
+          <URLSection className="urls">
             <a className="url" href="https://github.com/MillsProvosty">
               <FaGithub size={32} />
             </a>
@@ -22,12 +55,15 @@ const Team = () => {
             >
               <FaLinkedin size={32} />
             </a>
-          </section>
-        </section>
-        <section className="tay">
-          <p>Tay DeHerrera</p>
-          <img src="https://avatars2.githubusercontent.com/u/47490116?s=400&v=4"alt='developer'/>
-          <section className="urls">
+          </URLSection>
+        </Member>
+        <Member className="tay">
+          <Program>Tay DeHerrera</Program>
+          <Image
+            src="https://avatars2.githubusercontent.com/u/47490116?s=400&v=4"
+            alt="developer"
+          />
+          <URLSection className="urls">
             <a className="url" href="https://github.com/tayjames">
               <FaGithub size={32} />
             </a>
@@ -37,40 +73,45 @@ const Team = () => {
             >
               <FaLinkedin size={32} />
             </a>
-          </section>
-        </section>
-      </section>
-      <p className="program">Front End:</p>
-      <section className="front">
-        <section className="aidan">
-          <p>Aidan McKay</p>
-          <img src="https://avatars1.githubusercontent.com/u/27786530?s=400&v=4"/>
-          <section className="urls">
+          </URLSection>
+        </Member>
+      </ProgramSection>
+      <Program name className="program">Front End:</Program>
+      <ProgramSection className="front">
+        <Member className="aidan">
+          <Program>Aidan McKay</Program>
+          <Image
+            src="https://avatars1.githubusercontent.com/u/27786530?s=400&v=4"
+            alt="developer"
+          />
+          <URLSection className="urls">
             <a className="url" href="https://github.com/JellyBeans1312">
               <FaGithub size={32} />
             </a>
             <a className="url" href="https://www.linkedin.com/in/aidan-mckay/">
               <FaLinkedin size={32} />
             </a>
-          </section>
-        </section>
-        <section className="greg">
-          <p>Gregory Anderson</p>
-          <img src="https://avatars1.githubusercontent.com/u/30326085?s=400&v=4" alt='developer'/>
-          <section className="urls">
+          </URLSection>
+        </Member>
+        <Member className="greg">
+          <Program>Gregory Anderson</Program>
+          <Image
+            src="https://avatars1.githubusercontent.com/u/30326085?s=400&v=4"
+            alt="developer"
+          />
+          <URLSection className="urls">
             <a className="url" href="https://github.com/gregoryanderson">
               <FaGithub size={32} />
-
             </a>
             <a
               className="url"
               href="https://www.linkedin.com/in/gregandersondev/"
             >
-              <FaLinkedin size={32} />  
+              <FaLinkedin size={32} />
             </a>
-          </section>
-        </section>
-      </section>
+          </URLSection>
+        </Member>
+      </ProgramSection>
     </section>
   );
 };
