@@ -4,6 +4,12 @@ import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import validate from '../../hooks/signInFormValidationRules';
 import { useSignInForm } from '../../hooks/useForm';
+<<<<<<< HEAD
+=======
+import { postAUser } from '../../util/apiCalls';
+import { setUser } from '../../actions';
+import { connect } from "react-redux";
+>>>>>>> dc2d0ef99e0543fcff03e5271bb55ff2eb8fd5d4
 
 const SignUpForm = styled.form`
   margin: 50px auto;
@@ -70,6 +76,7 @@ const Button = styled.button`
   }
 `
 
+<<<<<<< HEAD
 export const SignUpModal = () => {
 
   const [ disabled, setDisabled ] = useState(true)
@@ -82,6 +89,28 @@ export const SignUpModal = () => {
       setDisabled(true);
     }
   }
+=======
+export const SignUpModal = (props) => {
+  const [ disabled, setDisabled ] = useState(true)
+  const { values, handleChange } = useSignInForm(validate);
+
+  const setUser = async (values) => {
+    try {
+      const user = await postAUser(values)
+      props.setAUser(user)
+    } catch(error) {
+      console.log(error)
+    }
+  }
+  
+  function setSetDisabled() {
+    if (!values.error) {
+      setDisabled(false)
+    } else {
+      setDisabled(true);
+    }
+  }
+>>>>>>> dc2d0ef99e0543fcff03e5271bb55ff2eb8fd5d4
 
   useEffect(() => {
       validate(values)
@@ -90,6 +119,10 @@ export const SignUpModal = () => {
       }
     }, [values]);
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> dc2d0ef99e0543fcff03e5271bb55ff2eb8fd5d4
   return (
     <SignUpForm className="SignUpModal">
       <PTag>Thanks for Signing Up!</PTag>
@@ -149,8 +182,22 @@ export const SignUpModal = () => {
       />
       {/* {errors && <p>{errors}</p>} */}
       <Link to="/profile">
+<<<<<<< HEAD
         <Button disabled={disabled}>Submit!</Button>
       </Link>
     </SignUpForm>
   );
 };
+=======
+        <Button disabled={disabled} onClick={() => setUser(values)}>Submit!</Button>
+      </Link>
+    </SignUpForm>
+  );
+};
+
+export const mapDispatchToProps = dispatch => ({
+  setAUser: user => dispatch(setUser(user))
+})
+
+export default connect(null, mapDispatchToProps)(SignUpModal)
+>>>>>>> dc2d0ef99e0543fcff03e5271bb55ff2eb8fd5d4

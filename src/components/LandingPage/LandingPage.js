@@ -2,7 +2,13 @@ import React from "react";
 import "./LandingPage.scss";
 import { NavLink } from "react-router-dom";
 import { FaHandsHelping } from "react-icons/fa";
+<<<<<<< HEAD
 import styled from "styled-components";
+=======
+import { connect } from 'react-redux'
+import styled from "styled-components";
+import { setRole } from '../../actions'
+>>>>>>> dc2d0ef99e0543fcff03e5271bb55ff2eb8fd5d4
 
 export const LandingPage = props => {
 
@@ -57,14 +63,31 @@ export const LandingPage = props => {
       <section>
         <NavLink
           to="/user-form"
+<<<<<<< HEAD
           onClick={() => props.displayForms("volunteer")}
         >
           <Button volunteer>Volunteer</Button>
         </NavLink>
         <NavLink to="/user-form" onClick={() => props.displayForms("client")}>
+=======
+          onClick={() => {props.displayForms(); setRole('volunteer')}}
+        >
+          <Button volunteer>Volunteer</Button>
+        </NavLink>
+        <NavLink to="/user-form" onClick={() => {props.displayForms(); setRole('client')}}>
+>>>>>>> dc2d0ef99e0543fcff03e5271bb55ff2eb8fd5d4
           <Button client>Client</Button>
         </NavLink>
       </section>
     </Section>
   );
 };
+<<<<<<< HEAD
+=======
+
+export const mapDispatchToProps = dispatch => ({
+  setRole: role =>  dispatch(setRole(role))
+})
+
+export default connect(null, mapDispatchToProps)(LandingPage)
+>>>>>>> dc2d0ef99e0543fcff03e5271bb55ff2eb8fd5d4

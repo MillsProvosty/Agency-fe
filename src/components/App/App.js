@@ -1,7 +1,7 @@
 
-import React, { Component } from "react";
+import React, { useState } from "react";
 import "./App.scss";
-import { SignInForm } from "../SignInForm/SignInForm";
+import SignInForm from "../SignInForm/SignInForm";
 import { Route } from "react-router-dom";
 import Profile from "../Profile/Profile";
 import About from '../About/About'
@@ -11,28 +11,22 @@ import History from '../History/History'
 import Tasks from '../Tasks/Tasks'
 import { LandingPage } from "../LandingPage/LandingPage";
 
-class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      hideLanding: false,
-      userType: ""
-    };
-  }
+const App = () => {
 
-  displayForms = userType => {
-    this.setState({ hideLanding: !this.state.hideLanding, userType });
+  const [landing, hideLanding] = useState(false)
+
+  const displayForms = () => {
+    hideLanding(!landing);
   };
 
-  render() {
     let forms = null;
-    if (this.state.hideLanding) {
+    if (landing) {
       forms = (
         <>
           <Route
             exact
             path="/user-form"
-            render={() => <SignInForm props={this.state.userType} />}
+            render={() => <SignInForm />}
           />
         </>
       );
@@ -40,7 +34,7 @@ class App extends Component {
     return (
       <section className="App">
         {!forms && (
-          <Route exact path='/' render={() => <LandingPage displayForms={this.displayForms} />}/>
+          <Route exact path='/' render={() => <LandingPage displayForms={displayForms} />}/>
         )}
         {forms}
         <Route exact path="/schedule" component={Schedule} />
@@ -53,6 +47,5 @@ class App extends Component {
       </section>
     );
   }
-}
 
 export default App;

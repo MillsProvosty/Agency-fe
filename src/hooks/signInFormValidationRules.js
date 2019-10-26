@@ -18,6 +18,8 @@ export default function validate(values) {
     values.error = "Name is required";
   } else if (!values.confirmation) {
     values.error = "Please confirm your password matches";
+  } else if (values.confirmation !== values.password) {
+    values.error = "Please confirm your password matches";
   } else {
     values.error = "";
   }
