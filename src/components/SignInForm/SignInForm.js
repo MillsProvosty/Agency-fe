@@ -3,12 +3,14 @@ import "./SignInForm.scss";
 import { FaHandsHelping } from "react-icons/fa";
 import { Route, NavLink, Redirect } from "react-router-dom";
 import Profile from "../Profile/Profile";
-import { SignUpModal } from "../SignUp/SignUpModal";
+import SignUpModal from "../SignUp/SignUpModal";
 import Modal from "react-modal";
 import styled from "styled-components";
-import { getAllUsers } from "../../util/apiCalls";
+import { getSpecificUser } from "../../util/apiCalls";
 import { useSignInForm } from "../../hooks/useForm";
 import validate from "../../hooks/signInFormValidationRules";
+import { setUser } from '../../actions'
+import { connect } from "react-redux";
 
 const SignIn = styled.section`
   height: auto;
@@ -126,13 +128,22 @@ const Button = styled.button`
   }
 `;
 
-export const SignInForm = () => {
+export const SignInForm = (props) => {
 
 
   const [modalIsOpen, showModal] = useState(false);
 
   const { values, errors, handleChange} = useSignInForm(validate);
 
+
+  const setUser = async () => {
+    try {
+      const user = await getSpecificUser()
+      props.setAUser(user)
+    } catch(error) {
+      console.log(error)
+    }
+  }
 
   function setDisabled () {
     if(!Object.keys(errors).length && values.password  && values.email) {
@@ -185,7 +196,7 @@ export const SignInForm = () => {
                 tabIndex={0}
                 style={{ textDecoration: "none" }}
                 >
-                <Button disabled={setDisabled()}>Sign In</Button>
+                <Button disabled={setDisabled()} onClick={setUser}>Sign In</Button>
               </NavLink>
             </Form>
           </SignsSection>
@@ -197,3 +208,9 @@ export const SignInForm = () => {
     </SignIn>
   );
 };
+
+export const mapDispatchToProps = dispatch => ({
+  setAUser: user => dispatch(setUser(user))
+})
+
+export default connect(null, mapDispatchToProps)(SignInForm)
