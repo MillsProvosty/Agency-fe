@@ -1,6 +1,6 @@
 import { roleReducer, userReducer } from './userReducer'
-
-export const rootReducer = () => ({
+import { combineReducers } from 'redux'
+export const rootReducer = combineReducers({
   role: roleReducer,
   user: userReducer
 })
