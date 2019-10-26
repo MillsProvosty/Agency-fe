@@ -2,7 +2,9 @@ import React from "react";
 import "./LandingPage.scss";
 import { NavLink } from "react-router-dom";
 import { FaHandsHelping } from "react-icons/fa";
+import { connect } from 'react-redux'
 import styled from "styled-components";
+import { setRole } from '../../actions'
 
 export const LandingPage = props => {
 
@@ -57,14 +59,20 @@ export const LandingPage = props => {
       <section>
         <NavLink
           to="/user-form"
-          onClick={() => props.displayForms("volunteer")}
+          onClick={() => {props.displayForms(); setRole('volunteer')}}
         >
           <Button volunteer>Volunteer</Button>
         </NavLink>
-        <NavLink to="/user-form" onClick={() => props.displayForms("client")}>
+        <NavLink to="/user-form" onClick={() => {props.displayForms(); setRole('client')}}>
           <Button client>Client</Button>
         </NavLink>
       </section>
     </Section>
   );
 };
+
+export const mapDispatchToProps = dispatch => ({
+  setRole: role =>  dispatch(setRole(role))
+})
+
+export default connect(null, mapDispatchToProps)(LandingPage)
