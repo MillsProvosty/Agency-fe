@@ -3,10 +3,12 @@ import "./Schedule.scss";
 import Nav from "../Nav/Nav";
 
 const Schedule = () => {
+    const role = 'volunteer'
     return (
         <section>
             <Nav />
-            <p>This is the schedule</p>
+            {role === "volunteer" && <Opportunity />}
+            {role === "client" && <Opportunity />}
         </section>
     )
 }

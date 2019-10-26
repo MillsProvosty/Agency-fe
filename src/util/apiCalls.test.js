@@ -10,7 +10,7 @@ export const getAllUsers = async () => {
 }
 
 export const getSpecificUser = async () => {
-    const url;
+    const url = `http://localhost:5000/user/${id}`;
     let response = await fetch(url)
     if(!response.ok){
         throw new Error('There was an error accessing this user')

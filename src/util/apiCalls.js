@@ -9,16 +9,16 @@ export const getAllUsers = async () => {
   }
 }
 
-// export const getSpecificUser = async () => {
-
-//   let response = await fetch(url)
-//   if(!response.ok){
-//       throw new Error('There was an error accessing this user')
-//   } else {
-//       let data = await response.json();
-//       return data
-//   }
-// }
+export const getSpecificUser = async (id) => {
+  const url = `http://localhost:5000/user/${id}`
+  let response = await fetch(url)
+  if(!response.ok){
+      throw new Error('There was an error accessing this user')
+  } else {
+      let data = await response.json();
+      return data
+  }
+}
 
 // // export const getAllOpportunities = () => {
 
