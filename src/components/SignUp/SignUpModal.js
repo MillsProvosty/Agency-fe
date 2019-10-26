@@ -2,14 +2,11 @@ import React, { useState, useEffect } from "react";
 import "./SignUpModal.scss";
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
-import validate from '../../hooks/signInFormValidationRules';
+import {validate} from '../../hooks/signInFormValidationRules';
 import { useSignInForm } from '../../hooks/useForm';
-<<<<<<< HEAD
-=======
 import { postAUser } from '../../util/apiCalls';
 import { setUser } from '../../actions';
 import { connect } from "react-redux";
->>>>>>> dc2d0ef99e0543fcff03e5271bb55ff2eb8fd5d4
 
 const SignUpForm = styled.form`
   margin: 50px auto;
@@ -76,20 +73,6 @@ const Button = styled.button`
   }
 `
 
-<<<<<<< HEAD
-export const SignUpModal = () => {
-
-  const [ disabled, setDisabled ] = useState(true)
-  const { values, handleChange } = useSignInForm(validate);
-  
-  function setSetDisabled() {
-    if (!values.error) {
-      setDisabled(false)
-    } else {
-      setDisabled(true);
-    }
-  }
-=======
 export const SignUpModal = (props) => {
   const [ disabled, setDisabled ] = useState(true)
   const { values, handleChange } = useSignInForm(validate);
@@ -110,7 +93,6 @@ export const SignUpModal = (props) => {
       setDisabled(true);
     }
   }
->>>>>>> dc2d0ef99e0543fcff03e5271bb55ff2eb8fd5d4
 
   useEffect(() => {
       validate(values)
@@ -119,10 +101,6 @@ export const SignUpModal = (props) => {
       }
     }, [values]);
 
-<<<<<<< HEAD
-=======
-
->>>>>>> dc2d0ef99e0543fcff03e5271bb55ff2eb8fd5d4
   return (
     <SignUpForm className="SignUpModal">
       <PTag>Thanks for Signing Up!</PTag>
@@ -182,13 +160,6 @@ export const SignUpModal = (props) => {
       />
       {/* {errors && <p>{errors}</p>} */}
       <Link to="/profile">
-<<<<<<< HEAD
-        <Button disabled={disabled}>Submit!</Button>
-      </Link>
-    </SignUpForm>
-  );
-};
-=======
         <Button disabled={disabled} onClick={() => setUser(values)}>Submit!</Button>
       </Link>
     </SignUpForm>
@@ -200,4 +171,3 @@ export const mapDispatchToProps = dispatch => ({
 })
 
 export default connect(null, mapDispatchToProps)(SignUpModal)
->>>>>>> dc2d0ef99e0543fcff03e5271bb55ff2eb8fd5d4

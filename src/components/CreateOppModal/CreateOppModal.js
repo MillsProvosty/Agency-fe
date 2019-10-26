@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import "./SignUpModal.scss";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import validateCreateOpp from "../../hooks/signInFormValidationRules";
-import { useCreateOppForm } from "../../hooks/useForm";
+import {validateCreateOpp} from "../../hooks/signInFormValidationRules";
+import {useCreateOppForm} from "../../hooks/useForm";
 
 export const CreateOppModal = () => {
 
@@ -48,7 +47,7 @@ export const CreateOppModal = () => {
       <input
         type="text"
         placeholder="Enter an Address for the Event"
-        name="time"
+        name="address"
         value={values.address || ""}
         onChange={handleChange}
         autoComplete="off"
@@ -63,9 +62,10 @@ export const CreateOppModal = () => {
         autoComplete="off"
         required
       />
-      <Link to="/profile">
-        <Button disabled={disabled}>Submit!</Button>
+      <Link to="/schedule">
+        <button disabled={disabled}>Submit!</button>
       </Link>
     </section>
   );
 };
+

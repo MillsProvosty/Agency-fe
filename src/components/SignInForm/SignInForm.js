@@ -6,17 +6,11 @@ import Profile from "../Profile/Profile";
 import SignUpModal from "../SignUp/SignUpModal";
 import Modal from "react-modal";
 import styled from "styled-components";
-<<<<<<< HEAD
-import { getAllUsers } from "../../util/apiCalls";
-import { useSignInForm } from "../../hooks/useForm";
-import validate from "../../hooks/signInFormValidationRules";
-=======
 import { getSpecificUser } from "../../util/apiCalls";
 import { useSignInForm } from "../../hooks/useForm";
-import validate from "../../hooks/signInFormValidationRules";
-import { setUser } from '../../actions'
+import {validate} from "../../hooks/signInFormValidationRules";
+import { setUser } from "../../actions";
 import { connect } from "react-redux";
->>>>>>> dc2d0ef99e0543fcff03e5271bb55ff2eb8fd5d4
 
 const SignIn = styled.section`
   height: auto;
@@ -96,8 +90,6 @@ const Form = styled.form`
     border-bottom: 2px solid darkblue;
     padding-bottom: 30px;
     margin-top: 20px;
-<<<<<<< HEAD
-=======
   }
 `;
 
@@ -136,76 +128,25 @@ const Button = styled.button`
   }
 `;
 
-export const SignInForm = (props) => {
-
-
+export const SignInForm = props => {
   const [modalIsOpen, showModal] = useState(false);
 
-  const { values, errors, handleChange} = useSignInForm(validate);
-
+  const { values, errors, handleChange } = useSignInForm(validate);
 
   const setUser = async () => {
     try {
-      const user = await getSpecificUser()
-      props.setAUser(user)
-    } catch(error) {
-      console.log(error)
+      const user = await getSpecificUser();
+      props.setAUser(user);
+    } catch (error) {
+      console.log(error);
     }
->>>>>>> dc2d0ef99e0543fcff03e5271bb55ff2eb8fd5d4
-  }
-`;
+  };
 
-<<<<<<< HEAD
-const Input = styled.input`
-  display: block;
-  width: 175px;
-  margin-bottom: 10px;
-  border-radius: 5px;
-  font-size: 1em;
-  height: 2em;
-  border: 1px solid darkgrey;
-  padding: 5px;
-`;
-
-const Button = styled.button`
-  color: white;
-  background-color: darkblue;
-  border-radius: 5px;
-  font-size: 2em;
-  width: 175px;
-  font-family: "Quicksand", sans-serif;
-  border: 2px solid white;
-
-  :hover {
-    border: 2px solid darkblue;
-    color: darkblue;
-    background-color: white;
-  }
-
-  @media screen and (max-width: 375px) {
-    margin-top: 10px;
-  }
-
-  @media screen and (display-mode: standalone) {
-    margin-top: 10px;
-  }
-`;
-
-export const SignInForm = () => {
-
-
-  const [modalIsOpen, showModal] = useState(false);
-
-  const { values, errors, handleChange} = useSignInForm(validate);
-
-
-=======
->>>>>>> dc2d0ef99e0543fcff03e5271bb55ff2eb8fd5d4
-  function setDisabled () {
-    if(!Object.keys(errors).length && values.password  && values.email) {
-      return false
+  function setDisabled() {
+    if (!Object.keys(errors).length && values.password && values.email) {
+      return false;
     } else {
-      return true
+      return true;
     }
   }
 
@@ -248,15 +189,13 @@ export const SignInForm = () => {
               />
               {errors.password && <p>{errors.password}</p>}
               <NavLink
-                to='/profile'
+                to="/profile"
                 tabIndex={0}
                 style={{ textDecoration: "none" }}
-                >
-<<<<<<< HEAD
-                <Button disabled={setDisabled()}>Sign In</Button>
-=======
-                <Button disabled={setDisabled()} onClick={setUser}>Sign In</Button>
->>>>>>> dc2d0ef99e0543fcff03e5271bb55ff2eb8fd5d4
+              >
+                <Button disabled={setDisabled()} onClick={setUser}>
+                  Sign In
+                </Button>
               </NavLink>
             </Form>
           </SignsSection>
@@ -267,14 +206,13 @@ export const SignInForm = () => {
       </Container>
     </SignIn>
   );
-<<<<<<< HEAD
-};
-=======
 };
 
 export const mapDispatchToProps = dispatch => ({
   setAUser: user => dispatch(setUser(user))
-})
+});
 
-export default connect(null, mapDispatchToProps)(SignInForm)
->>>>>>> dc2d0ef99e0543fcff03e5271bb55ff2eb8fd5d4
+export default connect(
+  null,
+  mapDispatchToProps
+)(SignInForm);
