@@ -9,49 +9,50 @@ export const getAllUsers = async () => {
   }
 }
 
-// export const getSpecificUser = async () => {
+export const getSpecificUser = async () => {
 
-//   let response = await fetch(url)
-//   if(!response.ok){
-//       throw new Error('There was an error accessing this user')
-//   } else {
-//       let data = await response.json();
-//       return data
-//   }
+  let response = await fetch('http://localhost:5000/users/8')
+  if(!response.ok){
+      throw new Error('There was an error accessing this user')
+  } else {
+      let data = await response.json();
+      return data
+  }
+}
+
+// export const getAllOpportunities = () => {
+
 // }
 
-// // export const getAllOpportunities = () => {
+// export const getSpecificOpportunity = ()  => {
 
-// // }
-
-// // export const getSpecificOpportunity = ()  => {
-
-// // }
-
-// export const postAUser = async(userName, userEmail, userPhone ) => {
-//   const url;
-//   const body = {
-//       name: userName, 
-//       email: userEmail,
-//       phone: userPhone
-//   }
-//   const options = {
-//       method: "POST",
-//       headers: { "Content-Type": "application/json" },
-//       body: JSON.stringify(body)
-//     }
-//   try {
-//       const res = await fetch(url, options);
-//       if (!res.ok) {
-//       throw new Error("There was an error posting this User!");
-//       }
-//       const newFolder = await res.json();
-//       return newFolder;
-//   } catch (error) {
-//       throw new Error(error);
-//   }
 // }
+export const postAUser = async userValues => {
+  const url = "http://localhost:5000/user";
+  const body = {
+    first_name: userValues.firstname,
+    last_name: userValues.lastname,
+    email: userValues.email,
+    password: userValues.password,
+    phone_number: userValues.phone
+  };
 
+  const options = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  };
+  try {
+    const res = await fetch(url, options);
+    if (!res.ok) {
+      throw new Error("There was an error posting this User!");
+    }
+    const newFolder = await res.json();
+    return newFolder;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
 // // export const postAnOpportunity = () => {
 
 // // }
