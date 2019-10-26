@@ -7,8 +7,7 @@ const Schedule = () => {
     return (
         <section>
             <Nav />
-            {role === "volunteer" && <Opportunity />}
-            {role === "client" && <Opportunity />}
+            
         </section>
     )
 }

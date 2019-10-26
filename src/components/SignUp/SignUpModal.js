@@ -90,7 +90,6 @@ export const SignUpModal = () => {
       }
     }, [values]);
 
-
   return (
     <SignUpForm className="SignUpModal">
       <PTag>Thanks for Signing Up!</PTag>

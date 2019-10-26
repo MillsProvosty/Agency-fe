@@ -18,11 +18,23 @@ export default function validate(values) {
     values.error = "Name is required";
   } else if (!values.confirmation) {
     values.error = "Please confirm your password matches";
-  } else if (values.confirmation !== values.password) {
-    values.error = "Please confirm your password matches";
   } else {
     values.error = "";
   }
 
   return errors;
+}
+
+export default function validateCreateOpp(values) {
+  let errors = {};
+  if (!values.time) {
+    values.error = "Time is required";
+  }else if (!values.address) {
+    values.error = "Address is required";
+  }else if (!values.description) {
+    values.error = "Description is required";
+  } else {
+    values.error = ""
+  }
+  return errors
 }

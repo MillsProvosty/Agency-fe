@@ -8,11 +8,10 @@ const Profile = () => {
     firstName: "Confetti",
     lastName: "Hornblower",
     role: "client",
-    email: ""
+    email: "revare@revarae.com"
   };
 
   const [createModal, showCreateModal] = useState(false);
-  const [searchModal, showSearchModal] = useState(false);
 
   return (
     <section className="Profile">
@@ -21,12 +20,9 @@ const Profile = () => {
         <Modal isOpen={createModal}>
           <CreateOppModal />
         </Modal>
-        <Modal isOpen={searchModal}>
-          <CreateOppModal />
-        </Modal>
         <h1>Welcome {user.firstName}</h1>
-        {user.role === "client" && <button onClick={() => showCreateModal(true)}>Search for opportunities</button>}
-        {user.role === "volunteer" && <button onClick={() => showSearchModal(true)}>Make another opportunity</button>}
+        {user.role === "client" && <button onClick={() => showCreateModal(true)}>Create an opportunity</button>}
+        {user.role === "volunteer" && <NavLink to="/schedule"><button>Search For Opportunities</button></NavLink>}
       </section>
     </section>
   );
