@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import validate from '../../hooks/signInFormValidationRules';
 import { useSignInForm } from '../../hooks/useForm';
+import { postAUser } from '../../util/apiCalls';
+import { setUser } from '../../actions';
+import { connect } from "react-redux";
 
 const SignUpForm = styled.form`
   margin: 50px auto;
@@ -70,10 +73,18 @@ const Button = styled.button`
   }
 `
 
-export const SignUpModal = () => {
-
+export const SignUpModal = (props) => {
   const [ disabled, setDisabled ] = useState(true)
   const { values, handleChange } = useSignInForm(validate);
+
+  const setUser = async (values) => {
+    try {
+      const user = await postAUser(values)
+      props.setAUser(user)
+    } catch(error) {
+      console.log(error)
+    }
+  }
   
   function setSetDisabled() {
     if (!values.error) {
@@ -150,8 +161,14 @@ export const SignUpModal = () => {
       />
       {/* {errors && <p>{errors}</p>} */}
       <Link to="/profile">
-        <Button disabled={disabled}>Submit!</Button>
+        <Button disabled={disabled} onClick={() => setUser(values)}>Submit!</Button>
       </Link>
     </SignUpForm>
   );
 };
+
+export const mapDispatchToProps = dispatch => ({
+  setAUser: user => dispatch(setUser(user))
+})
+
+export default connect(null, mapDispatchToProps)(SignUpModal)
