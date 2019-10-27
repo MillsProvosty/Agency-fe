@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Opportunities should match snapshot 1`] = `
+<section
+  className="container-dash"
+>
+  <Modal
+    ariaHideApp={true}
+    bodyOpenClassName="ReactModal__Body--open"
+    closeTimeoutMS={0}
+    isOpen={false}
+    parentSelector={[Function]}
+    portalClassName="ReactModalPortal"
+    role="dialog"
+    shouldCloseOnEsc={true}
+    shouldCloseOnOverlayClick={true}
+    shouldFocusAfterRender={true}
+    shouldReturnFocusAfterClose={true}
+  >
+    <CreateOppModal />
+  </Modal>
+  <button
+    onClick={[Function]}
+  >
+    Create an opportunity
+  </button>
+  <section
+    key="2"
+  >
+    <p>
+      Rake Leaves
+    </p>
+    <p>
+      Physical Labor
+    </p>
+    <p>
+      I cannot rake my yard- I need someone to come in and get the front and back yard.
+    </p>
+    <p>
+      2848 Roslyn St., Denver CO 80238
+    </p>
+    <p>
+      1 hr
+    </p>
+  </section>
+</section>
+`;
+
+exports[`Opportunities should render a different button if role is different 1`] = `
+<section
+  className="container-dash"
+>
+  <Modal
+    ariaHideApp={true}
+    bodyOpenClassName="ReactModal__Body--open"
+    closeTimeoutMS={0}
+    isOpen={false}
+    parentSelector={[Function]}
+    portalClassName="ReactModalPortal"
+    role="dialog"
+    shouldCloseOnEsc={true}
+    shouldCloseOnOverlayClick={true}
+    shouldFocusAfterRender={true}
+    shouldReturnFocusAfterClose={true}
+  >
+    <CreateOppModal />
+  </Modal>
+  <button>
+    Search For Opportunities
+  </button>
+  <section
+    key="2"
+  >
+    <p>
+      Rake Leaves
+    </p>
+    <p>
+      Physical Labor
+    </p>
+    <p>
+      I cannot rake my yard- I need someone to come in and get the front and back yard.
+    </p>
+    <p>
+      2848 Roslyn St., Denver CO 80238
+    </p>
+    <p>
+      1 hr
+    </p>
+  </section>
+</section>
+`;
