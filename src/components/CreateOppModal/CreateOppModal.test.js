@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
-import "./SignUpModal.scss";
-import { Link } from "react-router-dom";
-import styled from 'styled-components';
-import validate from '../../hooks/signInFormValidationRules';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import CreateOppModal from './CreateOppModal';
 
 
+it('renders without crashing', () => {
+    expect(true).toEqual(true)
+  });
