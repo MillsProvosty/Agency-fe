@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import "./App.scss";
 import SignInForm from "../SignInForm/SignInForm";
 import { Route } from "react-router-dom";
-import Profile from "../Profile/Profile";
+import Profile from "../../containers/Profile/Profile";
 import About from '../About/About'
 import Team from '../Team/Team'
 import Schedule from '../Schedule/Schedule'
