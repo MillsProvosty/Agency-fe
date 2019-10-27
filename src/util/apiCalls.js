@@ -10,7 +10,7 @@ export const getAllUsers = async () => {
 }
 
 export const getSpecificUser = async (id) => {
-  const url = `http://localhost:5000/user/${id}`
+  const url = `http://localhost:5000/users/8`
   let response = await fetch(url)
   if(!response.ok){
       throw new Error('There was an error accessing this user')
@@ -21,7 +21,7 @@ export const getSpecificUser = async (id) => {
 }
 
 export const getAllOpportunities = async () => {
-  const url = 'http://localhost:5000/users/1/opportunity/2'
+  const url = 'http://localhost:5000/users/8/opportunity/2'
   let response = await fetch(url)
   if(!response.ok){
       throw new Error('There was an error fetching your opportunities')
@@ -73,7 +73,7 @@ export const postAUser = async userValues => {
 export const postAnOpportunity = async (id, values) => {
     const url = `http://localhost:5000/users/${id}/opportunity`;
     const body = {
-      title: userValues.title,
+      title: values.title,
       type: values.type,
       location: values.address,
       estimated_time: values.time,
@@ -97,8 +97,8 @@ export const postAnOpportunity = async (id, values) => {
     }
   };
 
-export const deleteAUser = () => {
-  const url;
+export const deleteAUser = async () => {
+  const url = 'sup'
   const options = {
     method: "DELETE",
     headers: { "Content-Type": "application/json" }
@@ -115,7 +115,7 @@ export const deleteAUser = () => {
   }
 }
 
-export const deleteAnOpportunity = (userId, oppId) => {
+export const deleteAnOpportunity = async (userId, oppId) => {
   const url = `http://localhost:5000/users/${userId}/opportunity/${oppId}`
   const options = {
     method: "DELETE",
@@ -133,7 +133,7 @@ export const deleteAnOpportunity = (userId, oppId) => {
   }
 }
 
-export const patchAUser = async(userId, userValues) => {
+export const patchAUser = async (userId, userValues) => {
       const url = `http://localhost:5000/users/${userId}`
       const body = {
         first_name: userValues.firstname,
@@ -160,13 +160,13 @@ export const patchAUser = async(userId, userValues) => {
     };
 }
 
-export const patchAnOpportunity = async(userId, oppId) => {
+export const patchAnOpportunity = async (userId, oppId, oppValues) => {
   const url = `http://localhost:5000/users/${userId}/opportunity/${oppId}`
   const body = {
-    first_name: userValues.firstname,
-    last_name: userValues.lastname,
-    email: userValues.email,
-    phone_number: userValues.phone
+    first_name: oppValues.firstname,
+    last_name: oppValues.lastname,
+    email: oppValues.email,
+    phone_number: oppValues.phone
   };
   const options = {
     method: "PATCH",
