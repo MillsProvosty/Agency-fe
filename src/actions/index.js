@@ -6,4 +6,9 @@ export const setRole = role => ({
 export const setUser = user => ({
   type: 'SET_USER',
   user
+});
+
+export const setUserOpportunities = opportunities => ({
+  type: 'SET_USER_OPPORTUNITIES',
+  opportunities
 })
