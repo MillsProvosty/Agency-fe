@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Modal from "react-modal";
 import { CreateOppModal } from "../../components/CreateOppModal/CreateOppModal"
 
-export const Opportunities = props => {
+export const Opportunities = (props) => {
   const displayOpp = () => {
     return props.opportunities.map(opportunity => {
       return (
@@ -18,19 +18,19 @@ export const Opportunities = props => {
     })
   }
 
-  const [createModal, showCreateModal] = useState(false);
-  const role = 'client'
+  const [createModal, showCreateModal] = React.useState(false);
+
   return (
     <section className="container-dash">
     <Modal isOpen={createModal}>
       <CreateOppModal />
     </Modal>
-    {role === "client" && (
+    {props.role === "client" && (
       <button onClick={() => showCreateModal(true)}>
         Create an opportunity
       </button>
     )}
-    {role === "volunteer" && <button>Search For Opportunities</button>}
+    {props.role === "volunteer" && <button>Search For Opportunities</button>}
     {displayOpp()}
     </section>
   )
