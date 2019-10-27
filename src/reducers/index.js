@@ -1,6 +1,7 @@
-import { roleReducer, userReducer } from './userReducer'
+import { roleReducer, userReducer, opportunityReducer } from './userReducer'
 import { combineReducers } from 'redux'
 export const rootReducer = combineReducers({
   role: roleReducer,
-  user: userReducer
+  user: userReducer,
+  opportunities: opportunityReducer
 })
