@@ -44,7 +44,7 @@ describe('Opportunities', () => {
   })
 
  it('should call showCreateModal when clicked', () => {
-   wrapper.find('button').props().onClick()
+   wrapper.find('button').at(0).props().onClick()
    expect(setState).toHaveBeenCalled()
  }) 
 

@@ -1,47 +1,46 @@
 export const getAllUsers = async () => {
-  const url = 'http://localhost:5000/user'
-  let response = await fetch(url)
-  if(!response.ok){
-      throw new Error('There was an error fetching your users')
+  const url = "http://localhost:5000/user";
+  let response = await fetch(url);
+  if (!response.ok) {
+    throw new Error("There was an error fetching your users");
   } else {
-      let data = await response.json();
-      return data
+    let data = await response.json();
+    return data;
   }
-}
+};
 
-export const getSpecificUser = async (id) => {
-  const url = `http://localhost:5000/users/8`
-  let response = await fetch(url)
-  if(!response.ok){
-      throw new Error('There was an error accessing this user')
+export const getSpecificUser = async id => {
+  const url = `http://localhost:5000/user/${id}`;
+  let response = await fetch(url);
+  if (!response.ok) {
+    throw new Error("There was an error accessing this user");
   } else {
-      let data = await response.json();
-      return data
+    let data = await response.json();
+    return data;
   }
-}
+};
 
 export const getAllOpportunities = async () => {
-  const url = 'http://localhost:5000/users/8/opportunity/2'
-  let response = await fetch(url)
-  if(!response.ok){
-      throw new Error('There was an error fetching your opportunities')
+  const url = "http://localhost:5000/users/1/opportunity/2";
+  let response = await fetch(url);
+  if (!response.ok) {
+    throw new Error("There was an error fetching the opportunities");
   } else {
-      let data = await response.json();
-      console.log(data)
-      return data
+    let data = await response.json();
+    return data;
   }
-}
+};
 
-export const getSpecificOpportunity = async (userId, oppId)  => {
-  const url = `http://localhost:5000/user/${userId}/opportunity/${oppId}`
-  let response = await fetch(url)
-  if(!response.ok){
-      throw new Error('There was an error accessing this user')
+export const getSpecificOpportunity = async (userId, oppId) => {
+  const url = `http://localhost:5000/users/${userId}/opportunity/${oppId}`;
+  let response = await fetch(url);
+  if (!response.ok) {
+    throw new Error("There was an error accessing this opportunity");
   } else {
-      let data = await response.json();
-      return data
+    let data = await response.json();
+    return data;
   }
-}
+};
 
 export const postAUser = async userValues => {
   const url = "http://localhost:5000/user";
@@ -56,49 +55,49 @@ export const postAUser = async userValues => {
   const options = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(body),
+    body: JSON.stringify(body)
   };
   try {
     const res = await fetch(url, options);
     if (!res.ok) {
       throw new Error("There was an error posting this User!");
     }
-    const newFolder = await res.json();
-    return newFolder;
+    const newUser = await res.json();
+    return newUser;
   } catch (error) {
     throw new Error(error);
   }
 };
 
 export const postAnOpportunity = async (id, values) => {
-    const url = `http://localhost:5000/users/${id}/opportunity`;
-    const body = {
-      title: values.title,
-      type: values.type,
-      location: values.address,
-      estimated_time: values.time,
-      description: values.description
-    };
-  
-    const options = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body),
-    };
-    try {
-      const res = await fetch(url, options);
-      if (!res.ok) {
-        throw new Error("There was an error posting this User!");
-      }
-      const newFolder = await res.json();
-      return newFolder;
-    } catch (error) {
-      throw new Error(error);
-    }
+  const url = `http://localhost:5000/users/${id}/opportunity`;
+  const body = {
+    title: values.title,
+    type: values.type,
+    location: values.address,
+    estimated_time: values.time,
+    description: values.description
   };
 
-export const deleteAUser = async () => {
-  const url = 'sup'
+  const options = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body)
+  };
+  try {
+    const res = await fetch(url, options);
+    if (!res.ok) {
+      throw new Error("There was an error posting this opportunity");
+    }
+    const newUser = await res.json();
+    return newUser;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+export const deleteAUser = async userId => {
+  const url = `http://localhost:5000/users/${userId}`;
   const options = {
     method: "DELETE",
     headers: { "Content-Type": "application/json" }
@@ -106,17 +105,17 @@ export const deleteAUser = async () => {
   try {
     const response = await fetch(url, options);
     if (!response.ok) {
-      throw new Error("Cannot delete folder!");
+      throw new Error("There was an error deleting this user");
     }
-    const deletedFolder = await response.json();
-    return deletedFolder;
+    const deletedUser = await response.json();
+    return deletedUser;
   } catch (error) {
     throw new Error(error);
   }
-}
+};
 
 export const deleteAnOpportunity = async (userId, oppId) => {
-  const url = `http://localhost:5000/users/${userId}/opportunity/${oppId}`
+  const url = `http://localhost:5000/users/${userId}/opportunity/${oppId}`;
   const options = {
     method: "DELETE",
     headers: { "Content-Type": "application/json" }
@@ -124,49 +123,22 @@ export const deleteAnOpportunity = async (userId, oppId) => {
   try {
     const response = await fetch(url, options);
     if (!response.ok) {
-      throw new Error("Cannot delete folder!");
+      throw new Error("Cannot delete opportunity!");
     }
-    const deletedFolder = await response.json();
-    return deletedFolder;
+    const deletedOpportunity = await response.json();
+    return deletedOpportunity;
   } catch (error) {
     throw new Error(error);
   }
-}
+};
 
 export const patchAUser = async (userId, userValues) => {
-      const url = `http://localhost:5000/users/${userId}`
-      const body = {
-        first_name: userValues.firstname,
-        last_name: userValues.lastname,
-        email: userValues.email,
-        phone_number: userValues.phone
-      };
-      const options = {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body)
-      };
-    
-      try {
-        const res = await fetch(url, options);
-        if (!res.ok) {
-          const error = await res.json();
-          throw new Error(error);
-        }
-        const patchedFolder = await res.json();
-        return patchedFolder;
-      } catch (error) {
-        throw new Error(error);
-    };
-}
-
-export const patchAnOpportunity = async (userId, oppId, oppValues) => {
-  const url = `http://localhost:5000/users/${userId}/opportunity/${oppId}`
+  const url = `http://localhost:5000/users/${userId}`;
   const body = {
-    first_name: oppValues.firstname,
-    last_name: oppValues.lastname,
-    email: oppValues.email,
-    phone_number: oppValues.phone
+    first_name: userValues.firstname,
+    last_name: userValues.lastname,
+    email: userValues.email,
+    phone_number: userValues.phone
   };
   const options = {
     method: "PATCH",
@@ -177,14 +149,38 @@ export const patchAnOpportunity = async (userId, oppId, oppValues) => {
   try {
     const res = await fetch(url, options);
     if (!res.ok) {
-      const error = await res.json();
-      throw new Error(error);
+      throw new Error("There was an error accessing this opportunity");
     }
-    const patchedFolder = await res.json();
-    return patchedFolder;
+    const patchedUser = await res.json();
+    return patchedUser;
   } catch (error) {
     throw new Error(error);
+  }
 };
-}
 
+export const patchAnOpportunity = async (userId, oppId, values) => {
+  const url = `http://localhost:5000/users/${userId}/opportunity/${oppId}`;
+  const body = {
+    title: values.title,
+    type: values.type,
+    location: values.address,
+    estimated_time: values.time,
+    description: values.description
+  };
+  const options = {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body)
+  };
 
+  try {
+    const res = await fetch(url, options);
+    if (!res.ok) {
+      throw new Error("There was an issue editing your opportunity");
+    }
+    const patchedUser = await res.json();
+    return patchedUser;
+  } catch (error) {
+    throw new Error(error);
+  }
+};

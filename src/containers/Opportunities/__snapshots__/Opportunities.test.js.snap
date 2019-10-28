@@ -17,7 +17,7 @@ exports[`Opportunities should match snapshot 1`] = `
     shouldFocusAfterRender={true}
     shouldReturnFocusAfterClose={true}
   >
-    <CreateOppModal />
+    <Connect(CreateOppModal) />
   </Modal>
   <button
     onClick={[Function]}
@@ -27,6 +27,9 @@ exports[`Opportunities should match snapshot 1`] = `
   <section
     key="2"
   >
+    <button>
+      edit
+    </button>
     <p>
       Rake Leaves
     </p>
@@ -63,7 +66,7 @@ exports[`Opportunities should render a different button if role is different 1`]
     shouldFocusAfterRender={true}
     shouldReturnFocusAfterClose={true}
   >
-    <CreateOppModal />
+    <Connect(CreateOppModal) />
   </Modal>
   <button>
     Search For Opportunities
@@ -71,6 +74,9 @@ exports[`Opportunities should render a different button if role is different 1`]
   <section
     key="2"
   >
+    <button>
+      edit
+    </button>
     <p>
       Rake Leaves
     </p>

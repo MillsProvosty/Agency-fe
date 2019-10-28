@@ -5,18 +5,19 @@ import { FaHandsHelping } from "react-icons/fa";
 import { connect } from 'react-redux'
 import styled from "styled-components";
 import { setRole } from '../../actions'
+import balloonImg from './air_support.svg'
 
 export const LandingPage = props => {
 
   const Button = styled.button`
     color: white;
-    background-color: darkblue;
+    background-color: #37474E;
     border-radius: 5px;
     font-size: 2em;
     width: 175px;
     font-family: "Quicksand", sans-serif;
     border: 2px solid white;
-    margin-top: 100px;
+    margin-top: 30px;
     margin-right: ${props => (props.volunteer ? "20px" : "0px")};
     margin-left: ${props => (props.client ? "20px" : "0px")}
     @media screen and (max-width: 375px) {
@@ -24,8 +25,8 @@ export const LandingPage = props => {
     }
 
     :hover {
-      border: 2px solid darkblue;
-      color: darkblue;
+      border: 2px solid #37474E;
+      color: #37474E;
       background-color: white;
     }
   `;
@@ -36,6 +37,7 @@ export const LandingPage = props => {
   `;
 
   const Header = styled.h1`
+    color: #37474E
     font-size: 6em;
     margin: 0px;
     @media screen and (max-width: 375px) {
@@ -44,16 +46,23 @@ export const LandingPage = props => {
   `;
 
   const Section = styled.section`
-    margin: 100px;
-    height: auto;
+    height: 100vh;
+    width: 100%;
+    background-color: aliceblue;
+    background-repeat: no-repeat;
+    background-size: 1000px;
+    background-position: top center;
+    background-image: url(${balloonImg});
     @media screen and (max-width: 375px) {
       justify-content: space-around;
     }
   `;
 
+
+
   return (
     <Section>
-      <FaHandsHelping size={64} />
+      <FaHandsHelping className="hands" size={64} />
       <Header>Agency</Header>
       <PTag>A Support System In Places</PTag>
       <section>
