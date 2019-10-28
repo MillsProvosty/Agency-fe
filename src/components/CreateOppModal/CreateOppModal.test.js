@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import LandingPage from './LandingPage';
+import CreateOppModal from './CreateOppModal';
+
 
 it('renders without crashing', () => {
-  expect(true).toEqual(true)
-});
+    expect(true).toEqual(true)
+  });

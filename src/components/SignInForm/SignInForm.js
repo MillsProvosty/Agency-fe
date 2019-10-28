@@ -1,23 +1,29 @@
 import React, { useState } from "react";
 import "./SignInForm.scss";
 import { FaHandsHelping } from "react-icons/fa";
-import { Route, NavLink, Redirect } from "react-router-dom";
-import Profile from "../Profile/Profile";
-import { SignUpModal } from "../SignUp/SignUpModal";
+import { NavLink } from "react-router-dom";
+import SignUpModal from "../SignUp/SignUpModal";
 import Modal from "react-modal";
 import styled from "styled-components";
-import { getAllUsers } from "../../util/apiCalls";
+import { getSpecificUser } from "../../util/apiCalls";
 import { useSignInForm } from "../../hooks/useForm";
-import validate from "../../hooks/signInFormValidationRules";
+import { validate } from "../../hooks/signInFormValidationRules";
+import { setUser } from "../../actions";
+import { connect } from "react-redux";
+import floatingImg from "./floating.svg";
 
 const SignIn = styled.section`
-  height: auto;
-  background-color: white;
   justify-content: center;
+  height: 100vh;
+  width: 100%;
+  background-color: aliceblue;
+  background-repeat: no-repeat;
+  background-size: 1000px;
+  background-position: center 10vh;
+  background-image: url(${floatingImg});
 `;
 
 const ModalStyle = styled.section`
-  margin-top: 50px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -38,17 +44,22 @@ const Titles = styled.section`
     display: block;
     margin: 0px 50%;
   }
-
 `;
 
+
 const SignsSection = styled.section`
-  width: 50%;
+  width: 40%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 20vh;
-  border-right: ${props => (props.sign ? "1px solid darkblue" : "none")};
-  @media screen and (max-width: 375px) {
+  height: 40vh;
+  margin-top: 27vh;
+  background-color: white;
+  border: 1px solid #37474e;
+  -webkit-box-shadow: 9px 10px 5px -10px rgba(55, 71, 78, 1);
+  -moz-box-shadow: 9px 10px 5px -10px rgba(55, 71, 78, 1);
+  box-shadow: 9px 10px 5px -10px rgba(55, 71, 78, 1);
+  border: 1px solid #37474e @media screen and (max-width: 375px) {
     border-right: none;
   }
   @media screen and (display-mode: standalone) {
@@ -56,8 +67,17 @@ const SignsSection = styled.section`
   }
 `;
 
+const TitleSection = styled.section`
+  display: flex;
+  background-color: aliceblue;
+  margin-top: 23vh;
+  align-items: center;
+  width: 220px;
+  margin-left: 15%;
+`;
+
 const Headers = styled.h1`
-  font-size: 6em;
+  font-size: ${props => (props.title ? "3em" : "6em")};
   margin: 0px;
   display: flex;
   align-content: flex-start;
@@ -78,14 +98,16 @@ const Headers = styled.h1`
 const Form = styled.form`
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: space-around;
+  margin: auto;
   @media screen and (max-width: 375px) {
-    border-bottom: 2px solid darkblue;
+    border-bottom: 2px solid #37474e;
     padding-bottom: 30px;
     margin-top: 20px;
   }
   @media screen and (display-mode: standalone) {
-    border-bottom: 2px solid darkblue;
+    border-bottom: 2px solid #37474e;
     padding-bottom: 30px;
     margin-top: 20px;
   }
@@ -104,7 +126,7 @@ const Input = styled.input`
 
 const Button = styled.button`
   color: white;
-  background-color: darkblue;
+  background-color: #7a86cb;
   border-radius: 5px;
   font-size: 2em;
   width: 175px;
@@ -112,8 +134,8 @@ const Button = styled.button`
   border: 2px solid white;
 
   :hover {
-    border: 2px solid darkblue;
-    color: darkblue;
+    border: 2px solid #7a86cb;
+    color: #7a86cb;
     background-color: white;
   }
 
@@ -126,44 +148,40 @@ const Button = styled.button`
   }
 `;
 
-export const SignInForm = () => {
-
-
+export const SignInForm = props => {
   const [modalIsOpen, showModal] = useState(false);
-  const [inputValue, handleChangesInState] = useState({
-    email: "",
-    password: ""
-  });
 
-  const { values, errors, handleChange, handleSubmit } = useSignInForm(validate);
+  const { values, errors, handleChange } = useSignInForm(validate);
 
-  const [disabled, toggleDisabled] = useState(false)
+  const setUser = async () => {
+    try {
+      const user = await getSpecificUser();
+      props.setAUser(user);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-
-  function setDisabled () {
-    if(!Object.keys(errors).length && values.password  && values.email) {
-      return false
+  function setDisabled() {
+    if (!Object.keys(errors).length && values.password && values.email) {
+      return false;
     } else {
-      return true
+      return true;
     }
   }
 
   return (
     <SignIn>
       <ModalStyle>
-        <Modal isOpen={modalIsOpen}>
+        <Modal className="modal" isOpen={modalIsOpen}>
           <SignUpModal />
         </Modal>
       </ModalStyle>
-      <FaHandsHelping size={64} />
       <Container>
-        <Titles>
-          <Headers>Sign In</Headers>
-          <Headers SignUp>Sign Up</Headers>
-        </Titles>
         <Titles second>
           <SignsSection sign>
             <Form>
+              <Headers>Sign In</Headers>
               <Input
                 autoComplete="off"
                 tabIndex={0}
@@ -187,19 +205,35 @@ export const SignInForm = () => {
               />
               {errors.password && <p>{errors.password}</p>}
               <NavLink
-                to='/profile'
+                to="/profile"
                 tabIndex={0}
                 style={{ textDecoration: "none" }}
-                >
-                <Button disabled={setDisabled()}>Sign In</Button>
+              >
+                <Button disabled={setDisabled()} onClick={setUser}>
+                  Sign In
+                </Button>
               </NavLink>
             </Form>
           </SignsSection>
           <SignsSection>
+            <Headers SignUp>Sign Up</Headers>
             <Button onClick={() => showModal(true)}>Sign Up</Button>
           </SignsSection>
         </Titles>
+        <TitleSection header>
+          <FaHandsHelping className="hands-form" size={45} />
+          <Headers title>Agency</Headers>
+        </TitleSection>
       </Container>
     </SignIn>
   );
 };
+
+export const mapDispatchToProps = dispatch => ({
+  setAUser: user => dispatch(setUser(user))
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(SignInForm);
