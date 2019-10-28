@@ -6,6 +6,7 @@ import styled from "styled-components";
 
 const AboutSection = styled.section`
   font-size: 1em;
+  background-color: aliceblue;
   @media screen and (max-width: 375px) {
     font-size: .75em;
   }
@@ -45,17 +46,17 @@ const Options = styled.section`
 const MoreOptions = styled.section`
   margin-top: 1em;
   width: 50%;
-  border-right: ${props => (props.one ? "1px solid darkblue" : "none")};
+  border-right: ${props => (props.one ? "1px solid #7A86CB" : "none")};
   @media screen and (max-width: 375px) {
     margin: auto;
     width: 80%
-    border-bottom: ${props => (props.one ? "1px solid darkblue": "none")}
+    border-bottom: ${props => (props.one ? "1px solid #7A86CB": "none")}
     border-right: ${props => (props.one ? "none": '')}
   }
   @media screen and (display-mode: standalone) {
     margin: auto;
     width: 80%
-    border-bottom: ${props => (props.one ? "1px solid darkblue": "none")}
+    border-bottom: ${props => (props.one ? "1px solid #7A86CB": "none")}
     border-right: ${props => (props.one ? "none": '')}
   }
 `;
@@ -66,7 +67,7 @@ const PTag = styled.p`
 
 const Button = styled.button`
   color: white;
-  background-color: darkblue;
+  background-color: #7A86CB;
   border-radius: 5px;
   font-size: 2em;
   width: 175px;
@@ -78,8 +79,8 @@ const Button = styled.button`
   margin-left: ${props => (props.client ? "20px" : "0px")}
 
   :hover {
-    border: 2px solid darkblue;
-    color: darkblue;
+    border: 2px solid #7A86CB;
+    color: #7A86CB;
     background-color: white;
 }
 `;

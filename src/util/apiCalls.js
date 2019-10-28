@@ -58,6 +58,7 @@ export const postAUser = async userValues => {
     body: JSON.stringify(body)
   };
   try {
+    console.log(options)
     const res = await fetch(url, options);
     if (!res.ok) {
       throw new Error("There was an error posting this User!");
