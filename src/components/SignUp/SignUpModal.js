@@ -76,12 +76,15 @@ const Button = styled.button`
 export const SignUpModal = props => {
   const [disabled, setDisabled] = useState(true);
   const { values, handleChange } = useSignInForm(validate);
-  console.log('props', props)
 
-  const setUser = async values => {
+  const setUserInRedux = async values => {
     try {
-      const user = await postAUser(values);
-      props.setAUser(user);
+      let allValues = {
+        ...values,
+        role: props.role
+      }
+      props.setAUser(allValues);
+      await postAUser(allValues);
     } catch (error) {
       console.log(error);
     }
@@ -161,7 +164,7 @@ export const SignUpModal = props => {
       />
       {/* {errors && <p>{errors}</p>} */}
       <Link to="/profile">
-        <Button disabled={disabled} onClick={() => setUser(values)}>
+        <Button disabled={disabled} onClick={() => setUserInRedux(values)}>
           Submit!
         </Button>
       </Link>
@@ -169,11 +172,15 @@ export const SignUpModal = props => {
   );
 };
 
+export const mapStateToProps = state => ({
+  role: state.role
+})
+
 export const mapDispatchToProps = dispatch => ({
-  setAUser: user => dispatch(setUser(user))
+  setAUser: (user) => dispatch(setUser(user))
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(SignUpModal);

@@ -50,8 +50,11 @@ export const postAUser = async userValues => {
     email: userValues.email,
     password: userValues.password,
     phone_number: userValues.phone,
-    role: 'client'
+    role: userValues.role
   };
+  console.log(userValues)
+  console.log(body)
+
 
   const options = {
     method: "POST",
@@ -59,7 +62,6 @@ export const postAUser = async userValues => {
     body: JSON.stringify(body)
   };
   try {
-    console.log(options)
     const res = await fetch(url, options);
     if (!res.ok) {
       throw new Error("There was an error posting this User!");
