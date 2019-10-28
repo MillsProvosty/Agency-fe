@@ -14,6 +14,7 @@ const Profile = props => {
 
   const getUserOpp = async () => {
     const userOpp = await getAllOpportunities()
+    console.log(userOpp)
     setOpportunities(userOpp)
     setLoading(false)
   }
