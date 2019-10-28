@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { validate } from "../../hooks/signInFormValidationRules";
 import { useSignInForm } from "../../hooks/useForm";
-import { postAUser, getAllOpportunities } from "../../util/apiCalls";
+import { postAUser, getAllOpportunities, getAllOpportunitiesForSpecificUser } from "../../util/apiCalls";
 import { setUser, setOpps } from "../../actions";
 import { connect } from "react-redux";
 
@@ -90,8 +90,14 @@ export const SignUpModal = props => {
       }
       props.setAUser(allValuesAndId);
       if (allValues.role === 'volunteer'){
+        console.log('in volun')
         let allOpps = await getAllOpportunities();
+        console.log('allOpps', allOpps)
         props.setAllOpps(allOpps)
+      } else {
+        let userOpps = await getAllOpportunitiesForSpecificUser(allValuesAndId.id)
+        console.log('userOpp',userOpps)
+        props.setAllOpps(userOpps)
       }
     } catch (error) {
       console.log(error);

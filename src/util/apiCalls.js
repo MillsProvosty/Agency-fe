@@ -31,6 +31,18 @@ export const getAllOpportunities = async () => {
   }
 };
 
+export const getAllOpportunitiesForSpecificUser = async (id) => {
+  console.log('id', id)
+  const url = `http://localhost:5000/users/${id}/opportunity`;
+  let response = await fetch(url);
+  if (!response.ok) {
+    throw new Error("There was an error fetching the opportunities");
+  } else {
+    let data = await response.json();
+    return data;
+  }
+};
+
 export const getSpecificOpportunity = async (userId, oppId) => {
   const url = `http://localhost:5000/users/${userId}/opportunity/${oppId}`;
   let response = await fetch(url);
@@ -72,8 +84,6 @@ export const postAUser = async userValues => {
 };
 
 export const postAnOpportunity = async (id, values) => {
-  console.log('postID', id)
-  console.log('postValues', values)
   const url = `http://localhost:5000/users/${id}/opportunity`;
   const body = {
     title: values.title,
@@ -82,7 +92,6 @@ export const postAnOpportunity = async (id, values) => {
     estimated_time: values.time,
     description: values.description
   };
-
   const options = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -119,6 +128,8 @@ export const deleteAUser = async userId => {
 };
 
 export const deleteAnOpportunity = async (userId, oppId) => {
+  console.log(userId)
+  console.log(oppId)
   const url = `http://localhost:5000/users/${userId}/opportunity/${oppId}`;
   const options = {
     method: "DELETE",

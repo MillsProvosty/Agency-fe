@@ -58,10 +58,6 @@ export const LandingPage = props => {
     }
   `;
 
-  const setRoleForRedux = (role) => {
-    setRole(role);
-    props.displayForms()
-  }
 
   return (
     <Section>

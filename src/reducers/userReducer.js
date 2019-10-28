@@ -8,7 +8,6 @@ export const userReducer = (state = {}, action) => {
 }
 
 export const roleReducer = (state = '', action ) => {
-  console.log(action)
   switch (action.type) {
     case 'SET_ROLE' :
       return action.role

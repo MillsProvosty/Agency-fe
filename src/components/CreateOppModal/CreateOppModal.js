@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { validateCreateOpp } from "../../hooks/signInFormValidationRules";
 import { useCreateOppForm } from "../../hooks/useForm";
-import { setUserOpportunities } from '../../actions/';
-import {postAnOpportunity} from '../../util/apiCalls'
-import { connect } from 'react-redux';
+import { setUserOpportunities } from "../../actions/";
+import { postAnOpportunity } from "../../util/apiCalls";
+import { connect } from "react-redux";
 
-export const CreateOppModal = (props) => {
+export const CreateOppModal = props => {
   const [disabled, setDisabled] = useState(true);
   const { values, handleChange } = useCreateOppForm(validateCreateOpp);
 
@@ -19,13 +19,9 @@ export const CreateOppModal = (props) => {
     }
   }
 
-  const createOpp = () => {
-    console.log(values);
-    console.log(props)
-    const {error, ...opp} = values;
-    console.log(values)
-    postAnOpportunity(props.user.id, values)
-    props.addOpp(opp)
+  const createOpp = async () => {
+    let newOpp = await postAnOpportunity(props.user.id, values);
+    props.addOpp(newOpp);
   };
 
   useEffect(() => {
@@ -93,10 +89,13 @@ export const CreateOppModal = (props) => {
 
 export const mapStateToProps = state => ({
   user: state.user
-})
+});
 
 export const mapDispatchToProps = dispatch => ({
   addOpp: opp => dispatch(setUserOpportunities(opp))
-})
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreateOppModal)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CreateOppModal);

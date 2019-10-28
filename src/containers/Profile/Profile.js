@@ -9,16 +9,12 @@ import Opportunities from '../Opportunities/Opportunities'
 const Profile = props => {
   const [isLoading, setLoading] = useState(true);
 
-  const { setOpportunities } = props
 
   const getUserOpp = async () => {
-    const userOpp = await getAllOpportunities()
-    setOpportunities(userOpp)
     setLoading(false)
   }
 
   useEffect(() => {
-    setLoading(true)
     getUserOpp()
   }, [])
 
