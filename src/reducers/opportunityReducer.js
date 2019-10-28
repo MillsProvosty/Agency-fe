@@ -8,7 +8,8 @@ export const opportunityReducer = (state = [], action) => {
          return action.opp
         }
       })
-
+    case 'SET_ALL_OPPS':
+      return action.opps
     default: 
       return state
   }

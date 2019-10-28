@@ -21,7 +21,7 @@ export const getSpecificUser = async id => {
 };
 
 export const getAllOpportunities = async () => {
-  const url = "http://localhost:5000/users/1/opportunity/2";
+  const url = "http://localhost:5000/opportunities";
   let response = await fetch(url);
   if (!response.ok) {
     throw new Error("There was an error fetching the opportunities");
@@ -52,9 +52,6 @@ export const postAUser = async userValues => {
     phone_number: userValues.phone,
     role: userValues.role
   };
-  console.log(userValues)
-  console.log(body)
-
 
   const options = {
     method: "POST",
@@ -67,6 +64,7 @@ export const postAUser = async userValues => {
       throw new Error("There was an error posting this User!");
     }
     const newUser = await res.json();
+    console.log(newUser)
     return newUser;
   } catch (error) {
     throw new Error(error);
@@ -74,6 +72,8 @@ export const postAUser = async userValues => {
 };
 
 export const postAnOpportunity = async (id, values) => {
+  console.log('postID', id)
+  console.log('postValues', values)
   const url = `http://localhost:5000/users/${id}/opportunity`;
   const body = {
     title: values.title,

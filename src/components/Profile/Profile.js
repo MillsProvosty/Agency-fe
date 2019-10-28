@@ -8,11 +8,12 @@ import {CreateOppModal} from '../CreateOppModal/CreateOppModal'
 import { getAllUsers, getAllOpportunities } from "../../util/apiCalls";
 import styled from 'styled-components';
 
-const 
 
 
 const Profile = (props) => {
-  const role = 'volunteer'
+  console.log('profile', props)
+  console.log('role', role)
+
   const [createModal, showCreateModal] = useState(false);
   return (
     <section className="Profile">
@@ -21,7 +22,7 @@ const Profile = (props) => {
         <Modal isOpen={createModal}>
           <CreateOppModal />
         </Modal>
-        <h1>Welcome {props.user.first_name}</h1>
+        <h1>Welcome, booom {props.user.first_name}</h1>
         {role === "client" && <button onClick={() => showCreateModal(true)}>Create an opportunity</button>}
         {role === "volunteer" && <button>Search For Opportunities</button>}
         <button onClick={() => getAllOpportunities()}>Get All Opportunities</button>

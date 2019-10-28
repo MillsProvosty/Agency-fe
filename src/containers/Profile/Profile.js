@@ -7,7 +7,6 @@ import { setUserOpportunities } from "../../actions";
 import Opportunities from '../Opportunities/Opportunities'
 
 const Profile = props => {
-
   const [isLoading, setLoading] = useState(true);
 
   const { setOpportunities } = props
@@ -23,17 +22,22 @@ const Profile = props => {
     getUserOpp()
   }, [])
 
-
   return (
     <section className="Profile">
       <Nav />
     {isLoading &&
        <p>I am loading</p>
     }
-    {!isLoading && 
+    {!isLoading && props.user.role === 'client' &&
       <>
-        <h1>Welcome {props.user.first_name}</h1>
-        <Opportunities role={'client'}/>
+        <h1>Welcome {props.user.firstname}</h1>
+        <Opportunities role={props.user.role}/>
+      </>
+    }
+    {!isLoading && props.user.role === 'volunteer' &&
+      <>
+        <h1>Welcome {props.user.firstname}</h1>
+        <Opportunities role={props.user.role}/>
       </>
     }
     </section>
@@ -41,7 +45,8 @@ const Profile = props => {
 };
 
 export const mapStateToProps = state => ({
-  user: state.user
+  user: state.user,
+  opportunities: state.opportunities
 });
 
 export const mapDispatchToProps = dispatch => ({

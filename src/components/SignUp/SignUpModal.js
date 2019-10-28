@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { validate } from "../../hooks/signInFormValidationRules";
 import { useSignInForm } from "../../hooks/useForm";
-import { postAUser } from "../../util/apiCalls";
-import { setUser } from "../../actions";
+import { postAUser, getAllOpportunities } from "../../util/apiCalls";
+import { setUser, setOpps } from "../../actions";
 import { connect } from "react-redux";
 
 const SignUpForm = styled.form`
@@ -83,8 +83,16 @@ export const SignUpModal = props => {
         ...values,
         role: props.role
       }
-      props.setAUser(allValues);
-      await postAUser(allValues);
+      let newUser = await postAUser(allValues);
+      let allValuesAndId = {
+        ...allValues,
+        id: newUser.id
+      }
+      props.setAUser(allValuesAndId);
+      if (allValues.role === 'volunteer'){
+        let allOpps = await getAllOpportunities();
+        props.setAllOpps(allOpps)
+      }
     } catch (error) {
       console.log(error);
     }
@@ -177,7 +185,8 @@ export const mapStateToProps = state => ({
 })
 
 export const mapDispatchToProps = dispatch => ({
-  setAUser: (user) => dispatch(setUser(user))
+  setAUser: (user) => dispatch(setUser(user)),
+  setAllOpps: (opps) => dispatch(setOpps(opps))
 });
 
 export default connect(
