@@ -12,7 +12,7 @@ const
 
 
 const Profile = (props) => {
-  const role = 'client'
+  const role = 'volunteer'
   const [createModal, showCreateModal] = useState(false);
   return (
     <section className="Profile">

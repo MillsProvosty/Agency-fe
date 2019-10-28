@@ -49,7 +49,8 @@ export const postAUser = async userValues => {
     last_name: userValues.lastname,
     email: userValues.email,
     password: userValues.password,
-    phone_number: userValues.phone
+    phone_number: userValues.phone,
+    role: 'client'
   };
 
   const options = {

@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react";
 import "./SignUpModal.scss";
 import { Link } from "react-router-dom";
-import styled from 'styled-components';
-import {validate} from '../../hooks/signInFormValidationRules';
-import { useSignInForm } from '../../hooks/useForm';
-import { postAUser } from '../../util/apiCalls';
-import { setUser } from '../../actions';
+import styled from "styled-components";
+import { validate } from "../../hooks/signInFormValidationRules";
+import { useSignInForm } from "../../hooks/useForm";
+import { postAUser } from "../../util/apiCalls";
+import { setUser } from "../../actions";
 import { connect } from "react-redux";
 
 const SignUpForm = styled.form`
   margin: 50px auto;
   height: auto;
   background-color: white;
-  border: 1px solid #37474E;
+  border: 1px solid #37474e;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
@@ -21,37 +21,37 @@ const SignUpForm = styled.form`
   width: 500px;
   padding: 20px;
   font-family: "Quicksand", sans-serif;
-  color: #7A86CB;
-  
+  color: #7a86cb;
+
   @media screen and (max-width: 375px) {
     margin: 130px 4px;
     height: auto;
     width: 98%;
     padding: 10px;
-}
+  }
 
-@media screen and (display-mode: standalone) {
+  @media screen and (display-mode: standalone) {
     margin: 130px 4px;
     height: auto;
     width: 98%;
     padding: 10px;
-}
-`
+  }
+`;
 
 const PTag = styled.p`
   font-size: 2em;
-`
+`;
 
 const Input = styled.input`
   border-radius: 5px;
   font-size: 1.5em;
   height: 2em;
-  border: 1px solid #37474E;
+  border: 1px solid #37474e;
   padding: 5px;
   width: 300px;
-  font-family: 'Quicksand', sans-serif;
+  font-family: "Quicksand", sans-serif;
   margin-top: 10px;
-`
+`;
 
 const Button = styled.button`
   border-radius: 5px;
@@ -59,47 +59,48 @@ const Button = styled.button`
   height: 2em;
   padding: 5px;
   width: 300px;
-  font-family: 'Quicksand', sans-serif;
+  font-family: "Quicksand", sans-serif;
   margin-top: 10px;
   border: 2px solid white;
   color: white;
-  background-color: #7A86CB;
+  background-color: #7a86cb;
   margin-top: 30px
 
   :hover {
-  border: 2px solid #7A86CB;
-  color: #7A86CB;
-  background-color: white;
+    border: 2px solid #7a86cb;
+    color: #7a86cb;
+    background-color: white;
   }
-`
+`;
 
-export const SignUpModal = (props) => {
-  const [ disabled, setDisabled ] = useState(true)
+export const SignUpModal = props => {
+  const [disabled, setDisabled] = useState(true);
   const { values, handleChange } = useSignInForm(validate);
+  console.log('props', props)
 
-  const setUser = async (values) => {
+  const setUser = async values => {
     try {
-      const user = await postAUser(values)
-      props.setAUser(user)
-    } catch(error) {
-      console.log(error)
+      const user = await postAUser(values);
+      props.setAUser(user);
+    } catch (error) {
+      console.log(error);
     }
-  }
-  
+  };
+
   function setSetDisabled() {
     if (!values.error) {
-      setDisabled(false)
+      setDisabled(false);
     } else {
       setDisabled(true);
     }
   }
 
   useEffect(() => {
-      validate(values)
-      if(!values.error){
-        setSetDisabled()
-      }
-    }, [values]);
+    validate(values);
+    if (!values.error) {
+      setSetDisabled();
+    }
+  }, [values]);
 
   return (
     <SignUpForm className="SignUpModal">
@@ -113,7 +114,7 @@ export const SignUpModal = (props) => {
         autoComplete="off"
         required
       />
-       <Input
+      <Input
         type="text"
         placeholder="Enter your Last name"
         name="lastname"
@@ -160,7 +161,9 @@ export const SignUpModal = (props) => {
       />
       {/* {errors && <p>{errors}</p>} */}
       <Link to="/profile">
-        <Button disabled={disabled} onClick={() => setUser(values)}>Submit!</Button>
+        <Button disabled={disabled} onClick={() => setUser(values)}>
+          Submit!
+        </Button>
       </Link>
     </SignUpForm>
   );
@@ -168,6 +171,9 @@ export const SignUpModal = (props) => {
 
 export const mapDispatchToProps = dispatch => ({
   setAUser: user => dispatch(setUser(user))
-})
+});
 
-export default connect(null, mapDispatchToProps)(SignUpModal)
+export default connect(
+  null,
+  mapDispatchToProps
+)(SignUpModal);

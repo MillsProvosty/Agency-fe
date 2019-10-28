@@ -58,7 +58,10 @@ export const LandingPage = props => {
     }
   `;
 
-
+  const setRoleForRedux = (role) => {
+    setRole(role);
+    props.displayForms()
+  }
 
   return (
     <Section>
@@ -68,12 +71,12 @@ export const LandingPage = props => {
       <section>
         <NavLink
           to="/user-form"
-          onClick={() => {props.displayForms(); setRole('volunteer')}}
+          onClick={() => {props.setRole('volunteer'); props.displayForms()}}
         >
           <Button volunteer>Volunteer</Button>
         </NavLink>
-        <NavLink to="/user-form" onClick={() => {props.displayForms(); setRole('client')}}>
-          <Button client>Client</Button>
+        <NavLink to="/user-form">
+          <Button client onClick={() => {props.setRole('client'); props.displayForms()}}>Client</Button>
         </NavLink>
       </section>
     </Section>
