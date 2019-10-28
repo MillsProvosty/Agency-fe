@@ -19,8 +19,8 @@ const SignIn = styled.section`
   width: 100%;
   background-color: aliceblue;
   background-repeat: no-repeat;
-  background-position: left top;
-  background-size: cover;
+  background-size: 1000px;
+  background-position: center 10vh;
   background-image: url(${floatingImg});
 `;
 
@@ -54,9 +54,13 @@ const SignsSection = styled.section`
   flex-direction: column;
   align-items: center;
   height: 40vh;
+  margin-top: 27vh;
   background-color: white;
-  border: 1px solid #37474E
-  @media screen and (max-width: 375px) {
+  border: 1px solid #37474e;
+  -webkit-box-shadow: 9px 10px 5px -10px rgba(55, 71, 78, 1);
+  -moz-box-shadow: 9px 10px 5px -10px rgba(55, 71, 78, 1);
+  box-shadow: 9px 10px 5px -10px rgba(55, 71, 78, 1);
+  border: 1px solid #37474e @media screen and (max-width: 375px) {
     border-right: none;
   }
   @media screen and (display-mode: standalone) {
@@ -64,8 +68,17 @@ const SignsSection = styled.section`
   }
 `;
 
+const TitleSection = styled.section`
+  display: flex;
+  background-color: aliceblue;
+  margin-top: 23vh;
+  align-items: center;
+  width: 220px;
+  margin-left: 15%;
+`;
+
 const Headers = styled.h1`
-  font-size: 6em;
+  font-size: ${props => (props.title ? "3em" : "6em")};
   margin: 0px;
   display: flex;
   align-content: flex-start;
@@ -114,7 +127,7 @@ const Input = styled.input`
 
 const Button = styled.button`
   color: white;
-  background-color: #37474e;
+  background-color: #7a86cb;
   border-radius: 5px;
   font-size: 2em;
   width: 175px;
@@ -122,8 +135,8 @@ const Button = styled.button`
   border: 2px solid white;
 
   :hover {
-    border: 2px solid #37474e;
-    color: #37474e;
+    border: 2px solid #7a86cb;
+    color: #7a86cb;
     background-color: white;
   }
 
@@ -161,11 +174,10 @@ export const SignInForm = props => {
   return (
     <SignIn>
       <ModalStyle>
-        <Modal isOpen={modalIsOpen}>
+        <Modal className="modal" isOpen={modalIsOpen}>
           <SignUpModal />
         </Modal>
       </ModalStyle>
-      <FaHandsHelping className="hands-form" size={64} />
       <Container>
         <Titles second>
           <SignsSection sign>
@@ -209,6 +221,10 @@ export const SignInForm = props => {
             <Button onClick={() => showModal(true)}>Sign Up</Button>
           </SignsSection>
         </Titles>
+        <TitleSection header>
+          <FaHandsHelping className="hands-form" size={45} />
+          <Headers title>Agency</Headers>
+        </TitleSection>
       </Container>
     </SignIn>
   );

@@ -17,7 +17,7 @@ export const LandingPage = props => {
     width: 175px;
     font-family: "Quicksand", sans-serif;
     border: 2px solid white;
-    margin-top: 100px;
+    margin-top: 30px;
     margin-right: ${props => (props.volunteer ? "20px" : "0px")};
     margin-left: ${props => (props.client ? "20px" : "0px")}
     @media screen and (max-width: 375px) {
@@ -50,7 +50,8 @@ export const LandingPage = props => {
     width: 100%;
     background-color: aliceblue;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 1000px;
+    background-position: top center;
     background-image: url(${balloonImg});
     @media screen and (max-width: 375px) {
       justify-content: space-around;
