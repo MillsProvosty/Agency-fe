@@ -7,28 +7,29 @@ import styled from "styled-components";
 const NavBar = styled.section`
   display: flex;
   justify-content: space-between;
-  background-color: darkblue;
-  color: white;
+  background-color: #37474E;
+  color: aliceblue;
   height: 100px;
 `;
 
 const LogoSection = styled.section`
-  color: white;
+  color: aliceblue;
   display: flex;
-  margin: 20px;
+  margin: 10px;
   font-size: 1.5em;
+  align-items: center;
 `;
 
 const PTag = styled.p`
   :hover {
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid aliceblue;
     height: 1.25em;
   }
 `;
 
 const PLinks = styled.p`
   font-size: 1.5em;
-  color: white;
+  color: aliceblue;
   margin-top: 1.5em;
 `;
 
@@ -47,7 +48,7 @@ const Nav = () => {
         className="nav-link"
       >
         <LogoSection className="logo">
-          <FaHandsHelping size={64} />
+          <FaHandsHelping size={30} />
           <PTag className="title" style={{ textDecoration: "none" }}>
             Agency
           </PTag>
