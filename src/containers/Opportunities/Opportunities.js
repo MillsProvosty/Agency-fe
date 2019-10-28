@@ -3,18 +3,30 @@ import { connect } from 'react-redux';
 import Modal from "react-modal";
 import CreateOppModal from "../../components/CreateOppModal/CreateOppModal";
 import { editOpp } from '../../actions'
+import { deleteAnOpportunity } from '../../util/apiCalls'
 
 export const Opportunities = (props) => {
+
+  const deleteOpp = async (id) => {
+    const { user } = props
+    deleteAnOpportunity(user.id, id)
+    return (
+      <>
+      <p>Successfully deleted</p>
+      </>
+    )
+  }
+
   const displayOpp = () => {
     return props.opportunities.map(opportunity => {
       return (
       <section key={opportunity.id}> 
-      <button onClick={props.editOpp}>edit</button>
         <p>{opportunity.title}</p>
         <p>{opportunity.type}</p>
         <p>{opportunity.description}</p>
         <p>{opportunity.location}</p>
         <p>{opportunity.estimated_time}</p>
+        <button onClick={() => deleteOpp(opportunity.id)}>Cancel this Opportunity</button>
       </section>
       )
     })
@@ -40,7 +52,8 @@ export const Opportunities = (props) => {
 
 
 export const mapStateToProps = state => ({
-  opportunities: state.opportunities
+  opportunities: state.opportunities,
+  user: state.user
 });
 
 export const mapDispatchToProps = dispatch => ({
