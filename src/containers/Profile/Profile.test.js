@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import LandingPage from './LandingPage';
+import Profile from './Profile';
 
 it('renders without crashing', () => {
   expect(true).toEqual(true)

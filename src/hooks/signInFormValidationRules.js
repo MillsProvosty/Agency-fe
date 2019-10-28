@@ -1,4 +1,4 @@
-export default function validate(values) {
+export function validate(values) {
   let errors = {};
   if (!values.email) {
     values.error = "Email address is required";
@@ -25,4 +25,18 @@ export default function validate(values) {
   }
 
   return errors;
+}
+
+export function validateCreateOpp(values) {
+  let errors = {};
+  if (!values.time) {
+    values.error = "Time is required";
+  }else if (!values.address) {
+    values.error = "Address is required";
+  }else if (!values.description) {
+    values.error = "Description is required";
+  } else {
+    values.error = ""
+  }
+  return errors
 }

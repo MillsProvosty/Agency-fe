@@ -16,3 +16,20 @@ export const useSignInForm = (validate) => {
     errors
   }
 };
+
+export const useCreateOppForm = (validateCreateOpp) => {
+  const [values, setValues] = useState({});
+  const [errors, setErrors] = useState({});
+
+  const handleChange = (event) => {
+    event.persist();
+    setValues(values => ({ ...values, [event.target.name]: event.target.value }));
+    setErrors(validateCreateOpp(values));
+  };
+
+  return {
+    handleChange,
+    values,
+    errors
+  }
+};
