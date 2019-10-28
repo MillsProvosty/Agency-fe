@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import Modal from "react-modal";
-import { CreateOppModal } from "../../components/CreateOppModal/CreateOppModal"
+import CreateOppModal from "../../components/CreateOppModal/CreateOppModal";
+import { editOpp } from '../../actions'
 
 export const Opportunities = (props) => {
   const displayOpp = () => {
     return props.opportunities.map(opportunity => {
       return (
       <section key={opportunity.id}> 
+      <button onClick={props.editOpp}>edit</button>
         <p>{opportunity.title}</p>
         <p>{opportunity.type}</p>
         <p>{opportunity.description}</p>
@@ -41,4 +43,8 @@ export const mapStateToProps = state => ({
   opportunities: state.opportunities
 });
 
-export default connect(mapStateToProps)(Opportunities)
+export const mapDispatchToProps = dispatch => ({
+  editOpp: opp => dispatch(editOpp(opp))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Opportunities)

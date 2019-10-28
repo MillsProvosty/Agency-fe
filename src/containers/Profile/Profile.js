@@ -9,16 +9,20 @@ import Opportunities from '../Opportunities/Opportunities'
 const Profile = props => {
 
   const [isLoading, setLoading] = useState(true);
-  
+
+  const { setOpportunities } = props
+
+  const getUserOpp = async () => {
+    const userOpp = await getAllOpportunities()
+    setOpportunities(userOpp)
+    setLoading(false)
+  }
+
   useEffect(() => {
     setLoading(true)
-    const getUserOpp = async () => {
-      const userOpp = await getAllOpportunities()
-      props.setOpportunities(userOpp)
-      setLoading(false)
-    }
     getUserOpp()
   }, [])
+
 
   return (
     <section className="Profile">
@@ -29,7 +33,7 @@ const Profile = props => {
     {!isLoading && 
       <>
         <h1>Welcome {props.user.first_name}</h1>
-        <Opportunities />
+        <Opportunities role={'client'}/>
       </>
     }
     </section>
@@ -37,7 +41,7 @@ const Profile = props => {
 };
 
 export const mapStateToProps = state => ({
-  user: state.user,
+  user: state.user
 });
 
 export const mapDispatchToProps = dispatch => ({

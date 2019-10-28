@@ -7,15 +7,6 @@ export const userReducer = (state = {}, action) => {
   }
 }
 
-export const opportunityReducer = (state = [], action) => {
-  switch(action.type) {
-    case 'SET_USER_OPPORTUNITIES':
-      return [...state, action.opportunities]
-    default: 
-      return state
-  }
-}
-
 export const roleReducer = (state = '', action ) => {
   switch (action.type) {
     case 'SET_ROLE' :
