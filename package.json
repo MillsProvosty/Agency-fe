@@ -20,7 +20,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --verbose",
     "eject": "react-scripts eject",
     "start-sw": "http-server ./build"
   },
@@ -51,7 +51,12 @@
     "collectCoverageFrom": [
       "src/**/*.{js,jsx}",
       "!src/index.js",
-      "!src/serviceWorker.js"
+      "!src/serviceWorker.js",
+      "!src/containers/Opportunities/OpportunitiesStyled.js",
+      "!src/components/About/AboutStyled.js",
+      "!src/components/Team/TeamStyled.js",
+      "!src/components/LandingPage/LandingPageStyled.js",
+      "!src/components/SignInForm/SignInFormStyled.js"
     ]
   }
 }

@@ -1,52 +1,8 @@
 import React from "react";
 import "./Nav.scss";
-import { FaHandsHelping } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
-import styled from "styled-components";
 import { GiAirBalloon } from "react-icons/gi";
-
-const NavBar = styled.section`
-  display: flex;
-  justify-content: space-between;
-  background-color: #37474e;
-  color: aliceblue;
-  height: 100px;
-`;
-
-const LogoSection = styled.section`
-  color: aliceblue;
-  display: flex;
-  margin: 10px;
-  font-size: 1.5em;
-  align-items: center;
-`;
-
-const PTag = styled.p`
-  font-size: 2em;
-  margin: 0;
-  :hover {
-    border-bottom: 1px solid aliceblue;
-    height: 1.25em;
-  }
-`;
-
-const PLinks = styled.p`
-  font-size: 1.5em;
-  color: aliceblue;
-  margin-top: 1.5em;
-`;
-
-const Logo = styled.button`
-  background-color: #37474e;
-  border-radius: 50%;
-  border: 2px solid white;
-`;
-
-const LinksSection = styled.section`
-  width: 60%;
-  display: flex;
-  justify-content: space-evenly;
-`;
+import { NavBar, LogoSection, PTag, PLinks, Logo, LinksSection } from './NavStyled'
 
 const Nav = () => {
   return (
@@ -86,20 +42,6 @@ const Nav = () => {
           style={{ textDecoration: "none" }}
         >
           <PLinks>Schedule</PLinks>
-        </NavLink>
-        <NavLink
-          to="/tasks"
-          className="dash-link"
-          style={{ textDecoration: "none" }}
-        >
-          <PLinks>Tasks</PLinks>
-        </NavLink>
-        <NavLink
-          to="/history"
-          className="dash-link"
-          style={{ textDecoration: "none" }}
-        >
-          <PLinks>History</PLinks>
         </NavLink>
         <NavLink
           to="/team"

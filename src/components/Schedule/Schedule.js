@@ -24,7 +24,7 @@ margin: 0px;
 }
 `;
 
-const Schedule = props => {
+export const Schedule = props => {
   const [isLoading, setLoading] = useState(true);
 
 

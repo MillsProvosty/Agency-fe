@@ -1,0 +1,153 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Team should match snapshot 1`] = `
+<section
+  className="Team"
+>
+  <Nav />
+  <styled.p
+    className="program"
+    name={true}
+  >
+    Back End:
+  </styled.p>
+  <styled.section
+    className="back"
+  >
+    <styled.section
+      className="mills"
+    >
+      <styled.p>
+        Mills Provosty
+      </styled.p>
+      <styled.img
+        alt="developer"
+        src="https://avatars0.githubusercontent.com/u/45856797?s=400&v=4"
+      />
+      <styled.section
+        className="urls"
+      >
+        <a
+          className="url"
+          href="https://github.com/MillsProvosty"
+        >
+          <FaGithub
+            size={32}
+          />
+        </a>
+        <a
+          className="url"
+          href="https://www.linkedin.com/in/mills-provosty/"
+        >
+          <FaLinkedin
+            size={32}
+          />
+        </a>
+      </styled.section>
+    </styled.section>
+    <styled.section
+      className="tay"
+    >
+      <styled.p>
+        Tay DeHerrera
+      </styled.p>
+      <styled.img
+        alt="developer"
+        src="https://avatars2.githubusercontent.com/u/47490116?s=400&v=4"
+      />
+      <styled.section
+        className="urls"
+      >
+        <a
+          className="url"
+          href="https://github.com/tayjames"
+        >
+          <FaGithub
+            size={32}
+          />
+        </a>
+        <a
+          className="url"
+          href="https://www.linkedin.com/in/tay-deherrera/"
+        >
+          <FaLinkedin
+            size={32}
+          />
+        </a>
+      </styled.section>
+    </styled.section>
+  </styled.section>
+  <styled.p
+    className="program"
+    name={true}
+  >
+    Front End:
+  </styled.p>
+  <styled.section
+    className="front"
+  >
+    <styled.section
+      className="aidan"
+    >
+      <styled.p>
+        Aidan McKay
+      </styled.p>
+      <styled.img
+        alt="developer"
+        src="https://avatars1.githubusercontent.com/u/27786530?s=400&v=4"
+      />
+      <styled.section
+        className="urls"
+      >
+        <a
+          className="url"
+          href="https://github.com/JellyBeans1312"
+        >
+          <FaGithub
+            size={32}
+          />
+        </a>
+        <a
+          className="url"
+          href="https://www.linkedin.com/in/aidan-mckay/"
+        >
+          <FaLinkedin
+            size={32}
+          />
+        </a>
+      </styled.section>
+    </styled.section>
+    <styled.section
+      className="greg"
+    >
+      <styled.p>
+        Gregory Anderson
+      </styled.p>
+      <styled.img
+        alt="developer"
+        src="https://avatars1.githubusercontent.com/u/30326085?s=400&v=4"
+      />
+      <styled.section
+        className="urls"
+      >
+        <a
+          className="url"
+          href="https://github.com/gregoryanderson"
+        >
+          <FaGithub
+            size={32}
+          />
+        </a>
+        <a
+          className="url"
+          href="https://www.linkedin.com/in/gregandersondev/"
+        >
+          <FaLinkedin
+            size={32}
+          />
+        </a>
+      </styled.section>
+    </styled.section>
+  </styled.section>
+</section>
+`;

@@ -1,0 +1,99 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Nav should match snapshot 1`] = `
+<styled.section
+  className="nav"
+>
+  <NavLink
+    className="nav-link"
+    style={
+      Object {
+        "textDecoration": "none",
+      }
+    }
+    to="/about"
+  >
+    <styled.section
+      className="logo"
+    >
+      <styled.button>
+        <GiAirBalloon
+          className="hands"
+          size={40}
+          style={
+            Object {
+              "color": "white",
+            }
+          }
+        />
+      </styled.button>
+      <styled.p
+        className="title"
+        style={
+          Object {
+            "textDecoration": "none",
+          }
+        }
+      >
+        Agency
+      </styled.p>
+    </styled.section>
+  </NavLink>
+  <styled.section
+    className="links"
+  >
+    <NavLink
+      className="dash-link"
+      style={
+        Object {
+          "textDecoration": "none",
+        }
+      }
+      to="/about"
+    >
+      <styled.p>
+        About
+      </styled.p>
+    </NavLink>
+    <NavLink
+      className="dash-link"
+      style={
+        Object {
+          "textDecoration": "none",
+        }
+      }
+      to="/profile"
+    >
+      <styled.p>
+        Profile
+      </styled.p>
+    </NavLink>
+    <NavLink
+      className="dash-link"
+      style={
+        Object {
+          "textDecoration": "none",
+        }
+      }
+      to="/schedule"
+    >
+      <styled.p>
+        Schedule
+      </styled.p>
+    </NavLink>
+    <NavLink
+      className="dash-link"
+      style={
+        Object {
+          "textDecoration": "none",
+        }
+      }
+      to="/team"
+    >
+      <styled.p>
+        Team
+      </styled.p>
+    </NavLink>
+  </styled.section>
+</styled.section>
+`;
