@@ -1,77 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "./SignUpModal.scss";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
 import { validate } from "../../hooks/signInFormValidationRules";
 import { useSignInForm } from "../../hooks/useForm";
 import { postAUser, getAllOpportunities, getAllOpportunitiesForSpecificUser } from "../../util/apiCalls";
 import { setUser, setOpps } from "../../actions";
 import { connect } from "react-redux";
-
-const SignUpForm = styled.form`
-  margin: 50px auto;
-  height: auto;
-  background-color: white;
-  border: 1px solid #37474E;
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 500px;
-  padding: 20px;
-  font-family: "Quicksand", sans-serif;
-  color: #7A86CB;
-  
-  @media screen and (max-width: 375px) {
-    margin: 130px 4px;
-    height: auto;
-    width: 98%;
-    padding: 10px;
-}
-
-@media screen and (display-mode: standalone) {
-    margin: 130px 4px;
-    height: auto;
-    width: 98%;
-    padding: 10px;
-  }
-`;
-
-const PTag = styled.p`
-  font-size: 2em;
-`;
-
-const Input = styled.input`
-  border-radius: 5px;
-  font-size: 1.5em;
-  height: 2em;
-  border: 1px solid #37474e;
-  padding: 5px;
-  width: 300px;
-  font-family: "Quicksand", sans-serif;
-  margin-top: 10px;
-`;
-
-const Button = styled.button`
-  border-radius: 5px;
-  font-size: 1.5em;
-  height: 2em;
-  padding: 5px;
-  width: 300px;
-  font-family: "Quicksand", sans-serif;
-  margin-top: 10px;
-  border: 2px solid white;
-  color: white;
-  background-color: #7a86cb;
-  margin-top: 30px
-
-  :hover {
-    border: 2px solid #7a86cb;
-    color: #7a86cb;
-    background-color: white;
-  }
-`;
+import { SignUpForm, PTag, Input, Button } from './SignUpModalStyled';
 
 export const SignUpModal = props => {
   const [disabled, setDisabled] = useState(true);
