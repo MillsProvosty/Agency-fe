@@ -61,15 +61,11 @@ exports[`SignUpModal should match snapshot 1`] = `
     type="text"
     value=""
   />
-  <Link
-    to="/profile"
+  <styled.button
+    disabled={true}
+    onClick={[Function]}
   >
-    <styled.button
-      disabled={true}
-      onClick={[Function]}
-    >
-      Submit!
-    </styled.button>
-  </Link>
+    Submit!
+  </styled.button>
 </styled.form>
 `;

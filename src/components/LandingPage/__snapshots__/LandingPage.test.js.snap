@@ -17,28 +17,18 @@ exports[`LandingPage should match snapshot 1`] = `
     A Support System In Places
   </styled.p>
   <section>
-    <NavLink
-      to="/user-form"
+    <styled.button
+      onClick={[Function]}
+      volunteer={true}
     >
-      <styled.button
-        id="volunteer"
-        onClick={[Function]}
-        volunteer={true}
-      >
-        Volunteer
-      </styled.button>
-    </NavLink>
-    <NavLink
-      to="/user-form"
+      Volunteer
+    </styled.button>
+    <styled.button
+      client={true}
+      onClick={[Function]}
     >
-      <styled.button
-        client={true}
-        id="client"
-        onClick={[Function]}
-      >
-        Client
-      </styled.button>
-    </NavLink>
+      Client
+    </styled.button>
   </section>
 </styled.section>
 `;

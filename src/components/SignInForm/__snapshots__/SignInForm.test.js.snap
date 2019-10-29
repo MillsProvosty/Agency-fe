@@ -51,23 +51,12 @@ exports[`SignInForm should match snapshot 1`] = `
             type="text"
             value=""
           />
-          <NavLink
-            style={
-              Object {
-                "textDecoration": "none",
-              }
-            }
-            tabIndex={0}
-            to="/profile"
+          <styled.button
+            disabled={true}
+            onClick={[Function]}
           >
-            <styled.button
-              disabled={true}
-              id="sign-in"
-              onClick={[Function]}
-            >
-              Sign In
-            </styled.button>
-          </NavLink>
+            Sign In
+          </styled.button>
         </styled.form>
       </styled.section>
       <styled.section>
