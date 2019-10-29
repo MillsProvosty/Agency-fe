@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`About should match snapshot 1`] = `
+<styled.section>
+  <Nav />
+  <styled.p
+    first={true}
+  >
+    <styled.span>
+      Agency
+    </styled.span>
+     is a support networking service.
+  </styled.p>
+  <styled.p
+    second={true}
+  >
+    To begin..
+  </styled.p>
+  <styled.section>
+    <styled.section
+      one={true}
+    >
+      <styled.p>
+        select the 
+        <styled.span>
+          Volunteer
+        </styled.span>
+         button
+      </styled.p>
+      <styled.p>
+        if you can lend a hand...
+      </styled.p>
+      <NavLink
+        to="/user-form"
+      >
+        <styled.button>
+          Volunteer
+        </styled.button>
+      </NavLink>
+    </styled.section>
+    <styled.section>
+      <styled.p>
+        or, select the 
+        <styled.span>
+          Client
+        </styled.span>
+         button
+      </styled.p>
+      <styled.p>
+        if you would like some help!
+      </styled.p>
+      <NavLink
+        to="/user-form"
+      >
+        <styled.button>
+          Client
+        </styled.button>
+      </NavLink>
+    </styled.section>
+  </styled.section>
+  <styled.p
+    second={true}
+  >
+    Then, Sign-In to your account
+  </styled.p>
+  <styled.p>
+     or Sign-Up if you haven't had the opportunity yet!
+  </styled.p>
+  <styled.p
+    second={true}
+    third={true}
+  >
+    Explore your profile and edit your settings!
+  </styled.p>
+</styled.section>
+`;
