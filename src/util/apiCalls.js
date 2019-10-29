@@ -15,6 +15,7 @@ export const getSpecificUser = async (userEmail, userPassword) => {
     email: userEmail,
     password: userPassword
   }
+  console.log('body', body)
   const options = {
     method: "POST",
     headers: { "Content-Type": "application/json" },

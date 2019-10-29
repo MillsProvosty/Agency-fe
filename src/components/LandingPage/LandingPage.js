@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import "./LandingPage.scss";
 import { NavLink } from "react-router-dom";
 import { FaHandsHelping } from "react-icons/fa";
@@ -60,11 +60,13 @@ export const LandingPage = props => {
   `;
 
   const Logo = styled.button`
-  margin-top:100px;
-  border-radius: 50%;
-  border: 3px solid #37474e;
-  `
+    margin-top: 100px;
+    border-radius: 50%;
+    border: 3px solid #37474e;
+  `;
 
+  const [userRole, setTheRole] = useState(false)
+  console.log('landing', props)
   return (
     <Section>
       <Logo disabled>
@@ -73,26 +75,17 @@ export const LandingPage = props => {
       <Header>Agency</Header>
       <PTag>A Support System In Places</PTag>
       <section>
-        <NavLink
-          to="/user-form"
+        <Button volunteer onClick={() => {props.setRole("volunteer"); setTheRole(true)}}>
+          Volunteer
+        </Button>
+        <Button
+          client
           onClick={() => {
-            props.setRole("volunteer");
-            props.displayForms();
+            props.setRole("client");
           }}
         >
-          <Button volunteer>Volunteer</Button>
-        </NavLink>
-        <NavLink to="/user-form">
-          <Button
-            client
-            onClick={() => {
-              props.setRole("client");
-              props.displayForms();
-            }}
-          >
-            Client
-          </Button>
-        </NavLink>
+          Client
+        </Button>
       </section>
     </Section>
   );

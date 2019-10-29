@@ -27,6 +27,7 @@ margin: 0px;
 `;
 
 const Profile = props => {
+  console.log("profile", props )
   const [isLoading, setLoading] = useState(true);
 
   const getUserOpp = async () => {
@@ -60,7 +61,8 @@ const Profile = props => {
 
 export const mapStateToProps = state => ({
   user: state.user,
-  opportunities: state.opportunities
+  opportunities: state.opportunities,
+
 });
 
 export const mapDispatchToProps = dispatch => ({

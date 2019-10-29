@@ -8,7 +8,7 @@ import styled from "styled-components";
 import { getSpecificUser } from "../../util/apiCalls";
 import { useSignInForm } from "../../hooks/useForm";
 import { validate } from "../../hooks/signInFormValidationRules";
-import { setUser } from "../../actions";
+import { setUser, setError } from "../../actions";
 import { connect } from "react-redux";
 import floatingImg from "./floating.svg";
 import { GiAirBalloon } from "react-icons/gi";
@@ -155,16 +155,20 @@ const Button = styled.button`
 `;
 
 export const SignInForm = props => {
+  console.log('sign', props)
   const [modalIsOpen, showModal] = useState(false);
+  const [hasError, setHasError] = useState(false)
 
   const { values, errors, handleChange } = useSignInForm(validate);
 
-  const setUser = async () => {
+  const setUser = async (e) => {
+    e.preventDefault()
     try {
-      const user = await getSpecificUser();
+      const user = await getSpecificUser(values.email, values.password);
       props.setAUser(user);
     } catch (error) {
-      console.log(error);
+      props.setAnError(error)
+      setHasError(true)
     }
   };
 
@@ -209,16 +213,11 @@ export const SignInForm = props => {
                 onChange={handleChange}
                 required
               />
+              {props.errors && <p>Please try again!</p>}
               {errors.password && <p>{errors.password}</p>}
-              <NavLink
-                to="/profile"
-                tabIndex={0}
-                style={{ textDecoration: "none" }}
-              >
-                <Button disabled={setDisabled()} onClick={setUser}>
+                <Button disabled={setDisabled()} onClick={e => setUser(e)}>
                   Sign In
                 </Button>
-              </NavLink>
             </Form>
           </SignsSection>
           <SignsSection>
@@ -238,7 +237,8 @@ export const SignInForm = props => {
 };
 
 export const mapDispatchToProps = dispatch => ({
-  setAUser: user => dispatch(setUser(user))
+  setAUser: user => dispatch(setUser(user)),
+  setAnError: error => dispatch(setError(error))
 });
 
 export default connect(

@@ -77,7 +77,8 @@ export const SignUpModal = props => {
   const [disabled, setDisabled] = useState(true);
   const { values, handleChange } = useSignInForm(validate);
 
-  const setUserInRedux = async values => {
+  const setUserInRedux = async (e, values) => {
+    e.preventDefault()
     try {
       let allValues = {
         ...values,
@@ -177,11 +178,9 @@ export const SignUpModal = props => {
         required
       />
       {/* {errors && <p>{errors}</p>} */}
-      <Link to="/profile">
-        <Button disabled={disabled} onClick={() => setUserInRedux(values)}>
+        <Button disabled={disabled} onClick={(e) => setUserInRedux(e, values)}>
           Submit!
         </Button>
-      </Link>
     </SignUpForm>
   );
 };
