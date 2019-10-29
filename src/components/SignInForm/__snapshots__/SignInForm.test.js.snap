@@ -1,0 +1,103 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SignInForm should match snapshot 1`] = `
+<styled.section>
+  <styled.section>
+    <Modal
+      ariaHideApp={true}
+      bodyOpenClassName="ReactModal__Body--open"
+      className="modal"
+      closeTimeoutMS={0}
+      isOpen={false}
+      parentSelector={[Function]}
+      portalClassName="ReactModalPortal"
+      role="dialog"
+      shouldCloseOnEsc={true}
+      shouldCloseOnOverlayClick={true}
+      shouldFocusAfterRender={true}
+      shouldReturnFocusAfterClose={true}
+    >
+      <Connect(SignUpModal) />
+    </Modal>
+  </styled.section>
+  <styled.section>
+    <styled.section
+      second={true}
+    >
+      <styled.section
+        sign={true}
+      >
+        <styled.form>
+          <styled.h1>
+            Sign In
+          </styled.h1>
+          <styled.input
+            autoComplete="off"
+            name="email"
+            onChange={[Function]}
+            placeholder="example@email.com"
+            required={true}
+            tabIndex={0}
+            type="email"
+            value=""
+          />
+          <styled.input
+            autoComplete="off"
+            name="password"
+            onChange={[Function]}
+            placeholder="Password"
+            required={true}
+            tabIndex={0}
+            type="text"
+            value=""
+          />
+          <NavLink
+            style={
+              Object {
+                "textDecoration": "none",
+              }
+            }
+            tabIndex={0}
+            to="/profile"
+          >
+            <styled.button
+              disabled={true}
+              id="sign-in"
+              onClick={[Function]}
+            >
+              Sign In
+            </styled.button>
+          </NavLink>
+        </styled.form>
+      </styled.section>
+      <styled.section>
+        <styled.h1
+          SignUp={true}
+        >
+          Sign Up
+        </styled.h1>
+        <styled.button
+          onClick={[Function]}
+        >
+          Sign Up
+        </styled.button>
+      </styled.section>
+    </styled.section>
+    <styled.section
+      header={true}
+    >
+      <styled.button>
+        <GiAirBalloon
+          className="hands"
+          size={40}
+          style={
+            Object {
+              "color": "#37474e",
+            }
+          }
+        />
+      </styled.button>
+    </styled.section>
+  </styled.section>
+</styled.section>
+`;
