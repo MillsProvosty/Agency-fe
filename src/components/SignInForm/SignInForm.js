@@ -45,7 +45,6 @@ const Titles = styled.section`
     display: block;
     margin: 0px 50%;
   }
-
 `;
 
 const SignsSection = styled.section`

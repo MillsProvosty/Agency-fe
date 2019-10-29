@@ -12,7 +12,7 @@ const SignUpForm = styled.form`
   margin: 50px auto;
   height: auto;
   background-color: white;
-  border: 1px solid #37474e;
+  border: 1px solid #37474E;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
@@ -21,16 +21,16 @@ const SignUpForm = styled.form`
   width: 500px;
   padding: 20px;
   font-family: "Quicksand", sans-serif;
-  color: #7a86cb;
-
+  color: #7A86CB;
+  
   @media screen and (max-width: 375px) {
     margin: 130px 4px;
     height: auto;
     width: 98%;
     padding: 10px;
-  }
+}
 
-  @media screen and (display-mode: standalone) {
+@media screen and (display-mode: standalone) {
     margin: 130px 4px;
     height: auto;
     width: 98%;

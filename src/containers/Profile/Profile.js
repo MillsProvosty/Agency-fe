@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Profile.scss";
 import Nav from "../../components/Nav/Nav";
 import { connect } from "react-redux";
-import { getAllOpportunities } from "../../util/apiCalls";
+import { getAllOpportunities, deleteAUser } from "../../util/apiCalls";
 import { setUserOpportunities } from "../../actions";
 import Opportunities from '../Opportunities/Opportunities'
 import styled from "styled-components";
@@ -45,13 +45,13 @@ const Profile = props => {
     {isLoading &&
        <p>I am loading</p>
     }
-    {!isLoading && props.user.role === 'client' &&
+    {!isLoading && user.role === 'client' &&
       <>
         <Header>Welcome, {props.user.firstname}</Header>
         <Opportunities role={props.user.role}/>
       </>
     }
-    {!isLoading && props.user.role === 'volunteer' &&
+    {!isLoading && user.role === 'volunteer' &&
       <>
         <Header>Welcome, {props.user.firstname}</Header>
         <Opportunities role={props.user.role}/>
