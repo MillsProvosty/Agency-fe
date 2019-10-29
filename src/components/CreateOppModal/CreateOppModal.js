@@ -7,6 +7,83 @@ import { setUserOpportunities } from "../../actions/";
 import { postAnOpportunity } from "../../util/apiCalls";
 import { connect } from "react-redux";
 
+const CreateOppForm = styled.form`
+  margin: 50px auto;
+  height: auto;
+  background-color: white;
+  border: 1px solid #37474e;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+  padding: 20px;
+  font-family: "Quicksand", sans-serif;
+  color: #7a86cb;
+
+  @media screen and (max-width: 375px) {
+    margin: 130px 4px;
+    height: auto;
+    width: 98%;
+    padding: 10px;
+  }
+
+  @media screen and (display-mode: standalone) {
+    margin: 130px 4px;
+    height: auto;
+    width: 98%;
+    padding: 10px;
+  }
+`;
+
+
+const PTag = styled.p`
+  font-size: 2em;
+`;
+
+const Input = styled.input`
+  border-radius: 5px;
+  font-size: 1.5em;
+  height: 2em;
+  border: 1px solid #37474e;
+  padding: 5px;
+  width: 300px;
+  font-family: "Quicksand", sans-serif;
+  margin-top: 10px;
+`;
+
+const TextArea = styled.textarea`
+  border-radius: 5px;
+  font-size: 1.5em;
+  height: 3em;
+  border: 1px solid #37474e;
+  padding: 5px;
+  width: 300px;
+  font-family: "Quicksand", sans-serif;
+  margin-top: 10px;
+`;
+
+const Button = styled.button`
+  border-radius: 5px;
+  font-size: 1.5em;
+  height: 2em;
+  padding: 5px;
+  width: 300px;
+  font-family: "Quicksand", sans-serif;
+  margin-top: 10px;
+  border: 2px solid white;
+  color: white;
+  background-color: #7a86cb;
+  margin-top: 30px
+
+  :hover {
+    border: 2px solid #7a86cb;
+    color: #7a86cb;
+    background-color: white;
+  }
+`;
+
 export const CreateOppModal = props => {
   const [disabled, setDisabled] = useState(true);
   const { values, handleChange } = useCreateOppForm(validateCreateOpp);
@@ -32,8 +109,9 @@ export const CreateOppModal = props => {
   }, [values]);
 
   return (
-    <section>
-      <input
+    <CreateOppForm>
+      <PTag>Add an Opportunity For Our Community!</PTag>
+      <Input
         type="text"
         placeholder="Enter a Title"
         name="title"
@@ -42,7 +120,7 @@ export const CreateOppModal = props => {
         autoComplete="off"
         required
       />
-      <input
+      <Input
         type="text"
         placeholder="Enter an Amount of Time"
         name="time"
@@ -51,7 +129,7 @@ export const CreateOppModal = props => {
         autoComplete="off"
         required
       />
-      <input
+      <Input
         type="text"
         placeholder="Enter an Address for the Event"
         name="address"
@@ -60,7 +138,7 @@ export const CreateOppModal = props => {
         autoComplete="off"
         required
       />
-      <input
+      <Input
         type="text"
         placeholder="Enter a Type: i.e. Physical labor"
         name="type"
@@ -69,7 +147,7 @@ export const CreateOppModal = props => {
         autoComplete="off"
         required
       />
-      <textarea
+      <TextArea
         type="text"
         placeholder="Enter a Description"
         name="description"
@@ -79,11 +157,11 @@ export const CreateOppModal = props => {
         required
       />
       <Link to="/schedule">
-        <button disabled={disabled} onClick={createOpp}>
+        <Button disabled={disabled} onClick={createOpp}>
           Submit!
-        </button>
+        </Button>
       </Link>
-    </section>
+    </CreateOppForm>
   );
 };
 

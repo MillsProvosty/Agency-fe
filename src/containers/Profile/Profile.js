@@ -5,6 +5,27 @@ import { connect } from "react-redux";
 import { getAllOpportunities } from "../../util/apiCalls";
 import { setUserOpportunities } from "../../actions";
 import Opportunities from '../Opportunities/Opportunities'
+import styled from "styled-components";
+
+
+const ProfileSection = styled.section`
+width: 100%;
+height: 100%;
+background-color: aliceblue;
+background-attachment: fixed;
+@media screen and (max-width: 375px) {
+  justify-content: space-around;
+}
+`
+
+const Header = styled.h1`
+color: #37474E
+font-size: 6em;
+margin: 0px;
+@media screen and (max-width: 375px) {
+  margin: 0px 0px 30px -80px
+}
+`;
 
 const Profile = props => {
   const [isLoading, setLoading] = useState(true);
@@ -19,24 +40,24 @@ const Profile = props => {
   }, [])
 
   return (
-    <section className="Profile">
+    <ProfileSection className="Profile">
       <Nav />
     {isLoading &&
        <p>I am loading</p>
     }
     {!isLoading && props.user.role === 'client' &&
       <>
-        <h1>Welcome {props.user.firstname}</h1>
+        <Header>Welcome, {props.user.firstname}</Header>
         <Opportunities role={props.user.role}/>
       </>
     }
     {!isLoading && props.user.role === 'volunteer' &&
       <>
-        <h1>Welcome {props.user.firstname}</h1>
+        <Header>Welcome, {props.user.firstname}</Header>
         <Opportunities role={props.user.role}/>
       </>
     }
-    </section>
+    </ProfileSection>
   );
 };
 
