@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Profile should match snapshot 1`] = `
+<styled.section
+  className="Profile"
+>
+  <Nav />
+  <button
+    onClick={[Function]}
+  >
+    Delete Account
+  </button>
+  <p>
+    I am loading
+  </p>
+</styled.section>
+`;
