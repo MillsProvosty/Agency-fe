@@ -95,12 +95,15 @@ const Bold = styled.span`
 `;
 
 export const Opportunities = props => {
+  console.log('opps', props)
   const deleteOpportunity = async (userId, oppId) => {
     await deleteAnOpportunity(userId, oppId);
   };
 
   const displayOpp = () => {
+    console.log('displayOpp', props.opportunities)
     return props.opportunities.map(opportunity => {
+      console.log(opportunity)
       return (
         <OpportunityCard key={opportunity.id}>
           <CardSection>

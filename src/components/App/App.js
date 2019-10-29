@@ -72,7 +72,7 @@ const App = props => {
           path="/profile"
           render={() =>
             mainRole && mainUser ? (
-              <Profile setTheRole={props.setTheRole} />
+              <Profile />
             ) : (
               <Redirect to="/profile" />
             )

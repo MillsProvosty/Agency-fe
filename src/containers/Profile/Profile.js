@@ -62,7 +62,6 @@ const Profile = props => {
 export const mapStateToProps = state => ({
   user: state.user,
   opportunities: state.opportunities,
-
 });
 
 export const mapDispatchToProps = dispatch => ({
