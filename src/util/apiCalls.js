@@ -9,13 +9,23 @@ export const getAllUsers = async () => {
   }
 };
 
-export const getSpecificUser = async id => {
-  const url = `http://localhost:5000/users/8`;
-  let response = await fetch(url);
+export const getSpecificUser = async (userEmail, userPassword) => {
+  const url = `http://localhost:5000/login`;
+  let body = {
+    email: userEmail,
+    password: userPassword
+  }
+  const options = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body)
+  };
+  let response = await fetch(url, options);
   if (!response.ok) {
     throw new Error("There was an error accessing this user");
   } else {
     let data = await response.json();
+    console.log(data)
     return data;
   }
 };
@@ -141,7 +151,6 @@ export const deleteAnOpportunity = async (userId, oppId) => {
       throw new Error("Cannot delete opportunity!");
     }
     const deletedOpportunity = await response.json();
-    return deletedOpportunity;
   } catch (error) {
     throw new Error(error);
   }

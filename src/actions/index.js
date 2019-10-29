@@ -27,3 +27,8 @@ export const editOpp = opp => ({
   type: 'EDIT_OPP',
   opp
 });
+
+export const setError = error => ({
+  type: 'SET_ERROR',
+  error
+})
