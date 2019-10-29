@@ -57,7 +57,7 @@ export const LandingPage = props => {
       justify-content: space-around;
     }
   `;
-  
+
   return (
     <Section>
       <FaHandsHelping className="hands" size={64} />
@@ -66,11 +66,11 @@ export const LandingPage = props => {
       <section>
         <NavLink
           to="/user-form"
-          onClick={() => {props.displayForms(); setRole('volunteer')}}
+          onClick={() => {props.displayForms(); props.setRole('volunteer')}}
           >
           <Button volunteer>Volunteer</Button>
         </NavLink>
-        <NavLink to="/user-form" onClick={() => {props.displayForms(); setRole('client')}}>
+        <NavLink to="/user-form" onClick={() => {props.displayForms(); props.setRole('client')}}>
           <Button client>Client</Button>
         </NavLink>
       </section>

@@ -46,7 +46,6 @@ const Titles = styled.section`
   }
 `;
 
-
 const SignsSection = styled.section`
   width: 40%;
   display: flex;

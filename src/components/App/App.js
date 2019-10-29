@@ -9,7 +9,7 @@ import Team from '../Team/Team'
 import Schedule from '../Schedule/Schedule'
 import History from '../History/History'
 import Tasks from '../Tasks/Tasks'
-import { LandingPage } from "../LandingPage/LandingPage";
+import LandingPage from "../LandingPage/LandingPage";
 
 const App = () => {
 

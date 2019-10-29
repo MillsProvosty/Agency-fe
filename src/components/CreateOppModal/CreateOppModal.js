@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { validateCreateOpp } from "../../hooks/signInFormValidationRules";
 import { useCreateOppForm } from "../../hooks/useForm";
 import { setUserOpportunities } from '../../actions/';
+import {postAnOpportunity} from '../../util/apiCalls'
 import { connect } from 'react-redux';
 
 export const CreateOppModal = (props) => {
@@ -20,8 +21,11 @@ export const CreateOppModal = (props) => {
 
   const createOpp = () => {
     console.log(values);
+    console.log('createOpp',props)
     const {error, ...opp} = values;
-    props.setOpp(opp)
+    console.log(values)
+    postAnOpportunity(props.user.id, values)
+    props.addOpp(opp)
   };
 
   useEffect(() => {
@@ -87,9 +91,12 @@ export const CreateOppModal = (props) => {
   );
 };
 
-
-export const mapDispatchToProps = dispatch => ({
-  setOpp: opp => dispatch(setUserOpportunities(opp))
+export const mapStateToProps = state => ({
+  user: state.user
 })
 
-export default connect(null, mapDispatchToProps)(CreateOppModal)
+export const mapDispatchToProps = dispatch => ({
+  addOpp: opp => dispatch(setUserOpportunities(opp))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateOppModal)

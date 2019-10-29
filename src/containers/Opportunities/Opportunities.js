@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { connect } from 'react-redux';
+import React, { useState } from "react";
+import { connect } from "react-redux";
 import Modal from "react-modal";
 import CreateOppModal from "../../components/CreateOppModal/CreateOppModal";
 import { editOpp } from '../../actions'
@@ -16,6 +16,8 @@ export const Opportunities = (props) => {
       </>
     )
   }
+
+  console.log('props in opportunities', props)
 
   const displayOpp = () => {
     return props.opportunities.map(opportunity => {
@@ -36,20 +38,19 @@ export const Opportunities = (props) => {
 
   return (
     <section className="container-dash">
-    <Modal isOpen={createModal}>
-      <CreateOppModal />
-    </Modal>
-    {props.role === "client" && (
-      <button onClick={() => showCreateModal(true)}>
-        Create an opportunity
-      </button>
-    )}
-    {props.role === "volunteer" && <button>Search For Opportunities</button>}
-    {displayOpp()}
+      <Modal isOpen={createModal}>
+        <CreateOppModal />
+      </Modal>
+      {props.role === "client" && (
+        <button onClick={() => showCreateModal(true)}>
+          Create an opportunity
+        </button>
+      )}
+      {props.role === "volunteer" && <button>Search For Opportunities</button>}
+      {displayOpp()}
     </section>
-  )
-}
-
+  );
+};
 
 export const mapStateToProps = state => ({
   opportunities: state.opportunities,
@@ -58,6 +59,9 @@ export const mapStateToProps = state => ({
 
 export const mapDispatchToProps = dispatch => ({
   editOpp: opp => dispatch(editOpp(opp))
-})
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(Opportunities)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Opportunities);
