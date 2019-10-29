@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import "./LandingPage.scss";
 import { NavLink } from "react-router-dom";
 import { GiAirBalloon } from "react-icons/gi";
@@ -9,6 +9,8 @@ import { Button, PTag, Header, Section, Logo } from './LandingPageStyled'
 export const LandingPage = props => {
 
 
+  const [userRole, setTheRole] = useState(false)
+  console.log('landing', props)
   return (
     <Section>
       <Logo disabled>

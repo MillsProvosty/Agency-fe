@@ -3,25 +3,42 @@ import "./SignInForm.scss";
 import { NavLink } from "react-router-dom";
 import SignUpModal from "../SignUp/SignUpModal";
 import Modal from "react-modal";
-import { getSpecificUser } from "../../util/apiCalls";
+import {
+  getSpecificUser,
+  getAllOpportunitiesForSpecificUser,
+  getAllOpportunities
+} from "../../util/apiCalls";
 import { useSignInForm } from "../../hooks/useForm";
 import { validate } from "../../hooks/signInFormValidationRules";
-import { setUser } from "../../actions";
+import { setUser, setError, setUserOpportunities } from "../../actions";
 import { connect } from "react-redux";
 import { GiAirBalloon } from "react-icons/gi";
 import { SignIn, ModalStyle, Container, TitleSection, Titles, SignsSection, Headers, Form, Input, Logo, Button } from './SignInFormStyled' 
 
 export const SignInForm = props => {
+  console.log("sign", props);
   const [modalIsOpen, showModal] = useState(false);
+  const [hasError, setHasError] = useState(false);
 
   const { values, errors, handleChange } = useSignInForm(validate);
 
-  const setUser = async () => {
+  const setUser = async e => {
+    e.preventDefault();
     try {
-      const user = await getSpecificUser();
+      const user = await getSpecificUser(values.email, values.password);
       props.setAUser(user);
+      console.log("user", user);
+      if (user.role === "volunteer") {
+        console.log('in volunteer')
+        let opportunities = await getAllOpportunities();
+        props.setOpportunities(opportunities);
+      } else {
+        let opportunities = await getAllOpportunitiesForSpecificUser(user.id);
+        props.setOpportunities(opportunities);
+      }
     } catch (error) {
-      console.log(error);
+      props.setAnError(error);
+      setHasError(true);
     }
   };
 
@@ -66,16 +83,11 @@ export const SignInForm = props => {
                 onChange={handleChange}
                 required
               />
+              {props.errors && <p>Please try again!</p>}
               {errors.password && <p>{errors.password}</p>}
-              <NavLink
-                to="/profile"
-                tabIndex={0}
-                style={{ textDecoration: "none" }}
-              >
-                <Button id='sign-in'disabled={setDisabled()} onClick={setUser}>
-                  Sign In
-                </Button>
-              </NavLink>
+              <Button disabled={setDisabled()} onClick={e => setUser(e)}>
+                Sign In
+              </Button>
             </Form>
           </SignsSection>
           <SignsSection>
@@ -85,7 +97,11 @@ export const SignInForm = props => {
         </Titles>
         <TitleSection header>
           <Logo>
-            <GiAirBalloon className="hands" size={40} style={{ color: "#37474e" }}/>
+            <GiAirBalloon
+              className="hands"
+              size={40}
+              style={{ color: "#37474e" }}
+            />
           </Logo>
           {/* <Headers title>Agency</Headers> */}
         </TitleSection>
@@ -94,11 +110,19 @@ export const SignInForm = props => {
   );
 };
 
+export const mapStateToProps = state => ({
+  user: state.user,
+  role: state.role
+});
+
 export const mapDispatchToProps = dispatch => ({
-  setAUser: user => dispatch(setUser(user))
+  setAUser: user => dispatch(setUser(user)),
+  setAnError: error => dispatch(setError(error)),
+  setOpportunities: opportunities =>
+    dispatch(setUserOpportunities(opportunities))
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(SignInForm);

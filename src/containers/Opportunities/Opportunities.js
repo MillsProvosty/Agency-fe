@@ -8,9 +8,15 @@ import { Link } from 'react-router-dom';
 import { OpportunityCard, OpportunitySection, PTag, Header, ModalStyle, Button, CardSection, Container, Bold } from './OpportunitiesStyled'
 
 export const Opportunities = props => {
+  console.log('opps', props)
+  const deleteOpportunity = async (userId, oppId) => {
+    await deleteAnOpportunity(userId, oppId);
+  };
 
   const displayOpp = () => {
+    console.log('displayOpp', props.opportunities)
     return props.opportunities.map(opportunity => {
+      console.log(opportunity)
       return (
         <OpportunityCard key={opportunity.id}>
           <CardSection>

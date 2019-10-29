@@ -9,9 +9,18 @@ export const getAllUsers = async () => {
   }
 };
 
-export const getSpecificUser = async id => {
-  const url = `http://localhost:5000/users/8`;
-  let response = await fetch(url);
+export const getSpecificUser = async (userEmail, userPassword) => {
+  const url = `http://localhost:5000/login`;
+  let body = {
+    email: userEmail,
+    password: userPassword
+  }
+  const options = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body)
+  };
+  let response = await fetch(url, options);
   if (!response.ok) {
     throw new Error("There was an error accessing this user");
   } else {
@@ -27,12 +36,12 @@ export const getAllOpportunities = async () => {
     throw new Error("There was an error fetching the opportunities");
   } else {
     let data = await response.json();
+    console.log('data', data)
     return data;
   }
 };
 
 export const getAllOpportunitiesForSpecificUser = async (id) => {
-  console.log('id', id)
   const url = `http://localhost:5000/users/${id}/opportunity`;
   let response = await fetch(url);
   if (!response.ok) {
@@ -76,7 +85,6 @@ export const postAUser = async userValues => {
       throw new Error("There was an error posting this User!");
     }
     const newUser = await res.json();
-    console.log(newUser)
     return newUser;
   } catch (error) {
     throw new Error(error);
@@ -128,8 +136,6 @@ export const deleteAUser = async userId => {
 };
 
 export const deleteAnOpportunity = async (userId, oppId) => {
-  console.log(userId)
-  console.log(oppId)
   const url = `http://localhost:5000/users/${userId}/opportunity/${oppId}`;
   const options = {
     method: "DELETE",
@@ -141,7 +147,6 @@ export const deleteAnOpportunity = async (userId, oppId) => {
       throw new Error("Cannot delete opportunity!");
     }
     const deletedOpportunity = await response.json();
-    return deletedOpportunity;
   } catch (error) {
     throw new Error(error);
   }

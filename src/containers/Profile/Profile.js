@@ -40,7 +40,7 @@ const { user } = props
 
 export const mapStateToProps = state => ({
   user: state.user,
-  opportunities: state.opportunities
+  opportunities: state.opportunities,
 });
 
 export const mapDispatchToProps = dispatch => ({
