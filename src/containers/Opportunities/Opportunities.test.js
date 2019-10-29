@@ -1,6 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { Opportunities, mapStateToProps } from './Opportunities'
+import { deleteAnOpportunity } from '../../util/apiCalls';
+
+jest.mock('../../util/apiCalls');
 
 describe('Opportunities', () => {
   let wrapper;
@@ -16,17 +19,27 @@ describe('Opportunities', () => {
       "user_id": 1
     }
   ];
+
+  const mockUser = {
+    id: 1,
+    name: 'Joe mama'
+  }
   const setState = jest.fn();
   const useStateSpy = jest.spyOn(React, 'useState')
   useStateSpy.mockImplementation((init) => [init, setState]);
-
+  
   beforeEach(() => {
     wrapper = shallow(
       <Opportunities 
         opportunities={mockOpp}
         role="client"
+        user={mockUser}
       />
     )
+  })
+
+  beforeAll(() => {
+    deleteAnOpportunity.mockImplementation(mockUser.id, mockOpp.id)
   })
 
   it('should match snapshot', () => {
@@ -47,6 +60,10 @@ describe('Opportunities', () => {
    wrapper.find('#showModal').props().onClick()
    expect(setState).toHaveBeenCalled()
  }) 
+
+ it('should call deleteAnOpportunity if ids are good', async () => {
+  await wrapper.find('#deleteOpp').props().onClick()
+ })
 
   describe('mapStateToProps', () => {
     it('should return an array of opportunities', () => {

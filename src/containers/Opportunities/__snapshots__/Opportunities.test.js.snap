@@ -75,6 +75,7 @@ exports[`Opportunities should match snapshot 1`] = `
         buttons={true}
       >
         <styled.button
+          id="deleteOpp"
           onClick={[Function]}
         >
           DELETE works and throws error
