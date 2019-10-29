@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LandingPage should match snapshot 1`] = `
+<styled.section>
+  <styled.button
+    disabled={true}
+  >
+    <GiAirBalloon
+      className="hands"
+      size={64}
+    />
+  </styled.button>
+  <styled.h1>
+    Agency
+  </styled.h1>
+  <styled.p>
+    A Support System In Places
+  </styled.p>
+  <section>
+    <NavLink
+      to="/user-form"
+    >
+      <styled.button
+        id="volunteer"
+        onClick={[Function]}
+        volunteer={true}
+      >
+        Volunteer
+      </styled.button>
+    </NavLink>
+    <NavLink
+      to="/user-form"
+    >
+      <styled.button
+        client={true}
+        id="client"
+        onClick={[Function]}
+      >
+        Client
+      </styled.button>
+    </NavLink>
+  </section>
+</styled.section>
+`;
