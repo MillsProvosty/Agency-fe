@@ -2,16 +2,16 @@ import React from "react";
 import "./LandingPage.scss";
 import { NavLink } from "react-router-dom";
 import { FaHandsHelping } from "react-icons/fa";
-import { connect } from 'react-redux'
+import { GiAirBalloon } from "react-icons/gi";
+import { connect } from "react-redux";
 import styled from "styled-components";
-import { setRole } from '../../actions'
-import balloonImg from './air_support.svg'
+import { setRole } from "../../actions";
+import balloonImg from "./air_support.svg";
 
 export const LandingPage = props => {
-
   const Button = styled.button`
     color: white;
-    background-color: #37474E;
+    background-color: #37474e;
     border-radius: 5px;
     font-size: 2em;
     width: 175px;
@@ -19,14 +19,15 @@ export const LandingPage = props => {
     border: 2px solid white;
     margin-top: 30px;
     margin-right: ${props => (props.volunteer ? "20px" : "0px")};
-    margin-left: ${props => (props.client ? "20px" : "0px")}
-    @media screen and (max-width: 375px) {
-      margin: ${props => (props.client ? "20px 0px 0px 0px" : "50px 20px 0px 0px")}
+    margin-left: ${props => (props.client ? "20px" : "0px")} @media screen and
+      (max-width: 375px) {
+      margin: ${props =>
+        props.client ? "20px 0px 0px 0px" : "50px 20px 0px 0px"};
     }
 
     :hover {
-      border: 2px solid #37474E;
-      color: #37474E;
+      border: 2px solid #37474e;
+      color: #37474e;
       background-color: white;
     }
   `;
@@ -58,21 +59,39 @@ export const LandingPage = props => {
     }
   `;
 
+  const Logo = styled.button`
+  margin-top:100px;
+  border-radius: 50%;
+  border: 3px solid #37474e;
+  `
 
   return (
     <Section>
-      <FaHandsHelping className="hands" size={64} />
+      <Logo disabled>
+        <GiAirBalloon className="hands" size={64} />
+      </Logo>
       <Header>Agency</Header>
       <PTag>A Support System In Places</PTag>
       <section>
         <NavLink
           to="/user-form"
-          onClick={() => {props.setRole('volunteer'); props.displayForms()}}
+          onClick={() => {
+            props.setRole("volunteer");
+            props.displayForms();
+          }}
         >
           <Button volunteer>Volunteer</Button>
         </NavLink>
         <NavLink to="/user-form">
-          <Button client onClick={() => {props.setRole('client'); props.displayForms()}}>Client</Button>
+          <Button
+            client
+            onClick={() => {
+              props.setRole("client");
+              props.displayForms();
+            }}
+          >
+            Client
+          </Button>
         </NavLink>
       </section>
     </Section>
@@ -80,7 +99,10 @@ export const LandingPage = props => {
 };
 
 export const mapDispatchToProps = dispatch => ({
-  setRole: role =>  dispatch(setRole(role))
-})
+  setRole: role => dispatch(setRole(role))
+});
 
-export default connect(null, mapDispatchToProps)(LandingPage)
+export default connect(
+  null,
+  mapDispatchToProps
+)(LandingPage);

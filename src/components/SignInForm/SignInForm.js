@@ -11,6 +11,7 @@ import { validate } from "../../hooks/signInFormValidationRules";
 import { setUser } from "../../actions";
 import { connect } from "react-redux";
 import floatingImg from "./floating.svg";
+import { GiAirBalloon } from "react-icons/gi";
 
 const SignIn = styled.section`
   justify-content: center;
@@ -72,8 +73,8 @@ const TitleSection = styled.section`
   background-color: aliceblue;
   margin-top: 23vh;
   align-items: center;
-  width: 220px;
-  margin-left: 15%;
+  width: 80px;
+  margin-left: 5%;
 `;
 
 const Headers = styled.h1`
@@ -122,6 +123,12 @@ const Input = styled.input`
   height: 2em;
   border: 1px solid darkgrey;
   padding: 5px;
+`;
+
+const Logo = styled.button`
+  background-color: white;
+  border-radius: 50%;
+  border: 1px solid #37474e;
 `;
 
 const Button = styled.button`
@@ -221,8 +228,10 @@ export const SignInForm = props => {
           </SignsSection>
         </Titles>
         <TitleSection header>
-          <FaHandsHelping className="hands-form" size={45} />
-          <Headers title>Agency</Headers>
+          <Logo>
+            <GiAirBalloon className="hands" size={40} style={{ color: "#37474e" }}/>
+          </Logo>
+          {/* <Headers title>Agency</Headers> */}
         </TitleSection>
       </Container>
     </SignIn>

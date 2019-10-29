@@ -3,11 +3,12 @@ import "./Nav.scss";
 import { FaHandsHelping } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+import { GiAirBalloon } from "react-icons/gi";
 
 const NavBar = styled.section`
   display: flex;
   justify-content: space-between;
-  background-color: #37474E;
+  background-color: #37474e;
   color: aliceblue;
   height: 100px;
 `;
@@ -21,6 +22,8 @@ const LogoSection = styled.section`
 `;
 
 const PTag = styled.p`
+  font-size: 2em;
+  margin: 0;
   :hover {
     border-bottom: 1px solid aliceblue;
     height: 1.25em;
@@ -31,6 +34,12 @@ const PLinks = styled.p`
   font-size: 1.5em;
   color: aliceblue;
   margin-top: 1.5em;
+`;
+
+const Logo = styled.button`
+  background-color: #37474e;
+  border-radius: 50%;
+  border: 2px solid white;
 `;
 
 const LinksSection = styled.section`
@@ -48,7 +57,9 @@ const Nav = () => {
         className="nav-link"
       >
         <LogoSection className="logo">
-          <FaHandsHelping size={30} />
+          <Logo>
+            <GiAirBalloon className="hands" size={40} style={{ color: "white" }}/>
+          </Logo>
           <PTag className="title" style={{ textDecoration: "none" }}>
             Agency
           </PTag>
