@@ -1,7 +1,30 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import SignUpModal from './SignUpModal';
+import { shallow } from 'enzyme';
+import { SignUpModal } from './SignUpModal';
 
-it('renders without crashing', () => {
-  expect(true).toEqual(true)
-});
+describe('SignUpModal', () => {
+  let wrapper; 
+  
+  const mockSetUser = jest.fn()
+  const mockSetOpps = jest.fn()
+
+  const setState = jest.fn();
+  const useStateSpy = jest.spyOn(React, 'useState')
+  useStateSpy.mockImplementation((init) => [init, setState]);
+
+  beforeEach(() => {
+    wrapper = shallow(
+      <SignUpModal 
+        role='client'
+        setAUser={mockSetUser}
+        setAllOpps={mockSetOpps}
+      />
+    )
+  })
+
+  it('should match snapshot', () => {
+    expect(wrapper).toMatchSnapshot()
+  }) 
+
+  // it('should update state')
+})

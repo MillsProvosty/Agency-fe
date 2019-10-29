@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SignUpModal should match snapshot 1`] = `
+<styled.form
+  className="SignUpModal"
+>
+  <styled.p>
+    Thanks for Signing Up!
+  </styled.p>
+  <styled.input
+    autoComplete="off"
+    name="firstname"
+    onChange={[Function]}
+    placeholder="Enter your First name"
+    required={true}
+    type="text"
+    value=""
+  />
+  <styled.input
+    autoComplete="off"
+    name="lastname"
+    onChange={[Function]}
+    placeholder="Enter your Last name"
+    required={true}
+    type="text"
+    value=""
+  />
+  <styled.input
+    autoComplete="off"
+    name="email"
+    onChange={[Function]}
+    placeholder="Enter your email"
+    required={true}
+    type="text"
+    value=""
+  />
+  <styled.input
+    autoComplete="off"
+    name="phone"
+    onChange={[Function]}
+    placeholder="Enter your phone"
+    required={true}
+    type="text"
+    value=""
+  />
+  <styled.input
+    autoComplete="off"
+    name="password"
+    onChange={[Function]}
+    placeholder="Enter your password"
+    required={true}
+    type="text"
+    value=""
+  />
+  <styled.input
+    autoComplete="off"
+    name="confirmation"
+    onChange={[Function]}
+    placeholder="Confirm your password"
+    required={true}
+    type="text"
+    value=""
+  />
+  <Link
+    to="/profile"
+  >
+    <styled.button
+      disabled={true}
+      onClick={[Function]}
+    >
+      Submit!
+    </styled.button>
+  </Link>
+</styled.form>
+`;
