@@ -44,7 +44,7 @@ describe('Opportunities', () => {
   })
 
  it('should call showCreateModal when clicked', () => {
-   wrapper.find('button').at(0).props().onClick()
+   wrapper.find('#showModal').props().onClick()
    expect(setState).toHaveBeenCalled()
  }) 
 
@@ -58,11 +58,26 @@ describe('Opportunities', () => {
         opportunities: mockOpp,
         role: 'client'
       }
-      let expected = {opportunities: mockOpp}
+      let expected = mockOpp
   
       let mappedProps = mapStateToProps(mockState);
   
-      expect(mappedProps).toEqual(expected)
+      expect(mappedProps.opportunities).toEqual(expected)
+    })
+
+    it('should return a user', () => {
+      let mockState = {
+        user: {
+          id: 1,
+          name: 'something'
+        },
+        opportunities: mockOpp,
+        role: 'client'
+      }
+      let expected = mockState.user
+      let mappedProps = mapStateToProps(mockState);
+  
+      expect(mappedProps.user).toEqual(expected)
     })
   })
 })

@@ -167,7 +167,7 @@ export const Opportunities = props => {
         <Button>Edit my Profile; doesnt work</Button>
       </Link>
       {props.role === "client" && (
-        <Button onClick={() => showCreateModal(true)}>
+        <Button id='showModal'onClick={() => showCreateModal(true)}>
           Create an opportunity
         </Button>
       )}
