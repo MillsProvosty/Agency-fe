@@ -30,7 +30,7 @@ margin: 0px;
 const Profile = props => {
   const [isLoading, setLoading] = useState(true);
 
-
+const { user } = props
   const getUserOpp = async () => {
     setLoading(false)
   }
