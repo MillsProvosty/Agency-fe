@@ -7,13 +7,11 @@ import Profile from "../../containers/Profile/Profile";
 import About from '../About/About'
 import Team from '../Team/Team'
 import Schedule from '../Schedule/Schedule'
-import History from '../History/History'
-import Tasks from '../Tasks/Tasks'
 import LandingPage from "../LandingPage/LandingPage";
 
 const App = () => {
 
-  const [landing, hideLanding] = useState(false)
+  const [landing, hideLanding] = React.useState(false)
 
   const displayForms = () => {
     hideLanding(!landing);
@@ -38,11 +36,9 @@ const App = () => {
         )}
         {forms}
         <Route exact path="/schedule" component={Schedule} />
-        <Route exact path="/tasks" component={Tasks} />
         <Route exact path="/team" component={Team} />
         <Route exact path="/profile" component={Profile} />
         <Route exact path="/about" component={About} />
-        <Route exact path="/history" component={History} />
 
       </section>
     );
