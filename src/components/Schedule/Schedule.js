@@ -3,7 +3,7 @@ import "./Schedule.scss";
 import Nav from "../../components/Nav/Nav";
 import { connect } from "react-redux";
 import { getAllOpportunities } from "../../util/apiCalls";
-import { setUserOpportunities } from "../../actions";
+import { setOpps } from "../../actions";
 import Opportunities from "../../containers/Opportunities/Opportunities";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
@@ -52,6 +52,12 @@ export const Button = styled.button`
 export const Schedule = props => {
   const [isLoading, setLoading] = useState(true);
 
+  const handleResetOfOpps = async () => {
+    let allOpps = await getAllOpportunities()
+    props.setAllOpps(allOpps)
+
+  }
+
   const getUserOpp = async () => {
     setLoading(false);
   };
@@ -78,7 +84,7 @@ export const Schedule = props => {
         <>
           <Header>{props.user.first_name}'s Schedule</Header>
           <Link to="/profile">
-            <Button>Return to Profile</Button>
+            <Button onClick={() => handleResetOfOpps()}>Return to Profile</Button>
             {/* <Button>Edit my Profile; doesnt work</Button> */}
           </Link>
           <Opportunities role={props.user.role} />
@@ -94,8 +100,7 @@ export const mapStateToProps = state => ({
 });
 
 export const mapDispatchToProps = dispatch => ({
-  setOpportunities: opportunities =>
-    dispatch(setUserOpportunities(opportunities))
+  setAllOpps: opps => dispatch(setOpps(opps))
 });
 
 export default connect(

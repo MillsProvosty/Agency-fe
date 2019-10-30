@@ -3,7 +3,13 @@ import { connect } from "react-redux";
 import Modal from "react-modal";
 import CreateOppModal from "../../components/CreateOppModal/CreateOppModal";
 import { editOpp, setOpps } from "../../actions";
-import { deleteAnOpportunity, postVolToClient, getAllOpportunities, getAllOpportunitiesForSpecificUser } from "../../util/apiCalls";
+import {
+  deleteAnOpportunity,
+  postVolToClient,
+  getAllOpportunities,
+  getAllOpportunitiesForSpecificUser,
+  getReservedOpps
+} from "../../util/apiCalls";
 import { Link } from "react-router-dom";
 import {
   OpportunityCard,
@@ -18,13 +24,41 @@ import {
 } from "./OpportunitiesStyled";
 
 export const Opportunities = props => {
-  console.log(props)
-  
+  console.log(props);
+
   const deleteOpportunity = async (userId, oppId) => {
     let deleted = await deleteAnOpportunity(userId, oppId);
-    let allOppsForUser = await getAllOpportunitiesForSpecificUser(props.user.id)
-    props.setAllOpps(allOppsForUser)
-    console.log(allOppsForUser)
+    let allOppsForUser = await getAllOpportunitiesForSpecificUser(
+      props.user.id
+    );
+    props.setAllOpps(allOppsForUser);
+    console.log(allOppsForUser);
+  };
+
+  const handlePost = async oppId => {
+    await postVolToClient(props.user.id, oppId);
+    let allOpps = await getAllOpportunities();
+    let userOppIds = await getReservedOpps(props.user.id);
+
+    let rightNums = [];
+
+    userOppIds.forEach(index => rightNums.push(index.opportunity_id));
+    let theRightOpps = allOpps.filter(opp => {
+      if (rightNums.includes(opp.id)) {
+        return opp;
+      }
+    });
+
+    // let theRightOpps = allOpps.filter(opp => {
+    //   return userOppIds.forEach(index => {
+    //     if (opp.id === index.opportunity_id){
+    //       console.log(opp)
+    //       return opp
+    //     }
+    //   })
+    // })
+    props.setAllOpps(theRightOpps)
+    console.log("right", theRightOpps);
   };
 
   const [opportunities, setOpportunities] = useState(false);
@@ -39,7 +73,10 @@ export const Opportunities = props => {
   const displayOpp = () => {
     let iterable;
 
-    if (props.opportunities['0'] !== undefined && props.opportunities['0'].length > 1) {
+    if (
+      props.opportunities["0"] !== undefined &&
+      props.opportunities["0"].length > 1
+    ) {
       iterable = props.opportunities[0];
     } else {
       iterable = props.opportunities;
@@ -48,6 +85,7 @@ export const Opportunities = props => {
     return iterable.map(opportunity => {
       return (
         <OpportunityCard key={opportunity.id}>
+          <Button onClick={() => getReservedOpps(8)}></Button>
           <CardSection>
             <Header>{opportunity.title}</Header>
             <PTag description>{opportunity.description}</PTag>
@@ -67,15 +105,13 @@ export const Opportunities = props => {
           </CardSection>
           {props.role === "volunteer" && (
             <CardSection buttons>
+              <Link to="/schedule">
+                <Button onClick={() => handlePost(opportunity.id)}>
+                  Select opportunity; doesnt work
+                </Button>
+              </Link>
               <Button
-                onClick={() => postVolToClient(props.user.id, opportunity.id)}
-              >
-                Select opportunity; doesnt work
-              </Button>
-              <Button
-                onClick={() =>
-                  deleteOpportunity(props.user.id, opportunity.id)
-                }
+                onClick={() => deleteOpportunity(props.user.id, opportunity.id)}
               >
                 Find Out About The Client; doesnt work
               </Button>
@@ -85,9 +121,7 @@ export const Opportunities = props => {
             <CardSection buttons>
               <Button
                 id="deleteOpp"
-                onClick={() =>
-                  deleteOpportunity(props.user.id, opportunity.id)
-                }
+                onClick={() => deleteOpportunity(props.user.id, opportunity.id)}
               >
                 DELETE
               </Button>
@@ -113,7 +147,7 @@ export const mapStateToProps = state => ({
 
 export const mapDispatchToProps = dispatch => ({
   editOpp: opp => dispatch(editOpp(opp)),
-  setAllOpps: (opps) => dispatch(setOpps(opps))
+  setAllOpps: opps => dispatch(setOpps(opps))
 });
 
 export default connect(

@@ -9,6 +9,18 @@ export const getAllUsers = async () => {
   }
 };
 
+export const getReservedOpps = async (volId) => {
+  const url = `http://localhost:5000/users/${volId}/opportunities`;
+  let response = await fetch(url);
+  if (!response.ok) {
+    throw new Error("There was an error fetching your users");
+  } else {
+    let data = await response.json();
+    console.log('reserve', data)
+    return data;
+  }
+};
+
 export const getSpecificUser = async (userEmail, userPassword) => {
   const url = `http://localhost:5000/login`;
   let body = {
