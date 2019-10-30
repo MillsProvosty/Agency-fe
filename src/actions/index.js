@@ -18,7 +18,7 @@ export const setUserOpportunities = opportunities => ({
   opportunities
 });
 
-export const addOpp = opp => ({
+export const addUserOpp = opp => ({
   type: 'ADD_OPP',
   opp
 });

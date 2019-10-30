@@ -4,16 +4,17 @@ import Nav from "../../components/Nav/Nav";
 import { connect } from "react-redux";
 import { getAllOpportunities } from "../../util/apiCalls";
 import { setUserOpportunities } from "../../actions";
-import Opportunities from '../../containers/Opportunities/Opportunities'
+import Opportunities from "../../containers/Opportunities/Opportunities";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const ScheduleSection = styled.section`
-width: 100%;
-background-color: aliceblue;
-@media screen and (max-width: 375px) {
-  justify-content: space-around;
-}
-`
+  width: 100%;
+  background-color: aliceblue;
+  @media screen and (max-width: 375px) {
+    justify-content: space-around;
+  }
+`;
 
 const Header = styled.h1`
 color: #37474E
@@ -27,33 +28,38 @@ margin: 0px;
 export const Schedule = props => {
   const [isLoading, setLoading] = useState(true);
 
-
   const getUserOpp = async () => {
-    setLoading(false)
-  }
+    setLoading(false);
+  };
 
   useEffect(() => {
-    getUserOpp()
-  }, [])
+    getUserOpp();
+  }, []);
 
   return (
     <ScheduleSection className="Schedule">
       <Nav />
-    {isLoading &&
-       <p>I am loading</p>
-    }
-    {!isLoading && props.user.role === 'client' &&
-      <>
-        <Header>Welcome, {props.user.firstname}</Header>
-        <Opportunities role={props.user.role}/>
-      </>
-    }
-    {!isLoading && props.user.role === 'volunteer' &&
-      <>
-        <Header>Welcome, {props.user.firstname}</Header>
-        <Opportunities role={props.user.role}/>
-      </>
-    }
+      {isLoading && <p>I am loading</p>}
+      {!isLoading && props.user.role === "client" && (
+        <>
+          <Link to="/profile">
+            <button>Return to Profile</button>
+            <button>Edit my Profile; doesnt work</button>
+          </Link>
+          <Header>Welcome, {props.user.firstname}</Header>
+          <Opportunities role={props.user.role} />
+        </>
+      )}
+      {!isLoading && props.user.role === "volunteer" && (
+        <>
+          <Link to="/profile">
+            <button>Return to Profile</button>
+            <button>Edit my Profile; doesnt work</button>
+          </Link>
+          <Header>Welcome, {props.user.firstname}</Header>
+          <Opportunities role={props.user.role} />
+        </>
+      )}
     </ScheduleSection>
   );
 };
@@ -64,7 +70,11 @@ export const mapStateToProps = state => ({
 });
 
 export const mapDispatchToProps = dispatch => ({
-  setOpportunities: opportunities => dispatch(setUserOpportunities(opportunities))
-})
+  setOpportunities: opportunities =>
+    dispatch(setUserOpportunities(opportunities))
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(Schedule);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Schedule);

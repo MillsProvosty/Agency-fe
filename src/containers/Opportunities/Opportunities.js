@@ -106,24 +106,15 @@ export const Opportunities = props => {
     });
   };
 
-  const [createModal, showCreateModal] = React.useState(false);
+  // const [createModal, showCreateModal] = React.useState(false);
 
   return (
     <OpportunitySection>
-      <ModalStyle>
-        <Modal isOpen={createModal} className="modal">
+      {/* <ModalStyle> */}
+        {/* <Modal isOpen={createModal} className="modal">
           <CreateOppModal />
         </Modal>
-      </ModalStyle>
-      <Link to="/profile">
-        <Button>Return to Profile</Button>
-        <Button>Edit my Profile; doesnt work</Button>
-      </Link>
-      {props.role === "client" && (
-        <Button id="showModal" onClick={() => showCreateModal(true)}>
-          Create an opportunity
-        </Button>
-      )}
+      </ModalStyle> */}
       {props.role === "volunteer" && <Button>Search For Opportunities</Button>}
       <Container>{displayOpp()}</Container>
     </OpportunitySection>
