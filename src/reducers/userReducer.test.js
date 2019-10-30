@@ -4,7 +4,7 @@ describe("userReducer", () => {
   it("should return the default state", () => {
     let expected = null;
 
-    let result = userReducer(undefined, null);
+    let result = userReducer(null, {});
 
     expect(result).toEqual(expected);
   });

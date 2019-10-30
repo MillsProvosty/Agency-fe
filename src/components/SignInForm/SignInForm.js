@@ -3,7 +3,6 @@ import "./SignInForm.scss";
 import { NavLink } from "react-router-dom";
 import SignUpModal from "../SignUp/SignUpModal";
 import Modal from "react-modal";
-import styled from "styled-components";
 import {
   getSpecificUser,
   getAllOpportunitiesForSpecificUser,
@@ -93,7 +92,7 @@ export const SignInForm = props => {
               />
               {props.errors && <p>Please try again!</p>}
               {errors.password && <p>{errors.password}</p>}
-              <Button disabled={setDisabled()} onClick={e => setUser(e)}>
+              <Button  id='sign-in' disabled={setDisabled()} onClick={e => setUser(e)}>
                 Sign In
               </Button>
             </Form>

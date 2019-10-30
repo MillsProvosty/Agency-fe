@@ -18,6 +18,7 @@ export const LandingPage = props => {
       <section>
         <Button
           volunteer
+          id='volunteer'
           onClick={() => {
             props.setRole("volunteer");
             setTheRole(true);
@@ -27,6 +28,7 @@ export const LandingPage = props => {
         </Button>
         <Button
           client
+          id='client'
           onClick={() => {
             props.setRole("client");
           }}

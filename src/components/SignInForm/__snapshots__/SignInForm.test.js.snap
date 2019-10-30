@@ -53,6 +53,7 @@ exports[`SignInForm should match snapshot 1`] = `
           />
           <styled.button
             disabled={true}
+            id="sign-in"
             onClick={[Function]}
           >
             Sign In
