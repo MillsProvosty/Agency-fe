@@ -22,7 +22,7 @@ export const CreateOppModal = props => {
 
   const createOpp = async () => {
     let iterable;
-    
+  
 
     if (props.opportunities['0'] !== undefined && props.opportunities['0'].length > 1) {
       iterable = props.opportunities[0];

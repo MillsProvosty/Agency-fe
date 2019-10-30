@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 
 const ScheduleSection = styled.section`
   width: 100%;
-  background-color: aliceblue;
+  background-color: white;
   @media screen and (max-width: 375px) {
     justify-content: space-around;
   }
@@ -18,11 +18,35 @@ const ScheduleSection = styled.section`
 
 const Header = styled.h1`
 color: #37474E
-font-size: 6em;
+font-size: 2em;
 margin: 0px;
 @media screen and (max-width: 375px) {
   margin: 0px 0px 30px -80px
 }
+`;
+
+export const Button = styled.button`
+  color: white;
+  background-color: #37474E;
+  border-radius: 5px;
+  font-size: 1em;
+  width: 175px;
+  font-family: "Quicksand", sans-serif;
+  border: 2px solid white;
+
+  :hover {
+    border: 2px solid #37474E;
+    color: #37474E;
+    background-color: white;
+  }
+
+  @media screen and (max-width: 375px) {
+    margin-top: 10px;
+  }
+
+  @media screen and (display-mode: standalone) {
+    margin-top: 10px;
+  }
 `;
 
 export const Schedule = props => {
@@ -42,21 +66,21 @@ export const Schedule = props => {
       {isLoading && <p>I am loading</p>}
       {!isLoading && props.user.role === "client" && (
         <>
+          <Header>{props.user.first_name}'s Requests</Header>
           <Link to="/profile">
-            <button>Return to Profile</button>
-            <button>Edit my Profile; doesnt work</button>
+            <Button>Return to Profile</Button>
+            {/* <Button>Edit my Profile; doesnt work</Button> */}
           </Link>
-          <Header>{props.user.first_name}'s Schedule</Header>
           <Opportunities role={props.user.role} />
         </>
       )}
       {!isLoading && props.user.role === "volunteer" && (
         <>
-          <Link to="/profile">
-            <button>Return to Profile</button>
-            <button>Edit my Profile; doesnt work</button>
-          </Link>
           <Header>{props.user.first_name}'s Schedule</Header>
+          <Link to="/profile">
+            <Button>Return to Profile</Button>
+            {/* <Button>Edit my Profile; doesnt work</Button> */}
+          </Link>
           <Opportunities role={props.user.role} />
         </>
       )}

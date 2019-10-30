@@ -24,7 +24,8 @@ export const Button = styled.button`
   background-color: #37474e;
   border-radius: 5px;
   font-size: 1em;
-  width: 175px;
+  width: 250px;
+  padding: 5px;
   font-family: "Quicksand", sans-serif;
   border: 2px solid white;
   margin-right: ${props => (props.volunteer ? "20px" : "0px")};
@@ -43,11 +44,10 @@ export const Button = styled.button`
 
 
 export const Profile = props => {
-  console.log('profile user', props.user)
-  console.log('profile opps', props.opportunities)
 
   const [isLoading, setLoading] = useState(true);
   const [createModal, showCreateModal] = React.useState(false);
+  const [showOpps, setShowOpps] = useState(false);
 
   const { user } = props;
   const getUserOpp = async () => {
@@ -61,15 +61,18 @@ export const Profile = props => {
   return (
     <ProfileSection className="Profile">
       <Nav />
-      <button onClick={() => deleteAUser(user.id)}>Delete Account</button>
+      {/* <button onClick={() => deleteAUser(user.id)}>Delete Account</button> */}
       {isLoading && <p>I am loading</p>}
       {!isLoading && user.role === "client" && (
         <>
           <Header>Welcome, {user.first_name}</Header>
           <Button id="showModal" onClick={() => showCreateModal(true)}>
-            Create an opportunity
+            Create An Opportunity
           </Button>
-          <Opportunities role={user.role} />
+          <Button>
+            Edit Your Settings
+          </Button>
+          {/* <Opportunities role={user.role} /> */}
           <ModalStyle>
             <Modal isOpen={createModal} className="modal">
               <CreateOppModal />
@@ -79,8 +82,15 @@ export const Profile = props => {
       )}
       {!isLoading && user.role === "volunteer" && (
         <>
-          <h1>Welcome, {user.first_name}</h1>
-          <Opportunities role={user.role} />
+          <Header>Welcome, {user.first_name}</Header>
+          <Button onClick={() => setShowOpps(true)}>
+            Search For Opportunities
+          </Button>
+          <Button>
+            Edit Your Settings
+          </Button>
+          {showOpps &&  <Opportunities role={user.role} />}
+          {/* <Opportunities role={user.role} /> */}
         </>
       )}
     </ProfileSection>

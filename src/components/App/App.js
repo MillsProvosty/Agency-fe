@@ -117,7 +117,7 @@ const App = props => {
 
       <Route exact path="/schedule" component={Schedule} />
       <Route exact path="/team" component={Team} />
-      <Route exact path="/profile" component={Profile} />
+      {/* <Route exact path="/profile" component={Profile} /> */}
       <Route exact path="/about" component={About} />
     </section>
   );

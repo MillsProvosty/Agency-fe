@@ -18,7 +18,7 @@ import {
 } from "./OpportunitiesStyled";
 
 export const Opportunities = props => {
-
+  console.log(props)
   
   const deleteOpportunity = async (userId, oppId) => {
     let deleted = await deleteAnOpportunity(userId, oppId);
@@ -89,9 +89,9 @@ export const Opportunities = props => {
                   deleteOpportunity(props.user.id, opportunity.id)
                 }
               >
-                DELETE works and throws error
+                DELETE
               </Button>
-              <Button onClick={props.editOpp}>This Edit Doesnt Work</Button>
+              <Button onClick={props.editOpp}>EDIT</Button>
             </CardSection>
           )}
         </OpportunityCard>
