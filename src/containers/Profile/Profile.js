@@ -43,6 +43,9 @@ export const Button = styled.button`
 
 
 export const Profile = props => {
+  console.log('profile user', props.user)
+  console.log('profile opps', props.opportunities)
+
   const [isLoading, setLoading] = useState(true);
   const [createModal, showCreateModal] = React.useState(false);
 
@@ -62,7 +65,7 @@ export const Profile = props => {
       {isLoading && <p>I am loading</p>}
       {!isLoading && user.role === "client" && (
         <>
-          <Header>Welcome, {user.firstname}</Header>
+          <Header>Welcome, {user.first_name}</Header>
           <Button id="showModal" onClick={() => showCreateModal(true)}>
             Create an opportunity
           </Button>
@@ -76,7 +79,7 @@ export const Profile = props => {
       )}
       {!isLoading && user.role === "volunteer" && (
         <>
-          <h1>Welcome {user.firstname}</h1>
+          <h1>Welcome, {user.first_name}</h1>
           <Opportunities role={user.role} />
         </>
       )}

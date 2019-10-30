@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import Modal from "react-modal";
 import CreateOppModal from "../../components/CreateOppModal/CreateOppModal";
-import { editOpp } from "../../actions";
-import { deleteAnOpportunity, postVolToClient } from "../../util/apiCalls";
+import { editOpp, setOpps } from "../../actions";
+import { deleteAnOpportunity, postVolToClient, getAllOpportunities, getAllOpportunitiesForSpecificUser } from "../../util/apiCalls";
 import { Link } from "react-router-dom";
 import {
   OpportunityCard,
@@ -18,14 +18,18 @@ import {
 } from "./OpportunitiesStyled";
 
 export const Opportunities = props => {
+
+  
   const deleteOpportunity = async (userId, oppId) => {
-    await deleteAnOpportunity(userId, oppId);
+    let deleted = await deleteAnOpportunity(userId, oppId);
+    let allOppsForUser = await getAllOpportunitiesForSpecificUser(props.user.id)
+    props.setAllOpps(allOppsForUser)
+    console.log(allOppsForUser)
   };
 
   const [opportunities, setOpportunities] = useState(false);
   useEffect(() => {
     if (props.opportunities.length > 0) {
-      console.log("useEff opps", props);
       setOpportunities(true);
     } else {
       setOpportunities(false);
@@ -35,23 +39,12 @@ export const Opportunities = props => {
   const displayOpp = () => {
     let iterable;
 
-    // console.log('propsOpps type', typeof props.opportunities)
-    // console.log('propsOpps actual', props.opportunities)
-    // console.log('propsOpps index0 type', typeof props.opportunities[0])
-    // console.log('propsOpps index0 actual', props.opportunities[0])
-
-
     if (props.opportunities['0'] !== undefined && props.opportunities['0'].length > 1) {
-      console.log('length props.opportunities', props.opportunities['0'].length)
-      console.log('props', props)
       iterable = props.opportunities[0];
-      console.log("sign in", iterable);
     } else {
       iterable = props.opportunities;
-      console.log("sign up", iterable);
     }
 
-    console.log("iterable", iterable);
     return iterable.map(opportunity => {
       return (
         <OpportunityCard key={opportunity.id}>
@@ -81,7 +74,7 @@ export const Opportunities = props => {
               </Button>
               <Button
                 onClick={() =>
-                  deleteAnOpportunity(props.user.id, opportunity.id)
+                  deleteOpportunity(props.user.id, opportunity.id)
                 }
               >
                 Find Out About The Client; doesnt work
@@ -93,7 +86,7 @@ export const Opportunities = props => {
               <Button
                 id="deleteOpp"
                 onClick={() =>
-                  deleteAnOpportunity(props.user.id, opportunity.id)
+                  deleteOpportunity(props.user.id, opportunity.id)
                 }
               >
                 DELETE works and throws error
@@ -106,16 +99,8 @@ export const Opportunities = props => {
     });
   };
 
-  // const [createModal, showCreateModal] = React.useState(false);
-
   return (
     <OpportunitySection>
-      {/* <ModalStyle> */}
-        {/* <Modal isOpen={createModal} className="modal">
-          <CreateOppModal />
-        </Modal>
-      </ModalStyle> */}
-      {props.role === "volunteer" && <Button>Search For Opportunities</Button>}
       <Container>{displayOpp()}</Container>
     </OpportunitySection>
   );
@@ -127,7 +112,8 @@ export const mapStateToProps = state => ({
 });
 
 export const mapDispatchToProps = dispatch => ({
-  editOpp: opp => dispatch(editOpp(opp))
+  editOpp: opp => dispatch(editOpp(opp)),
+  setAllOpps: (opps) => dispatch(setOpps(opps))
 });
 
 export default connect(

@@ -23,26 +23,19 @@ export const CreateOppModal = props => {
   const createOpp = async () => {
     let iterable;
     
-    console.log(props.opportunities['0'])
 
     if (props.opportunities['0'] !== undefined && props.opportunities['0'].length > 1) {
-      console.log('fuck', props.opportunities['0'].length)
-      console.log('shit', props)
       iterable = props.opportunities[0];
-      console.log("up", iterable);
     } else {
       iterable = props.opportunities;
-      console.log("bitches", iterable);
     }
 
     let newOpp = await postAnOpportunity(props.user.id, values);
     let iterableSent = [...iterable, newOpp]
-    console.log(iterableSent)
     await props.setAllOpps(iterableSent);
   };
 
   useEffect(() => {
-    console.log("setNewValue")
     setNewValue(true)
   }, [props.opportunities]);
 

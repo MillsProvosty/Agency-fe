@@ -25,14 +25,12 @@ export const SignUpModal = props => {
         ...allValues,
         id: newUser.id
       }
-      props.setAUser(allValuesAndId);
+      props.setAUser(newUser);
       if (allValues.role === 'volunteer'){
         let allOpps = await getAllOpportunities();
         props.setAllOpps(allOpps)
-        console.log('UP ALL OPPS', allOpps)
       } else {
         let userOpps = await getAllOpportunitiesForSpecificUser(allValuesAndId.id)
-        console.log('clientj', userOpps)
         props.setAllOpps(userOpps)
       }
     } catch (error) {

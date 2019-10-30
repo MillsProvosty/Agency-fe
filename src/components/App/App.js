@@ -53,7 +53,6 @@ const App = props => {
       setMainError(false);
     } 
     if (props.opportunities.length > 0) {
-      console.log("app props", props)
       setMainOpps(true)
     } else {
       setMainOpps(false)

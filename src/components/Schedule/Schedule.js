@@ -46,7 +46,7 @@ export const Schedule = props => {
             <button>Return to Profile</button>
             <button>Edit my Profile; doesnt work</button>
           </Link>
-          <Header>Welcome, {props.user.firstname}</Header>
+          <Header>{props.user.first_name}'s Schedule</Header>
           <Opportunities role={props.user.role} />
         </>
       )}
@@ -56,7 +56,7 @@ export const Schedule = props => {
             <button>Return to Profile</button>
             <button>Edit my Profile; doesnt work</button>
           </Link>
-          <Header>Welcome, {props.user.firstname}</Header>
+          <Header>{props.user.first_name}'s Schedule</Header>
           <Opportunities role={props.user.role} />
         </>
       )}

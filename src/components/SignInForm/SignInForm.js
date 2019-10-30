@@ -32,7 +32,6 @@ export const SignInForm = props => {
       if (user.role === "volunteer") {
         let opportunities = await getAllOpportunities();
         props.setAllOpps(opportunities);
-        console.log('FINAL OPPS', opportunities)
       } else {
         let opportunities = await getAllOpportunitiesForSpecificUser(user.id);
         props.setAllOpps(opportunities);
