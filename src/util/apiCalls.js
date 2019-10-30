@@ -147,6 +147,7 @@ export const deleteAnOpportunity = async (userId, oppId) => {
       throw new Error("Cannot delete opportunity!");
     }
     const deletedOpportunity = await response.json();
+    return deletedOpportunity
   } catch (error) {
     throw new Error(error);
   }
