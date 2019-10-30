@@ -1,5 +1,5 @@
 export const getAllUsers = async () => {
-  const url = " https://the-agency-app.herokuapp.com/user";
+  const url = "https://the-agency-app.herokuapp.com/user";
   let response = await fetch(url);
   if (!response.ok) {
     throw new Error("There was an error fetching your users");
@@ -10,7 +10,7 @@ export const getAllUsers = async () => {
 };
 
 export const getSpecificUser = async (userEmail, userPassword) => {
-  const url = ` https://the-agency-app.herokuapp.com/login`;
+  const url = `https://the-agency-app.herokuapp.com/login`;
   let body = {
     email: userEmail,
     password: userPassword
@@ -30,7 +30,7 @@ export const getSpecificUser = async (userEmail, userPassword) => {
 };
 
 export const getAllOpportunities = async () => {
-  const url = " https://the-agency-app.herokuapp.com/opportunities";
+  const url = "https://the-agency-app.herokuapp.com/opportunities";
   let response = await fetch(url);
   if (!response.ok) {
     throw new Error("There was an error fetching the opportunities");
@@ -42,7 +42,7 @@ export const getAllOpportunities = async () => {
 };
 
 export const getAllOpportunitiesForSpecificUser = async (id) => {
-  const url = ` https://the-agency-app.herokuapp.com/users/${id}/opportunity`;
+  const url = `https://the-agency-app.herokuapp.com/users/${id}/opportunity`;
   let response = await fetch(url);
   if (!response.ok) {
     throw new Error("There was an error fetching the opportunities");
@@ -53,7 +53,7 @@ export const getAllOpportunitiesForSpecificUser = async (id) => {
 };
 
 export const getSpecificOpportunity = async (userId, oppId) => {
-  const url = ` https://the-agency-app.herokuapp.com/users/${userId}/opportunity/${oppId}`;
+  const url = `https://the-agency-app.herokuapp.com/users/${userId}/opportunity/${oppId}`;
   let response = await fetch(url);
   if (!response.ok) {
     throw new Error("There was an error accessing this opportunity");
@@ -64,7 +64,7 @@ export const getSpecificOpportunity = async (userId, oppId) => {
 };
 
 export const postAUser = async userValues => {
-  const url = " https://the-agency-app.herokuapp.com/user";
+  const url = "https://the-agency-app.herokuapp.com/user";
   const body = {
     first_name: userValues.firstname,
     last_name: userValues.lastname,
@@ -92,7 +92,7 @@ export const postAUser = async userValues => {
 };
 
 export const postAnOpportunity = async (id, values) => {
-  const url = ` https://the-agency-app.herokuapp.com/users/${id}/opportunity`;
+  const url = `https://the-agency-app.herokuapp.com/users/${id}/opportunity`;
   const body = {
     title: values.title,
     type: values.type,
@@ -118,7 +118,7 @@ export const postAnOpportunity = async (id, values) => {
 };
 
 export const deleteAUser = async userId => {
-  const url = ` https://the-agency-app.herokuapp.com/users/${userId}`;
+  const url = `https://the-agency-app.herokuapp.com/users/${userId}`;
   const options = {
     method: "DELETE",
     headers: { "Content-Type": "application/json" }
@@ -136,7 +136,7 @@ export const deleteAUser = async userId => {
 };
 
 export const deleteAnOpportunity = async (userId, oppId) => {
-  const url = ` https://the-agency-app.herokuapp.com/users/${userId}/opportunity/${oppId}`;
+  const url = `https://the-agency-app.herokuapp.com/users/${userId}/opportunity/${oppId}`;
   const options = {
     method: "DELETE",
     headers: { "Content-Type": "application/json" }
@@ -154,7 +154,7 @@ export const deleteAnOpportunity = async (userId, oppId) => {
 };
 
 export const patchAUser = async (userId, userValues) => {
-  const url = ` https://the-agency-app.herokuapp.com/users/${userId}`;
+  const url = `https://the-agency-app.herokuapp.com/users/${userId}`;
   const body = {
     first_name: userValues.firstname,
     last_name: userValues.lastname,
@@ -180,7 +180,7 @@ export const patchAUser = async (userId, userValues) => {
 };
 
 export const patchAnOpportunity = async (userId, oppId, values) => {
-  const url = ` https://the-agency-app.herokuapp.com/users/${userId}/opportunity/${oppId}`;
+  const url = `https://the-agency-app.herokuapp.com/users/${userId}/opportunity/${oppId}`;
   const body = {
     title: values.title,
     type: values.type,
