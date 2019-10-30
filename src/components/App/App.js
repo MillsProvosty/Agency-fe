@@ -10,7 +10,7 @@ import Schedule from "../Schedule/Schedule";
 import { setRole } from "../../actions";
 import LandingPage from "../LandingPage/LandingPage";
 
-const App = props => {
+export const App = props => {
   console.log("app", props);
 
   // const [landing, hideLanding] = useState(false)
