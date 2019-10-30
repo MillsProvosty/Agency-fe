@@ -1,7 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import {shallow} from 'enzyme';
 import Nav from './Nav';
 
-it('renders without crashing', () => {
-  expect(true).toEqual(true)
-});
+describe('Nav', () => {
+  it('should match snapshot', () => {
+    const wrapper = shallow(
+      <Nav />
+    )
+    expect(wrapper).toMatchSnapshot()
+  })
+})

@@ -1,51 +1,54 @@
 import React, { useState, useEffect } from "react";
-import "./Profile.scss";
 import Nav from "../../components/Nav/Nav";
 import { connect } from "react-redux";
-import { getAllOpportunities } from "../../util/apiCalls";
+import { getAllOpportunities, deleteAUser } from "../../util/apiCalls";
 import { setUserOpportunities } from "../../actions";
-import Opportunities from '../Opportunities/Opportunities'
-
-const Profile = props => {
-
+import Opportunities from "../Opportunities/Opportunities";
+import { ProfileSection, Header } from './ProfileStyled'
+export const Profile = props => {
   const [isLoading, setLoading] = useState(true);
 
-  const { setOpportunities } = props
-
+const { user } = props
   const getUserOpp = async () => {
-    const userOpp = await getAllOpportunities()
-    setOpportunities(userOpp)
-    setLoading(false)
-  }
+    setLoading(false);
+  };
 
   useEffect(() => {
-    setLoading(true)
-    getUserOpp()
-  }, [])
-
+    getUserOpp();
+  }, []);
 
   return (
-    <section className="Profile">
+    <ProfileSection className="Profile">
       <Nav />
-    {isLoading &&
-       <p>I am loading</p>
-    }
-    {!isLoading && 
-      <>
-        <h1>Welcome {props.user.first_name}</h1>
-        <Opportunities role={'client'}/>
-      </>
-    }
-    </section>
+      <button onClick={() => deleteAUser(user.id)}>Delete Account</button>
+      {isLoading && <p>I am loading</p>}
+      {!isLoading && user.role === "client" && (
+        <>
+          <Header>Welcome, {user.firstname}</Header>
+          <Opportunities role={user.role} />
+        </>
+      )}
+      {!isLoading && user.role === "volunteer" && (
+        <>
+          <h1>Welcome {user.firstname}</h1>
+          <Opportunities role={user.role} />
+        </>
+      )}
+    </ProfileSection>
   );
 };
 
 export const mapStateToProps = state => ({
-  user: state.user
+  user: state.user,
+  opportunities: state.opportunities,
 });
 
 export const mapDispatchToProps = dispatch => ({
-  setOpportunities: opportunities => dispatch(setUserOpportunities(opportunities))
-})
+  setOpportunities: opportunities =>
+    dispatch(setUserOpportunities(opportunities))
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(Profile);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Profile);

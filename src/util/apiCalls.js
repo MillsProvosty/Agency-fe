@@ -1,5 +1,5 @@
 export const getAllUsers = async () => {
-  const url = "http://localhost:5000/user";
+  const url = " https://the-agency-app.herokuapp.com/user";
   let response = await fetch(url);
   if (!response.ok) {
     throw new Error("There was an error fetching your users");
@@ -9,9 +9,18 @@ export const getAllUsers = async () => {
   }
 };
 
-export const getSpecificUser = async id => {
-  const url = `http://localhost:5000/user/${id}`;
-  let response = await fetch(url);
+export const getSpecificUser = async (userEmail, userPassword) => {
+  const url = ` https://the-agency-app.herokuapp.com/login`;
+  let body = {
+    email: userEmail,
+    password: userPassword
+  }
+  const options = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body)
+  };
+  let response = await fetch(url, options);
   if (!response.ok) {
     throw new Error("There was an error accessing this user");
   } else {
@@ -21,7 +30,19 @@ export const getSpecificUser = async id => {
 };
 
 export const getAllOpportunities = async () => {
-  const url = "http://localhost:5000/users/1/opportunity/2";
+  const url = " https://the-agency-app.herokuapp.com/opportunities";
+  let response = await fetch(url);
+  if (!response.ok) {
+    throw new Error("There was an error fetching the opportunities");
+  } else {
+    let data = await response.json();
+    console.log('data', data)
+    return data;
+  }
+};
+
+export const getAllOpportunitiesForSpecificUser = async (id) => {
+  const url = ` https://the-agency-app.herokuapp.com/users/${id}/opportunity`;
   let response = await fetch(url);
   if (!response.ok) {
     throw new Error("There was an error fetching the opportunities");
@@ -32,7 +53,7 @@ export const getAllOpportunities = async () => {
 };
 
 export const getSpecificOpportunity = async (userId, oppId) => {
-  const url = `http://localhost:5000/users/${userId}/opportunity/${oppId}`;
+  const url = ` https://the-agency-app.herokuapp.com/users/${userId}/opportunity/${oppId}`;
   let response = await fetch(url);
   if (!response.ok) {
     throw new Error("There was an error accessing this opportunity");
@@ -43,13 +64,14 @@ export const getSpecificOpportunity = async (userId, oppId) => {
 };
 
 export const postAUser = async userValues => {
-  const url = "http://localhost:5000/user";
+  const url = " https://the-agency-app.herokuapp.com/user";
   const body = {
     first_name: userValues.firstname,
     last_name: userValues.lastname,
     email: userValues.email,
     password: userValues.password,
-    phone_number: userValues.phone
+    phone_number: userValues.phone,
+    role: userValues.role
   };
 
   const options = {
@@ -70,7 +92,7 @@ export const postAUser = async userValues => {
 };
 
 export const postAnOpportunity = async (id, values) => {
-  const url = `http://localhost:5000/users/${id}/opportunity`;
+  const url = ` https://the-agency-app.herokuapp.com/users/${id}/opportunity`;
   const body = {
     title: values.title,
     type: values.type,
@@ -78,7 +100,6 @@ export const postAnOpportunity = async (id, values) => {
     estimated_time: values.time,
     description: values.description
   };
-
   const options = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -97,7 +118,7 @@ export const postAnOpportunity = async (id, values) => {
 };
 
 export const deleteAUser = async userId => {
-  const url = `http://localhost:5000/users/${userId}`;
+  const url = ` https://the-agency-app.herokuapp.com/users/${userId}`;
   const options = {
     method: "DELETE",
     headers: { "Content-Type": "application/json" }
@@ -115,7 +136,7 @@ export const deleteAUser = async userId => {
 };
 
 export const deleteAnOpportunity = async (userId, oppId) => {
-  const url = `http://localhost:5000/users/${userId}/opportunity/${oppId}`;
+  const url = ` https://the-agency-app.herokuapp.com/users/${userId}/opportunity/${oppId}`;
   const options = {
     method: "DELETE",
     headers: { "Content-Type": "application/json" }
@@ -126,14 +147,14 @@ export const deleteAnOpportunity = async (userId, oppId) => {
       throw new Error("Cannot delete opportunity!");
     }
     const deletedOpportunity = await response.json();
-    return deletedOpportunity;
+    return deletedOpportunity
   } catch (error) {
     throw new Error(error);
   }
 };
 
 export const patchAUser = async (userId, userValues) => {
-  const url = `http://localhost:5000/users/${userId}`;
+  const url = ` https://the-agency-app.herokuapp.com/users/${userId}`;
   const body = {
     first_name: userValues.firstname,
     last_name: userValues.lastname,
@@ -159,7 +180,7 @@ export const patchAUser = async (userId, userValues) => {
 };
 
 export const patchAnOpportunity = async (userId, oppId, values) => {
-  const url = `http://localhost:5000/users/${userId}/opportunity/${oppId}`;
+  const url = ` https://the-agency-app.herokuapp.com/users/${userId}/opportunity/${oppId}`;
   const body = {
     title: values.title,
     type: values.type,

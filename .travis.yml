@@ -1,0 +1,10 @@
+language: node_js
+node_js: 
+  - "node"
+  deploy:
+  provider: s3
+  access_key_id: "AKIAJRZIOEHEOZIJN4UQ"
+  secret_access_key: "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"
+  bucket: "agency-fe"
+  skip_cleanup: true
+  region: eu-west-1g

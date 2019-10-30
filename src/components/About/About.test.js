@@ -1,7 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import About from './About';
+import { shallow } from 'enzyme';
 
-it('renders without crashing', () => {
-  expect(true).toEqual(true)
-});
+describe('About', () => {
+
+  it('should match snapshot', () => {
+    const wrapper = shallow(
+      <About />
+    )
+    expect(wrapper).toMatchSnapshot()
+  })
+})

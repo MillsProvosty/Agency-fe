@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
 import { validateCreateOpp } from "../../hooks/signInFormValidationRules";
 import { useCreateOppForm } from "../../hooks/useForm";
-import { setUserOpportunities } from '../../actions/';
-import { connect } from 'react-redux';
+import { setUserOpportunities } from "../../actions/";
+import { postAnOpportunity } from "../../util/apiCalls";
+import { connect } from "react-redux";
+import { CreateOppForm, PTag, Input, TextArea, Button } from './CreateOppModalStyled'
 
-export const CreateOppModal = (props) => {
+export const CreateOppModal = props => {
   const [disabled, setDisabled] = useState(true);
   const { values, handleChange } = useCreateOppForm(validateCreateOpp);
 
@@ -18,10 +19,9 @@ export const CreateOppModal = (props) => {
     }
   }
 
-  const createOpp = () => {
-    console.log(values);
-    const {error, ...opp} = values;
-    props.setOpp(opp)
+  const createOpp = async () => {
+    let newOpp = await postAnOpportunity(props.user.id, values);
+    props.addOpp(newOpp);
   };
 
   useEffect(() => {
@@ -32,8 +32,9 @@ export const CreateOppModal = (props) => {
   }, [values]);
 
   return (
-    <section>
-      <input
+    <CreateOppForm>
+      <PTag>Add an Opportunity For Our Community!</PTag>
+      <Input
         type="text"
         placeholder="Enter a Title"
         name="title"
@@ -42,7 +43,7 @@ export const CreateOppModal = (props) => {
         autoComplete="off"
         required
       />
-      <input
+      <Input
         type="text"
         placeholder="Enter an Amount of Time"
         name="time"
@@ -51,7 +52,7 @@ export const CreateOppModal = (props) => {
         autoComplete="off"
         required
       />
-      <input
+      <Input
         type="text"
         placeholder="Enter an Address for the Event"
         name="address"
@@ -60,7 +61,7 @@ export const CreateOppModal = (props) => {
         autoComplete="off"
         required
       />
-      <input
+      <Input
         type="text"
         placeholder="Enter a Type: i.e. Physical labor"
         name="type"
@@ -69,7 +70,7 @@ export const CreateOppModal = (props) => {
         autoComplete="off"
         required
       />
-      <textarea
+      <TextArea
         type="text"
         placeholder="Enter a Description"
         name="description"
@@ -79,17 +80,23 @@ export const CreateOppModal = (props) => {
         required
       />
       <Link to="/schedule">
-        <button disabled={disabled} onClick={createOpp}>
+        <Button id='create-opp' disabled={disabled} onClick={createOpp}>
           Submit!
-        </button>
+        </Button>
       </Link>
-    </section>
+    </CreateOppForm>
   );
 };
 
+export const mapStateToProps = state => ({
+  user: state.user
+});
 
 export const mapDispatchToProps = dispatch => ({
-  setOpp: opp => dispatch(setUserOpportunities(opp))
-})
+  addOpp: opp => dispatch(setUserOpportunities(opp))
+});
 
-export default connect(null, mapDispatchToProps)(CreateOppModal)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CreateOppModal);

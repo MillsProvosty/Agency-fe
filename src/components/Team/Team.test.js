@@ -1,7 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { shallow } from 'enzyme';
 import Team from './Team';
 
-it('renders without crashing', () => {
-  expect(true).toEqual(true)
-});
+describe('Team', () => {
+  it('should match snapshot', () => {
+    const wrapper = shallow(
+      <Team/>
+    )
+    expect(wrapper).toMatchSnapshot()
+  }) 
+})
