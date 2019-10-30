@@ -3,10 +3,6 @@ import "./SignInForm.scss";
 import { NavLink } from "react-router-dom";
 import SignUpModal from "../SignUp/SignUpModal";
 import Modal from "react-modal";
-<<<<<<< HEAD
-=======
-import styled from "styled-components";
->>>>>>> f7999fff44d6f0a4964f1258c9ef9f811d7c2ccd
 import {
   getSpecificUser,
   getAllOpportunitiesForSpecificUser,
