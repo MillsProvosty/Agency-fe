@@ -1,22 +1,58 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import Modal from "react-modal";
 import CreateOppModal from "../../components/CreateOppModal/CreateOppModal";
 import { editOpp } from "../../actions";
-import { deleteAnOpportunity } from "../../util/apiCalls";
-import { Link } from 'react-router-dom';
-import { OpportunityCard, OpportunitySection, PTag, Header, ModalStyle, Button, CardSection, Container, Bold } from './OpportunitiesStyled'
+import { deleteAnOpportunity, postVolToClient } from "../../util/apiCalls";
+import { Link } from "react-router-dom";
+import {
+  OpportunityCard,
+  OpportunitySection,
+  PTag,
+  Header,
+  ModalStyle,
+  Button,
+  CardSection,
+  Container,
+  Bold
+} from "./OpportunitiesStyled";
 
 export const Opportunities = props => {
-  console.log('opps', props)
   const deleteOpportunity = async (userId, oppId) => {
     await deleteAnOpportunity(userId, oppId);
   };
 
+  const [opportunities, setOpportunities] = useState(false);
+  useEffect(() => {
+    if (props.opportunities.length > 0) {
+      console.log("useEff opps", props);
+      setOpportunities(true);
+    } else {
+      setOpportunities(false);
+    }
+  }, [props.opportunities]);
+
   const displayOpp = () => {
-    console.log('displayOpp', props.opportunities)
-    return props.opportunities.map(opportunity => {
-      console.log(opportunity)
+    let iterable;
+
+    // console.log('propsOpps type', typeof props.opportunities)
+    // console.log('propsOpps actual', props.opportunities)
+    // console.log('propsOpps index0 type', typeof props.opportunities[0])
+    // console.log('propsOpps index0 actual', props.opportunities[0])
+
+
+    if (props.opportunities['0'] !== undefined && props.opportunities['0'].length > 1) {
+      console.log('length props.opportunities', props.opportunities['0'].length)
+      console.log('props', props)
+      iterable = props.opportunities[0];
+      console.log("sign in", iterable);
+    } else {
+      iterable = props.opportunities;
+      console.log("sign up", iterable);
+    }
+
+    console.log("iterable", iterable);
+    return iterable.map(opportunity => {
       return (
         <OpportunityCard key={opportunity.id}>
           <CardSection>
@@ -39,9 +75,7 @@ export const Opportunities = props => {
           {props.role === "volunteer" && (
             <CardSection buttons>
               <Button
-                onClick={() =>
-                  deleteAnOpportunity(props.user.id, opportunity.id)
-                }
+                onClick={() => postVolToClient(props.user.id, opportunity.id)}
               >
                 Select opportunity; doesnt work
               </Button>
@@ -56,8 +90,11 @@ export const Opportunities = props => {
           )}
           {props.role === "client" && (
             <CardSection buttons>
-              <Button id='deleteOpp'
-                onClick={() => deleteAnOpportunity(props.user.id, opportunity.id)}
+              <Button
+                id="deleteOpp"
+                onClick={() =>
+                  deleteAnOpportunity(props.user.id, opportunity.id)
+                }
               >
                 DELETE works and throws error
               </Button>
@@ -83,7 +120,7 @@ export const Opportunities = props => {
         <Button>Edit my Profile; doesnt work</Button>
       </Link>
       {props.role === "client" && (
-        <Button id='showModal'onClick={() => showCreateModal(true)}>
+        <Button id="showModal" onClick={() => showCreateModal(true)}>
           Create an opportunity
         </Button>
       )}

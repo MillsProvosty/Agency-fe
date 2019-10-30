@@ -36,7 +36,6 @@ export const getAllOpportunities = async () => {
     throw new Error("There was an error fetching the opportunities");
   } else {
     let data = await response.json();
-    console.log('data', data)
     return data;
   }
 };
@@ -204,3 +203,18 @@ export const patchAnOpportunity = async (userId, oppId, values) => {
     throw new Error(error);
   }
 };
+
+export const postVolToClient = async(volId, oppId) => {
+  const url = `http://localhost:5000/users/${volId}/opportunities/${oppId}`
+  const options = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" }
+  };
+  let response = await fetch(url, options);
+  if (!response.ok) {
+    throw new Error("There was an error linking you up!");
+  } else {
+    let data = await response.json();
+    return data;
+  }
+}

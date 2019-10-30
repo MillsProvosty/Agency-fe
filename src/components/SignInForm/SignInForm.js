@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./SignInForm.scss";
 import { NavLink } from "react-router-dom";
 import SignUpModal from "../SignUp/SignUpModal";
@@ -17,9 +17,10 @@ import { GiAirBalloon } from "react-icons/gi";
 import { SignIn, ModalStyle, Container, TitleSection, Titles, SignsSection, Headers, Form, Input, Logo, Button } from './SignInFormStyled' 
 
 export const SignInForm = props => {
-  console.log("sign", props);
   const [modalIsOpen, showModal] = useState(false);
   const [hasError, setHasError] = useState(false);
+  const [newOpportunities, setNewOpportunities] = useState(false)
+
 
   const { values, errors, handleChange } = useSignInForm(validate);
 
@@ -28,14 +29,13 @@ export const SignInForm = props => {
     try {
       const user = await getSpecificUser(values.email, values.password);
       props.setAUser(user);
-      console.log("user", user);
       if (user.role === "volunteer") {
-        console.log('in volunteer')
         let opportunities = await getAllOpportunities();
-        props.setOpportunities(opportunities);
+        props.setAllOpps(opportunities);
+        console.log('FINAL OPPS', opportunities)
       } else {
         let opportunities = await getAllOpportunitiesForSpecificUser(user.id);
-        props.setOpportunities(opportunities);
+        props.setAllOpps(opportunities);
       }
     } catch (error) {
       props.setAnError(error);
@@ -50,6 +50,14 @@ export const SignInForm = props => {
       return true;
     }
   }
+
+  useEffect(() => {
+    if (props.opportunities != ""){
+      setNewOpportunities(true)
+    } else {
+      setNewOpportunities(false)
+    }
+  }, [props.opportunities])
 
   return (
     <SignIn>
@@ -119,7 +127,7 @@ export const mapStateToProps = state => ({
 export const mapDispatchToProps = dispatch => ({
   setAUser: user => dispatch(setUser(user)),
   setAnError: error => dispatch(setError(error)),
-  setOpportunities: opportunities =>
+  setAllOpps: opportunities =>
     dispatch(setUserOpportunities(opportunities))
 });
 

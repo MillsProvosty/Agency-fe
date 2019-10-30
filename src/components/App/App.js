@@ -11,7 +11,6 @@ import { setRole } from "../../actions";
 import LandingPage from "../LandingPage/LandingPage";
 
 const App = props => {
-  console.log("app", props);
 
   // const [landing, hideLanding] = useState(false)
 
@@ -35,28 +34,32 @@ const App = props => {
   const [mainRole, setMainRole] = useState(false);
   const [mainUser, setMainUser] = useState(false);
   const [mainError, setMainError] = useState(false);
+  const [mainOpps, setMainOpps] = useState(false)
 
   useEffect(() => {
     if (props.role) {
-      console.log("SETmainrole");
       setMainRole(true);
     } else {
       setMainRole(false);
     }
     if (props.user) {
-      console.log("SETmainuser");
       setMainUser(true);
     } else {
       setMainUser(false);
     }
     if (props.error) {
-      console.log("SETmainerror");
       setMainError(true);
     } else {
       setMainError(false);
+    } 
+    if (props.opportunities.length > 0) {
+      console.log("app props", props)
+      setMainOpps(true)
+    } else {
+      setMainOpps(false)
     }
     // return <Route exact path="/user-form" render={() => <SignInForm />}/>
-  }, [props.role, props.user, props.error]);
+  }, [props.role, props.user, props.error, props.opportunities]);
 
   return (
     <section className="App">
