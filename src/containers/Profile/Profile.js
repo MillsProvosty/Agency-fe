@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Nav from "../../components/Nav/Nav";
 import { connect } from "react-redux";
-import { getAllOpportunities, deleteAUser } from "../../util/apiCalls";
 import { setUserOpportunities } from "../../actions";
 import Opportunities from "../Opportunities/Opportunities";
 import { ProfileSection, Header } from "./ProfileStyled";
@@ -61,7 +60,6 @@ export const Profile = props => {
   return (
     <ProfileSection className="Profile">
       <Nav />
-      {/* <button onClick={() => deleteAUser(user.id)}>Delete Account</button> */}
       {isLoading && <p>I am loading</p>}
       {!isLoading && user.role === "client" && (
         <>
@@ -72,7 +70,6 @@ export const Profile = props => {
           <Button>
             Edit Your Settings
           </Button>
-          {/* <Opportunities role={user.role} /> */}
           <ModalStyle>
             <Modal isOpen={createModal} className="modal">
               <CreateOppModal />
@@ -90,7 +87,6 @@ export const Profile = props => {
             Edit Your Settings
           </Button>
           {showOpps &&  <Opportunities role={user.role} />}
-          {/* <Opportunities role={user.role} /> */}
         </>
       )}
     </ProfileSection>

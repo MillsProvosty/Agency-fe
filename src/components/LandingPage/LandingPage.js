@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./LandingPage.scss";
-import { NavLink } from "react-router-dom";
 import { GiAirBalloon } from "react-icons/gi";
 import { connect } from "react-redux";
 import { setRole } from "../../actions";

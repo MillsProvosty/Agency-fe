@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { validateCreateOpp } from "../../hooks/signInFormValidationRules";
 import { useCreateOppForm } from "../../hooks/useForm";
-import { setUserOpportunities, addUserOpp, setAllOpps } from "../../actions/";
+import { setUserOpportunities, addUserOpp } from "../../actions/";
 import { postAnOpportunity } from "../../util/apiCalls";
 import { connect } from "react-redux";
 import { CreateOppForm, PTag, Input, TextArea, Button } from './CreateOppModalStyled'
@@ -23,7 +23,6 @@ export const CreateOppModal = props => {
   const createOpp = async () => {
     let iterable;
   
-
     if (props.opportunities['0'] !== undefined && props.opportunities['0'].length > 1) {
       iterable = props.opportunities[0];
     } else {
@@ -37,7 +36,8 @@ export const CreateOppModal = props => {
 
   useEffect(() => {
     setNewValue(true)
-  }, [props.opportunities]);
+  }, [props.opportunities, setNewValue]);
+
 
   useEffect(() => {
     validateCreateOpp(values);

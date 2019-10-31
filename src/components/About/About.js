@@ -23,7 +23,7 @@ const About = () => {
       <QuickSection>
         <PTag>
           Software Developer, Mills Provosty, had a friend who needed a small
-          bit of help to make a big difference. Developers Tay DeHerrera, Aiden
+          bit of help to make a big difference. Developers Tay DeHerrera, Aidan
           McKay, and Gregory Anderson joined to build this app that connects. To
           give <Bold>Agency.</Bold>
         </PTag>

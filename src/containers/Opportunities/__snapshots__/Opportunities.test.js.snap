@@ -3,40 +3,6 @@
 exports[`Opportunities should match snapshot 1`] = `
 <styled.section>
   <styled.section>
-    <Modal
-      ariaHideApp={true}
-      bodyOpenClassName="ReactModal__Body--open"
-      className="modal"
-      closeTimeoutMS={0}
-      isOpen={false}
-      parentSelector={[Function]}
-      portalClassName="ReactModalPortal"
-      role="dialog"
-      shouldCloseOnEsc={true}
-      shouldCloseOnOverlayClick={true}
-      shouldFocusAfterRender={true}
-      shouldReturnFocusAfterClose={true}
-    >
-      <Connect(CreateOppModal) />
-    </Modal>
-  </styled.section>
-  <Link
-    to="/profile"
-  >
-    <styled.button>
-      Return to Profile
-    </styled.button>
-    <styled.button>
-      Edit my Profile; doesnt work
-    </styled.button>
-  </Link>
-  <styled.button
-    id="showModal"
-    onClick={[Function]}
-  >
-    Create an opportunity
-  </styled.button>
-  <styled.section>
     <styled.section
       key="2"
     >
@@ -78,10 +44,10 @@ exports[`Opportunities should match snapshot 1`] = `
           id="deleteOpp"
           onClick={[Function]}
         >
-          DELETE works and throws error
+          Delete
         </styled.button>
         <styled.button>
-          This Edit Doesnt Work
+          Edit
         </styled.button>
       </styled.section>
     </styled.section>
@@ -91,37 +57,6 @@ exports[`Opportunities should match snapshot 1`] = `
 
 exports[`Opportunities should render a different button if role is different 1`] = `
 <styled.section>
-  <styled.section>
-    <Modal
-      ariaHideApp={true}
-      bodyOpenClassName="ReactModal__Body--open"
-      className="modal"
-      closeTimeoutMS={0}
-      isOpen={false}
-      parentSelector={[Function]}
-      portalClassName="ReactModalPortal"
-      role="dialog"
-      shouldCloseOnEsc={true}
-      shouldCloseOnOverlayClick={true}
-      shouldFocusAfterRender={true}
-      shouldReturnFocusAfterClose={true}
-    >
-      <Connect(CreateOppModal) />
-    </Modal>
-  </styled.section>
-  <Link
-    to="/profile"
-  >
-    <styled.button>
-      Return to Profile
-    </styled.button>
-    <styled.button>
-      Edit my Profile; doesnt work
-    </styled.button>
-  </Link>
-  <styled.button>
-    Search For Opportunities
-  </styled.button>
   <styled.section>
     <styled.section
       key="2"
@@ -160,15 +95,19 @@ exports[`Opportunities should render a different button if role is different 1`]
       <styled.section
         buttons={true}
       >
+        <Link
+          to="/schedule"
+        >
+          <styled.button
+            onClick={[Function]}
+          >
+            Select
+          </styled.button>
+        </Link>
         <styled.button
           onClick={[Function]}
         >
-          Select opportunity; doesnt work
-        </styled.button>
-        <styled.button
-          onClick={[Function]}
-        >
-          Find Out About The Client; doesnt work
+          Client Info
         </styled.button>
       </styled.section>
     </styled.section>

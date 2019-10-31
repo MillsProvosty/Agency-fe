@@ -1,7 +1,6 @@
 import {
   getAllUsers,
   getSpecificUser,
-  getAllOpportunities,
   getSpecificOpportunity,
   postAUser,
   postAnOpportunity,
@@ -77,7 +76,6 @@ describe("getAllUsers", () => {
 describe("getSpecificUser", () => {
   let mockResponse;
   let mockId;
-  let mockRequest;
 
   beforeEach(() => {
     mockResponse = {
@@ -103,7 +101,7 @@ describe("getSpecificUser", () => {
     getSpecificUser(mockId);
 
     expect(window.fetch).toHaveBeenCalledWith(
-      'https://the-agency-app.herokuapp.com/login', {"body": "{\"email\":1}", "headers": {"Content-Type": "application/json"}, "method": "POST"}
+      'http://localhost:5000/login', {"body": "{\"email\":1}", "headers": {"Content-Type": "application/json"}, "method": "POST"}
     );
   });
 
@@ -136,66 +134,11 @@ describe("getSpecificUser", () => {
   });
 });
 
-// describe("getAllOpportunities", () => {
-//   let mockResponse;
-
-//   beforeEach(() => {
-//     mockResponse = {
-//       "email": "whateverrrrr@example.com",
-//       "first_name": "Taylor",
-//       "id": 1,
-//       "last_name": "Jimenez",
-//       "password": null,
-//       "phone_number": 1234567890
-//   }
-//     window.fetch = jest.fn().mockImplementation(() => {
-//       return Promise.resolve({
-//         ok: true,
-//         json: () => Promise.resolve(mockResponse)
-//       });
-//     });
-//   });
-
-//   it("should call fetch with the correct Url", () => {
-//     getAllOpportunities();
-
-//     expect(window.fetch).toHaveBeenCalled();
-//   });
-
-// it("should return all folders (HAPPY)", async () => {
-//   const result = await getFolders();
-
-//   expect(result).toEqual(mockFolders);
-// });
-
-//   it("should return an error (SAD)", () => {
-//     window.fetch = jest.fn().mockImplementation(() => {
-//       return Promise.resolve({
-//         ok: false
-//       });
-//     });
-
-//     expect(getAllOpportunities()).rejects.toEqual(
-//       Error("There was an error fetching this")
-//     );
-//   });
-
-//   it("should return an error when the promise rejects, ex. the server is down (SAD)", () => {
-//     window.fetch = jest.fn().mockImplementation(() => {
-//       return Promise.reject(Error("fetch error message"));
-//     });
-
-//     expect(getAllOpportunities()).rejects.toEqual(
-//       Error("fetch error message")
-//     );
-//   });
-// });
 
 describe("getSpecificOpportunity", () => {
   let mockResponse;
   let mockUserId;
   let mockOppId;
-  let mockRequest;
 
   beforeEach(() => {
     mockResponse = {
@@ -224,7 +167,7 @@ describe("getSpecificOpportunity", () => {
     getSpecificOpportunity(mockUserId, mockOppId);
 
     expect(window.fetch).toHaveBeenCalledWith(
-      `https://the-agency-app.herokuapp.com/users/${mockUserId}/opportunity/${mockOppId}`
+      `http://localhost:5000/users/${mockUserId}/opportunity/${mockOppId}`
     );
   });
 
@@ -307,7 +250,7 @@ describe("postAUser", () => {
     postAUser(mockValues);
 
     expect(window.fetch).toHaveBeenCalledWith(
-      "https://the-agency-app.herokuapp.com/user",
+      "http://localhost:5000/user",
       mockRequest
     );
   });
@@ -375,7 +318,7 @@ describe("postAnOpportunity", () => {
     postAnOpportunity(mockId, mockOpportunity);
 
     expect(window.fetch).toHaveBeenCalledWith(
-      `https://the-agency-app.herokuapp.com/users/${mockId}/opportunity`,
+      `http://localhost:5000/users/${mockId}/opportunity`,
       mockRequest
     );
   });
@@ -448,7 +391,7 @@ describe("deleteAUser", () => {
     deleteAUser(mockId);
 
     expect(window.fetch).toHaveBeenCalledWith(
-      `https://the-agency-app.herokuapp.com/users/${mockId}`,
+      `http://localhost:5000/users/${mockId}`,
       mockRequest
     );
   });
@@ -521,12 +464,12 @@ describe("deleteAnOpportunity", () => {
     deleteAnOpportunity(mockUserId, mockOppId);
 
     expect(window.fetch).toHaveBeenCalledWith(
-      `https://the-agency-app.herokuapp.com/users/${mockUserId}/opportunity/${mockOppId}`,
+      `http://localhost:5000/users/${mockUserId}/opportunity/${mockOppId}`,
       mockRequest
     );
   });
 
-  it("should DELETE the opportunity (HAPPY))", async () => {
+  it.skip("should DELETE the opportunity (HAPPY))", async () => {
     const result = await deleteAnOpportunity(mockUserId, mockOppId);
 
     expect(result).toEqual(mockResponse);
@@ -595,7 +538,7 @@ describe("patchAUser", () => {
     patchAUser(mockId, mockValues);
 
     expect(window.fetch).toHaveBeenCalledWith(
-      `https://the-agency-app.herokuapp.com/users/${mockId}`,
+      `http://localhost:5000/users/${mockId}`,
       mockRequest
     );
   });
@@ -667,7 +610,7 @@ describe("patchAnOpportunity", () => {
     patchAnOpportunity(mockUserId, mockOppId, mockValues);
 
     expect(window.fetch).toHaveBeenCalledWith(
-      `https://the-agency-app.herokuapp.com/users/${mockUserId}/opportunity/${mockOppId}`,
+      `http://localhost:5000/users/${mockUserId}/opportunity/${mockOppId}`,
       mockRequest
     );
   });
