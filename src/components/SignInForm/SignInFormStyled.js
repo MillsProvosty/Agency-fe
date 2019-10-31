@@ -41,7 +41,7 @@ export const SignsSection = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 40vh;
+  height: 43vh;
   margin-top: 27vh;
   background-color: white;
   border: 1px solid #37474e;
@@ -111,6 +111,13 @@ export const Input = styled.input`
   height: 2em;
   border: 1px solid darkgrey;
   padding: 5px;
+`;
+
+
+export const PTag = styled.p`
+  font-size: 1em;
+  color: tomato;
+  margin: 0;
 `;
 
 export const Logo = styled.button`

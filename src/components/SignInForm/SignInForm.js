@@ -13,7 +13,7 @@ import { validate } from "../../hooks/signInFormValidationRules";
 import { setUser, setError, setUserOpportunities } from "../../actions";
 import { connect } from "react-redux";
 import { GiAirBalloon } from "react-icons/gi";
-import { SignIn, ModalStyle, Container, TitleSection, Titles, SignsSection, Headers, Form, Input, Logo, Button } from './SignInFormStyled' 
+import { SignIn, ModalStyle, Container, TitleSection, Titles, SignsSection, Headers, Form, Input, Logo, Button, PTag } from './SignInFormStyled' 
 
 export const SignInForm = props => {
   const [modalIsOpen, showModal] = useState(false);
@@ -79,7 +79,7 @@ export const SignInForm = props => {
                 onChange={handleChange}
                 required
               />
-              {errors.email && <p>{errors.email}</p>}
+              {errors.email && <PTag>{errors.email}</PTag>}
               <Input
                 autoComplete="off"
                 tabIndex={0}
@@ -90,8 +90,8 @@ export const SignInForm = props => {
                 onChange={handleChange}
                 required
               />
-              {props.errors && <p>Please try again!</p>}
-              {errors.password && <p>{errors.password}</p>}
+              {props.errors && <PTag>Please try again!</PTag>}
+              {errors.password && <PTag>{errors.password}</PTag>}
               <Button  id='sign-in' disabled={setDisabled()} onClick={e => setUser(e)}>
                 Sign In
               </Button>

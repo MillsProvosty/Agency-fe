@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import Modal from "react-modal";
-import CreateOppModal from "../../components/CreateOppModal/CreateOppModal";
 import { editOpp, setOpps } from "../../actions";
 import {
   deleteAnOpportunity,
@@ -16,7 +14,6 @@ import {
   OpportunitySection,
   PTag,
   Header,
-  ModalStyle,
   Button,
   CardSection,
   Container,
@@ -24,7 +21,6 @@ import {
 } from "./OpportunitiesStyled";
 
 export const Opportunities = props => {
-  console.log(props);
 
   const deleteOpportunity = async (userId, oppId) => {
     let deleted = await deleteAnOpportunity(userId, oppId);
@@ -32,36 +28,24 @@ export const Opportunities = props => {
       props.user.id
     );
     props.setAllOpps(allOppsForUser);
-    console.log(allOppsForUser);
   };
 
   const handlePost = async oppId => {
     await postVolToClient(props.user.id, oppId);
     let allOpps = await getAllOpportunities();
     let userOppIds = await getReservedOpps(props.user.id);
-
     let rightNums = [];
-
     userOppIds.forEach(index => rightNums.push(index.opportunity_id));
     let theRightOpps = allOpps.filter(opp => {
       if (rightNums.includes(opp.id)) {
         return opp;
       }
     });
-
-    // let theRightOpps = allOpps.filter(opp => {
-    //   return userOppIds.forEach(index => {
-    //     if (opp.id === index.opportunity_id){
-    //       console.log(opp)
-    //       return opp
-    //     }
-    //   })
-    // })
-    props.setAllOpps(theRightOpps)
-    console.log("right", theRightOpps);
+    props.setAllOpps(theRightOpps);
   };
 
   const [opportunities, setOpportunities] = useState(false);
+  
   useEffect(() => {
     if (props.opportunities.length > 0) {
       setOpportunities(true);
@@ -85,7 +69,6 @@ export const Opportunities = props => {
     return iterable.map(opportunity => {
       return (
         <OpportunityCard key={opportunity.id}>
-          <Button onClick={() => getReservedOpps(8)}></Button>
           <CardSection>
             <Header>{opportunity.title}</Header>
             <PTag description>{opportunity.description}</PTag>
@@ -107,13 +90,13 @@ export const Opportunities = props => {
             <CardSection buttons>
               <Link to="/schedule">
                 <Button onClick={() => handlePost(opportunity.id)}>
-                  Select opportunity; doesnt work
+                  Select
                 </Button>
               </Link>
               <Button
                 onClick={() => deleteOpportunity(props.user.id, opportunity.id)}
               >
-                Find Out About The Client; doesnt work
+                Client Info
               </Button>
             </CardSection>
           )}
@@ -123,9 +106,9 @@ export const Opportunities = props => {
                 id="deleteOpp"
                 onClick={() => deleteOpportunity(props.user.id, opportunity.id)}
               >
-                DELETE
+                Delete
               </Button>
-              <Button onClick={props.editOpp}>EDIT</Button>
+              <Button onClick={props.editOpp}>Edit</Button>
             </CardSection>
           )}
         </OpportunityCard>
