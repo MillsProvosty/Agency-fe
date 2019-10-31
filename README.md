@@ -1,8 +1,14 @@
-![landing](https://user-images.githubusercontent.com/45856797/67913272-146ba600-fb52-11e9-8487-16eb6d558eb5.png))
+![landing](https://user-images.githubusercontent.com/45856797/67913272-146ba600-fb52-11e9-8487-16eb6d558eb5.png)
 
 # Agency
 
 Software Developer, Mills Provosty, had a friend who needed a small bit of help to make a big difference. Developers Tay DeHerrera, Aiden McKay, and Gregory Anderson joined to build this app that connects. To give Agency.
+
+
+* [Tay James](https://github.com/tayjames)
+* [Greg Anderson](https://github.com/gregoryanderson)
+* [Aiden McKay](https://github.com/JellyBeans1312)
+* [Mills Provosty](https://github.com/MillsProvosty)
 
 
 ### Links
