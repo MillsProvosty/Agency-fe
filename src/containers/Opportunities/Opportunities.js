@@ -1,8 +1,6 @@
 
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import Modal from "react-modal";
-import CreateOppModal from "../../components/CreateOppModal/CreateOppModal";
 import { editOpp, setOpps } from "../../actions";
 import {
   deleteAnOpportunity,
@@ -17,7 +15,6 @@ import {
   OpportunitySection,
   PTag,
   Header,
-  ModalStyle,
   Button,
   CardSection,
   Container,
@@ -25,15 +22,13 @@ import {
 } from "./OpportunitiesStyled";
 
 export const Opportunities = props => {
-  console.log(props);
 
   const deleteOpportunity = async (userId, oppId) => {
-    let deleted = await deleteAnOpportunity(userId, oppId);
+   deleteAnOpportunity(userId, oppId);
     let allOppsForUser = await getAllOpportunitiesForSpecificUser(
       props.user.id
     );
     props.setAllOpps(allOppsForUser);
-    console.log(allOppsForUser);
   };
 
   const handlePost = async oppId => {
@@ -50,26 +45,18 @@ export const Opportunities = props => {
       }
     });
 
-    // let theRightOpps = allOpps.filter(opp => {
-    //   return userOppIds.forEach(index => {
-    //     if (opp.id === index.opportunity_id){
-    //       console.log(opp)
-    //       return opp
-    //     }
-    //   })
-    // })
+
     props.setAllOpps(theRightOpps)
-    console.log("right", theRightOpps);
   };
 
-  const [opportunities, setOpportunities] = useState(false);
+  const [ setOpportunities] = useState(false);
   useEffect(() => {
     if (props.opportunities.length > 0) {
       setOpportunities(true);
     } else {
       setOpportunities(false);
     }
-  }, [props.opportunities]);
+  }, [props.opportunities, setOpportunities]);
 
   const displayOpp = () => {
     let iterable;
