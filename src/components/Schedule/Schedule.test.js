@@ -82,7 +82,7 @@ describe('Schedule', () => {
   })
 
   describe('mapDispatchToProps', () => {
-    it("calls setOpportnities with an setUserOpportunities action when setOpportunities is called", () => {
+    it("calls setOpps with an setAllOpps action when setOpps is called", () => {
       const mockDispatch = jest.fn();
       const actionToDispatch = setOpps(mockOpp);
       const mappedProps = mapDispatchToProps(mockDispatch);

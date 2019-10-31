@@ -19,10 +19,6 @@ export const LogoSection = styled.section`
 export const PTag = styled.p`
   font-size: 2em;
   margin: 0;
-  :hover {
-    border-bottom: 1px solid aliceblue;
-    height: 1.25em;
-  }
 `;
 
 export const PLinks = styled.p`

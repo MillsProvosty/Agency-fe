@@ -152,11 +152,9 @@ export const deleteAnOpportunity = async (userId, oppId) => {
   };
   try {
     const response = await fetch(url, options);
-    console.log(response)
     if (!response.ok) {
       throw new Error("Cannot delete opportunity!");
     }
-    return response.json()
   } catch (error) {
     throw new Error(error);
   }

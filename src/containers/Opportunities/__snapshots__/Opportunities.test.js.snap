@@ -6,9 +6,6 @@ exports[`Opportunities should match snapshot 1`] = `
     <styled.section
       key="2"
     >
-      <styled.button
-        onClick={[Function]}
-      />
       <styled.section>
         <styled.h1>
           Rake Leaves
@@ -47,10 +44,10 @@ exports[`Opportunities should match snapshot 1`] = `
           id="deleteOpp"
           onClick={[Function]}
         >
-          DELETE
+          Delete
         </styled.button>
         <styled.button>
-          EDIT
+          Edit
         </styled.button>
       </styled.section>
     </styled.section>
@@ -64,9 +61,6 @@ exports[`Opportunities should render a different button if role is different 1`]
     <styled.section
       key="2"
     >
-      <styled.button
-        onClick={[Function]}
-      />
       <styled.section>
         <styled.h1>
           Rake Leaves
@@ -107,13 +101,13 @@ exports[`Opportunities should render a different button if role is different 1`]
           <styled.button
             onClick={[Function]}
           >
-            Select opportunity; doesnt work
+            Select
           </styled.button>
         </Link>
         <styled.button
           onClick={[Function]}
         >
-          Find Out About The Client; doesnt work
+          Client Info
         </styled.button>
       </styled.section>
     </styled.section>

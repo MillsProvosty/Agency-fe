@@ -13,8 +13,8 @@ export const App = props => {
 
   const [mainRole, setMainRole] = useState(false);
   const [mainUser, setMainUser] = useState(false);
-  const [setMainError] = useState(false);
-  const [setMainOpps] = useState(false)
+  const [mainError, setMainError] = useState(false);
+  const [mainOpps, setMainOpps] = useState(false)
 
 
   useEffect(() => {

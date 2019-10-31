@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { editOpp, setOpps } from "../../actions";
@@ -22,8 +21,9 @@ import {
 } from "./OpportunitiesStyled";
 
 export const Opportunities = props => {
+
   const deleteOpportunity = async (userId, oppId) => {
-   deleteAnOpportunity(userId, oppId);
+    let deleted = await deleteAnOpportunity(userId, oppId);
     let allOppsForUser = await getAllOpportunitiesForSpecificUser(
       props.user.id
     );
@@ -34,27 +34,25 @@ export const Opportunities = props => {
     await postVolToClient(props.user.id, oppId);
     let allOpps = await getAllOpportunities();
     let userOppIds = await getReservedOpps(props.user.id);
-
     let rightNums = [];
-
     userOppIds.forEach(index => rightNums.push(index.opportunity_id));
     let theRightOpps = allOpps.filter(opp => {
       if (rightNums.includes(opp.id)) {
         return opp;
       }
     });
-
-    props.setAllOpps(theRightOpps)
+    props.setAllOpps(theRightOpps);
   };
 
-  const [ setOpportunities] = useState(false);
+  const [opportunities, setOpportunities] = useState(false);
+  
   useEffect(() => {
     if (props.opportunities.length > 0) {
       setOpportunities(true);
     } else {
       setOpportunities(false);
     }
-  }, [props.opportunities, setOpportunities]);
+  }, [props.opportunities]);
 
   const displayOpp = () => {
     let iterable;
@@ -71,7 +69,6 @@ export const Opportunities = props => {
     return iterable.map(opportunity => {
       return (
         <OpportunityCard key={opportunity.id}>
-          <Button onClick={() => getReservedOpps(8)}></Button>
           <CardSection>
             <Header>{opportunity.title}</Header>
             <PTag description>{opportunity.description}</PTag>
@@ -93,13 +90,13 @@ export const Opportunities = props => {
             <CardSection buttons>
               <Link to="/schedule">
                 <Button onClick={() => handlePost(opportunity.id)}>
-                  Select opportunity; doesnt work
+                  Select
                 </Button>
               </Link>
               <Button
                 onClick={() => deleteOpportunity(props.user.id, opportunity.id)}
               >
-                Find Out About The Client; doesnt work
+                Client Info
               </Button>
             </CardSection>
           )}
@@ -109,9 +106,9 @@ export const Opportunities = props => {
                 id="deleteOpp"
                 onClick={() => deleteOpportunity(props.user.id, opportunity.id)}
               >
-                DELETE
+                Delete
               </Button>
-              <Button onClick={props.editOpp}>EDIT</Button>
+              <Button onClick={props.editOpp}>Edit</Button>
             </CardSection>
           )}
         </OpportunityCard>

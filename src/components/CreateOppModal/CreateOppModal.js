@@ -9,7 +9,7 @@ import { CreateOppForm, PTag, Input, TextArea, Button } from './CreateOppModalSt
 
 export const CreateOppModal = props => {
   const [disabled, setDisabled] = useState(true);
-  const [setNewValue] = useState(false)
+  const [newValue, setNewValue] = useState(false)
   const { values, handleChange } = useCreateOppForm(validateCreateOpp);
 
   function setSetDisabled() {

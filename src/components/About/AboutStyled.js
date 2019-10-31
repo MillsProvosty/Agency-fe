@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const AboutSection = styled.section`
   font-size: 1em;
-  background-color: aliceblue;
+  background-color: white;
   @media screen and (max-width: 375px) {
     font-size: .75em;
   }
@@ -58,8 +58,15 @@ export const MoreOptions = styled.section`
 `;
 
 export const PTag = styled.p`
-  font-size: 2em;
+  font-size: 1.5em;
 `;
+
+export const QuickSection = styled.section`
+  display: flex;
+  width: 75%;
+  margin: auto
+`
+
 
 export const Button = styled.button`
   color: white;

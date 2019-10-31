@@ -61,7 +61,6 @@ export const SignUpModal = props => {
     }
   }, [props.opportunities])
 
-
   return (
     <SignUpForm className="SignUpModal">
       <PTag>Thanks for Signing Up!</PTag>
