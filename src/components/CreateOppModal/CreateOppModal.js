@@ -2,14 +2,14 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { validateCreateOpp } from "../../hooks/signInFormValidationRules";
 import { useCreateOppForm } from "../../hooks/useForm";
-import { setUserOpportunities, addUserOpp, setAllOpps } from "../../actions/";
+import { setUserOpportunities, addUserOpp } from "../../actions/";
 import { postAnOpportunity } from "../../util/apiCalls";
 import { connect } from "react-redux";
 import { CreateOppForm, PTag, Input, TextArea, Button } from './CreateOppModalStyled'
 
 export const CreateOppModal = props => {
   const [disabled, setDisabled] = useState(true);
-  const [newValue, setNewValue] = useState(false)
+  const [setNewValue] = useState(false)
   const { values, handleChange } = useCreateOppForm(validateCreateOpp);
 
   function setSetDisabled() {
@@ -36,7 +36,8 @@ export const CreateOppModal = props => {
 
   useEffect(() => {
     setNewValue(true)
-  }, [props.opportunities]);
+  }, [props.opportunities, setNewValue]);
+
 
   useEffect(() => {
     validateCreateOpp(values);

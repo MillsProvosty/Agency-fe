@@ -75,7 +75,6 @@ export const Schedule = props => {
           <Header>{props.user.first_name}'s Requests</Header>
           <Link to="/profile">
             <Button>Return to Profile</Button>
-            {/* <Button>Edit my Profile; doesnt work</Button> */}
           </Link>
           <Opportunities role={props.user.role} />
         </>
@@ -85,7 +84,6 @@ export const Schedule = props => {
           <Header>{props.user.first_name}'s Schedule</Header>
           <Link to="/profile">
             <Button onClick={() => handleResetOfOpps()}>Return to Profile</Button>
-            {/* <Button>Edit my Profile; doesnt work</Button> */}
           </Link>
           <Opportunities role={props.user.role} />
         </>

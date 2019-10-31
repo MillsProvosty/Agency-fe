@@ -15,7 +15,6 @@ export const getReservedOpps = async (volId) => {
     throw new Error("There was an error fetching your users");
   } else {
     let data = await response.json();
-    console.log('reserve', data)
     return data;
   }
 };

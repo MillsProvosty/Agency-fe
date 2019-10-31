@@ -7,15 +7,15 @@ import About from "../About/About";
 import Team from "../Team/Team";
 import { connect } from "react-redux";
 import Schedule from "../Schedule/Schedule";
-import { setRole } from "../../actions";
 import LandingPage from "../LandingPage/LandingPage";
 
 export const App = props => {
 
   const [mainRole, setMainRole] = useState(false);
   const [mainUser, setMainUser] = useState(false);
-  const [mainError, setMainError] = useState(false);
-  const [mainOpps, setMainOpps] = useState(false)
+  const [setMainError] = useState(false);
+  const [setMainOpps] = useState(false)
+
 
   useEffect(() => {
     if (props.role) {
@@ -39,7 +39,8 @@ export const App = props => {
     } else {
       setMainOpps(false)
     }
-  }, [props.role, props.user, props.error, props.opportunities]);
+  }, [props.role, props.user, props.error, props.opportunities, setMainError, setMainOpps]);
+
 
 
   return (
