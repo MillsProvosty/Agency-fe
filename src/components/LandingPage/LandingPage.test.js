@@ -22,16 +22,6 @@ describe('LandingPage', () => {
     expect(wrapper).toMatchSnapshot()
   });
 
-  it('should call displayForms on click of volunteer', () => {
-    wrapper.find('#volunteer').props().onClick();
-    expect(mockDisplayForms).toHaveBeenCalled()
-  })
-
-  it('should call displayForms on click of client', () => {
-    wrapper.find('#client').props().onClick();
-    expect(mockDisplayForms).toHaveBeenCalled()
-  })
-
   it('should set role to client on click', () => {
     wrapper.find('#client').props().onClick();
     expect(mockSetRole).toHaveBeenCalled()

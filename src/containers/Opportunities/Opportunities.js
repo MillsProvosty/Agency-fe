@@ -1,24 +1,92 @@
-import React, { useState } from "react";
+
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import Modal from "react-modal";
 import CreateOppModal from "../../components/CreateOppModal/CreateOppModal";
-import { editOpp } from "../../actions";
-import { deleteAnOpportunity } from "../../util/apiCalls";
-import { Link } from 'react-router-dom';
-import { OpportunityCard, OpportunitySection, PTag, Header, ModalStyle, Button, CardSection, Container, Bold } from './OpportunitiesStyled'
+import { editOpp, setOpps } from "../../actions";
+import {
+  deleteAnOpportunity,
+  postVolToClient,
+  getAllOpportunities,
+  getAllOpportunitiesForSpecificUser,
+  getReservedOpps
+} from "../../util/apiCalls";
+import { Link } from "react-router-dom";
+import {
+  OpportunityCard,
+  OpportunitySection,
+  PTag,
+  Header,
+  ModalStyle,
+  Button,
+  CardSection,
+  Container,
+  Bold
+} from "./OpportunitiesStyled";
 
 export const Opportunities = props => {
-  console.log('opps', props)
+  console.log(props);
+
   const deleteOpportunity = async (userId, oppId) => {
-    await deleteAnOpportunity(userId, oppId);
+    let deleted = await deleteAnOpportunity(userId, oppId);
+    let allOppsForUser = await getAllOpportunitiesForSpecificUser(
+      props.user.id
+    );
+    props.setAllOpps(allOppsForUser);
+    console.log(allOppsForUser);
   };
 
+  const handlePost = async oppId => {
+    await postVolToClient(props.user.id, oppId);
+    let allOpps = await getAllOpportunities();
+    let userOppIds = await getReservedOpps(props.user.id);
+
+    let rightNums = [];
+
+    userOppIds.forEach(index => rightNums.push(index.opportunity_id));
+    let theRightOpps = allOpps.filter(opp => {
+      if (rightNums.includes(opp.id)) {
+        return opp;
+      }
+    });
+
+    // let theRightOpps = allOpps.filter(opp => {
+    //   return userOppIds.forEach(index => {
+    //     if (opp.id === index.opportunity_id){
+    //       console.log(opp)
+    //       return opp
+    //     }
+    //   })
+    // })
+    props.setAllOpps(theRightOpps)
+    console.log("right", theRightOpps);
+  };
+
+  const [opportunities, setOpportunities] = useState(false);
+  useEffect(() => {
+    if (props.opportunities.length > 0) {
+      setOpportunities(true);
+    } else {
+      setOpportunities(false);
+    }
+  }, [props.opportunities]);
+
   const displayOpp = () => {
-    console.log('displayOpp', props.opportunities)
-    return props.opportunities.map(opportunity => {
-      console.log(opportunity)
+    let iterable;
+
+    if (
+      props.opportunities["0"] !== undefined &&
+      props.opportunities["0"].length > 1
+    ) {
+      iterable = props.opportunities[0];
+    } else {
+      iterable = props.opportunities;
+    }
+
+    return iterable.map(opportunity => {
       return (
         <OpportunityCard key={opportunity.id}>
+          <Button onClick={() => getReservedOpps(8)}></Button>
           <CardSection>
             <Header>{opportunity.title}</Header>
             <PTag description>{opportunity.description}</PTag>
@@ -38,17 +106,13 @@ export const Opportunities = props => {
           </CardSection>
           {props.role === "volunteer" && (
             <CardSection buttons>
+              <Link to="/schedule">
+                <Button onClick={() => handlePost(opportunity.id)}>
+                  Select opportunity; doesnt work
+                </Button>
+              </Link>
               <Button
-                onClick={() =>
-                  deleteAnOpportunity(props.user.id, opportunity.id)
-                }
-              >
-                Select opportunity; doesnt work
-              </Button>
-              <Button
-                onClick={() =>
-                  deleteAnOpportunity(props.user.id, opportunity.id)
-                }
+                onClick={() => deleteOpportunity(props.user.id, opportunity.id)}
               >
                 Find Out About The Client; doesnt work
               </Button>
@@ -56,12 +120,13 @@ export const Opportunities = props => {
           )}
           {props.role === "client" && (
             <CardSection buttons>
-              <Button id='deleteOpp'
-                onClick={() => deleteAnOpportunity(props.user.id, opportunity.id)}
+              <Button
+                id="deleteOpp"
+                onClick={() => deleteOpportunity(props.user.id, opportunity.id)}
               >
-                DELETE works and throws error
+                DELETE
               </Button>
-              <Button onClick={props.editOpp}>This Edit Doesnt Work</Button>
+              <Button onClick={props.editOpp}>EDIT</Button>
             </CardSection>
           )}
         </OpportunityCard>
@@ -69,25 +134,8 @@ export const Opportunities = props => {
     });
   };
 
-  const [createModal, showCreateModal] = React.useState(false);
-
   return (
     <OpportunitySection>
-      <ModalStyle>
-        <Modal isOpen={createModal} className="modal">
-          <CreateOppModal />
-        </Modal>
-      </ModalStyle>
-      <Link to="/profile">
-        <Button>Return to Profile</Button>
-        <Button>Edit my Profile; doesnt work</Button>
-      </Link>
-      {props.role === "client" && (
-        <Button id='showModal'onClick={() => showCreateModal(true)}>
-          Create an opportunity
-        </Button>
-      )}
-      {props.role === "volunteer" && <Button>Search For Opportunities</Button>}
       <Container>{displayOpp()}</Container>
     </OpportunitySection>
   );
@@ -99,7 +147,8 @@ export const mapStateToProps = state => ({
 });
 
 export const mapDispatchToProps = dispatch => ({
-  editOpp: opp => dispatch(editOpp(opp))
+  editOpp: opp => dispatch(editOpp(opp)),
+  setAllOpps: opps => dispatch(setOpps(opps))
 });
 
 export default connect(

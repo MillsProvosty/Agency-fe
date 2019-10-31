@@ -10,6 +10,7 @@ import { SignUpForm, PTag, Input, Button } from './SignUpModalStyled';
 
 export const SignUpModal = props => {
   const [disabled, setDisabled] = useState(true);
+  const [newOpportunities, setNewOpportunities] = useState(false)
   const { values, handleChange } = useSignInForm(validate);
 
   const setUserInRedux = async (e, values) => {
@@ -24,15 +25,12 @@ export const SignUpModal = props => {
         ...allValues,
         id: newUser.id
       }
-      props.setAUser(allValuesAndId);
+      props.setAUser(newUser);
       if (allValues.role === 'volunteer'){
-        console.log('in volun')
         let allOpps = await getAllOpportunities();
-        console.log('allOpps', allOpps)
         props.setAllOpps(allOpps)
       } else {
         let userOpps = await getAllOpportunitiesForSpecificUser(allValuesAndId.id)
-        console.log('userOpp',userOpps)
         props.setAllOpps(userOpps)
       }
     } catch (error) {
@@ -54,6 +52,15 @@ export const SignUpModal = props => {
       setSetDisabled();
     }
   }, [values]);
+
+  useEffect(() => {
+    if (props.opportunities){
+      setNewOpportunities(true)
+    } else {
+      props.opportunities(false)
+    }
+  }, [props.opportunities])
+
 
   return (
     <SignUpForm className="SignUpModal">
@@ -121,7 +128,8 @@ export const SignUpModal = props => {
 };
 
 export const mapStateToProps = state => ({
-  role: state.role
+  role: state.role,
+  opportunities: state.opportunities
 })
 
 export const mapDispatchToProps = dispatch => ({

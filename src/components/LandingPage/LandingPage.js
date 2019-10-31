@@ -8,17 +8,17 @@ import { Button, PTag, Header, Section, Logo } from "./LandingPageStyled";
 
 export const LandingPage = props => {
   const [userRole, setTheRole] = useState(false);
-  console.log("landing", props);
   return (
     <Section>
       <Logo disabled>
         <GiAirBalloon className="hands" size={64} />
       </Logo>
       <Header>Agency</Header>
-      <PTag>A Support System In Places</PTag>
+      <PTag>Help Up</PTag>
       <section>
         <Button
           volunteer
+          id='volunteer'
           onClick={() => {
             props.setRole("volunteer");
             setTheRole(true);
@@ -28,6 +28,7 @@ export const LandingPage = props => {
         </Button>
         <Button
           client
+          id='client'
           onClick={() => {
             props.setRole("client");
           }}

@@ -103,7 +103,7 @@ describe("getSpecificUser", () => {
     getSpecificUser(mockId);
 
     expect(window.fetch).toHaveBeenCalledWith(
-      `http://localhost:5000/user/${mockId}`
+      'http://localhost:5000/login', {"body": "{\"email\":1}", "headers": {"Content-Type": "application/json"}, "method": "POST"}
     );
   });
 

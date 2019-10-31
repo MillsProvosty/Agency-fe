@@ -7,9 +7,10 @@ export const OpportunityCard = styled.section`
   display: flex;
   margin-top: 0.5em;
   padding-bottom: 0.5em;
+  margin-bottom: 1em;
   align-items: center;
   height: 15vh;
-  background-color: white;
+  background-color: aliceblue;
   border: 1px solid #37474e;
   -webkit-box-shadow: 9px 10px 5px -10px rgba(55, 71, 78, 1);
   -moz-box-shadow: 9px 10px 5px -10px rgba(55, 71, 78, 1);
@@ -24,7 +25,7 @@ export const OpportunityCard = styled.section`
 
 export const OpportunitySection = styled.section`
   width: 100%;
-  background-color: aliceblue;
+  background-color: white;
   background-attachment: fixed;
 `;
 

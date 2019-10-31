@@ -5,11 +5,6 @@ exports[`Profile should match snapshot 1`] = `
   className="Profile"
 >
   <Nav />
-  <button
-    onClick={[Function]}
-  >
-    Delete Account
-  </button>
   <p>
     I am loading
   </p>

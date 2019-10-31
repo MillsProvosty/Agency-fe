@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { validateCreateOpp } from "../../hooks/signInFormValidationRules";
 import { useCreateOppForm } from "../../hooks/useForm";
-import { setUserOpportunities } from "../../actions/";
+import { setUserOpportunities, addUserOpp, setAllOpps } from "../../actions/";
 import { postAnOpportunity } from "../../util/apiCalls";
 import { connect } from "react-redux";
 import { CreateOppForm, PTag, Input, TextArea, Button } from './CreateOppModalStyled'
 
 export const CreateOppModal = props => {
   const [disabled, setDisabled] = useState(true);
+  const [newValue, setNewValue] = useState(false)
   const { values, handleChange } = useCreateOppForm(validateCreateOpp);
 
   function setSetDisabled() {
@@ -20,9 +21,22 @@ export const CreateOppModal = props => {
   }
 
   const createOpp = async () => {
+    let iterable;
+  
+    if (props.opportunities['0'] !== undefined && props.opportunities['0'].length > 1) {
+      iterable = props.opportunities[0];
+    } else {
+      iterable = props.opportunities;
+    }
+
     let newOpp = await postAnOpportunity(props.user.id, values);
-    props.addOpp(newOpp);
+    let iterableSent = [...iterable, newOpp]
+    await props.setAllOpps(iterableSent);
   };
+
+  useEffect(() => {
+    setNewValue(true)
+  }, [props.opportunities]);
 
   useEffect(() => {
     validateCreateOpp(values);
@@ -89,11 +103,14 @@ export const CreateOppModal = props => {
 };
 
 export const mapStateToProps = state => ({
-  user: state.user
+  user: state.user,
+  opportunities: state.opportunities
 });
 
 export const mapDispatchToProps = dispatch => ({
-  addOpp: opp => dispatch(setUserOpportunities(opp))
+  addOpp: opp => dispatch(addUserOpp(opp)),
+  setAllOpps: opportunities =>
+  dispatch(setUserOpportunities(opportunities))
 });
 
 export default connect(

@@ -14,10 +14,11 @@ exports[`LandingPage should match snapshot 1`] = `
     Agency
   </styled.h1>
   <styled.p>
-    A Support System In Places
+    Help Up
   </styled.p>
   <section>
     <styled.button
+      id="volunteer"
       onClick={[Function]}
       volunteer={true}
     >
@@ -25,6 +26,7 @@ exports[`LandingPage should match snapshot 1`] = `
     </styled.button>
     <styled.button
       client={true}
+      id="client"
       onClick={[Function]}
     >
       Client
