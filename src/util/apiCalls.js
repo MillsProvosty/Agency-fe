@@ -146,7 +146,7 @@ export const deleteAUser = async userId => {
 };
 
 export const deleteAnOpportunity = async (userId, oppId) => {
-  const url = ` http://localhost:5000/users/${userId}/opportunity/${oppId}`;
+  const url = `http://localhost:5000/users/${userId}/opportunity/${oppId}`;
   const options = {
     method: "DELETE",
     headers: { "Content-Type": "application/json" }
@@ -157,13 +157,14 @@ export const deleteAnOpportunity = async (userId, oppId) => {
     if (!response.ok) {
       throw new Error("Cannot delete opportunity!");
     }
+    return response.json()
   } catch (error) {
     throw new Error(error);
   }
 };
 
 export const patchAUser = async (userId, userValues) => {
-  const url = ` http://localhost:5000/users/${userId}`;
+  const url = `http://localhost:5000/users/${userId}`;
   const body = {
     first_name: userValues.firstname,
     last_name: userValues.lastname,
@@ -189,7 +190,7 @@ export const patchAUser = async (userId, userValues) => {
 };
 
 export const patchAnOpportunity = async (userId, oppId, values) => {
-  const url = ` http://localhost:5000/users/${userId}/opportunity/${oppId}`;
+  const url = `http://localhost:5000/users/${userId}/opportunity/${oppId}`;
   const body = {
     title: values.title,
     type: values.type,

@@ -103,7 +103,7 @@ describe("getSpecificUser", () => {
     getSpecificUser(mockId);
 
     expect(window.fetch).toHaveBeenCalledWith(
-      'https://the-agency-app.herokuapp.com/login', {"body": "{\"email\":1}", "headers": {"Content-Type": "application/json"}, "method": "POST"}
+      'http://localhost:5000/login', {"body": "{\"email\":1}", "headers": {"Content-Type": "application/json"}, "method": "POST"}
     );
   });
 
@@ -224,7 +224,7 @@ describe("getSpecificOpportunity", () => {
     getSpecificOpportunity(mockUserId, mockOppId);
 
     expect(window.fetch).toHaveBeenCalledWith(
-      `https://the-agency-app.herokuapp.com/users/${mockUserId}/opportunity/${mockOppId}`
+      `http://localhost:5000/users/${mockUserId}/opportunity/${mockOppId}`
     );
   });
 
@@ -307,7 +307,7 @@ describe("postAUser", () => {
     postAUser(mockValues);
 
     expect(window.fetch).toHaveBeenCalledWith(
-      "https://the-agency-app.herokuapp.com/user",
+      "http://localhost:5000/user",
       mockRequest
     );
   });
@@ -375,7 +375,7 @@ describe("postAnOpportunity", () => {
     postAnOpportunity(mockId, mockOpportunity);
 
     expect(window.fetch).toHaveBeenCalledWith(
-      `https://the-agency-app.herokuapp.com/users/${mockId}/opportunity`,
+      `http://localhost:5000/users/${mockId}/opportunity`,
       mockRequest
     );
   });
@@ -448,7 +448,7 @@ describe("deleteAUser", () => {
     deleteAUser(mockId);
 
     expect(window.fetch).toHaveBeenCalledWith(
-      `https://the-agency-app.herokuapp.com/users/${mockId}`,
+      `http://localhost:5000/users/${mockId}`,
       mockRequest
     );
   });
@@ -521,7 +521,7 @@ describe("deleteAnOpportunity", () => {
     deleteAnOpportunity(mockUserId, mockOppId);
 
     expect(window.fetch).toHaveBeenCalledWith(
-      `https://the-agency-app.herokuapp.com/users/${mockUserId}/opportunity/${mockOppId}`,
+      `http://localhost:5000/users/${mockUserId}/opportunity/${mockOppId}`,
       mockRequest
     );
   });
@@ -595,7 +595,7 @@ describe("patchAUser", () => {
     patchAUser(mockId, mockValues);
 
     expect(window.fetch).toHaveBeenCalledWith(
-      `https://the-agency-app.herokuapp.com/users/${mockId}`,
+      `http://localhost:5000/users/${mockId}`,
       mockRequest
     );
   });
@@ -667,7 +667,7 @@ describe("patchAnOpportunity", () => {
     patchAnOpportunity(mockUserId, mockOppId, mockValues);
 
     expect(window.fetch).toHaveBeenCalledWith(
-      `https://the-agency-app.herokuapp.com/users/${mockUserId}/opportunity/${mockOppId}`,
+      `http://localhost:5000/users/${mockUserId}/opportunity/${mockOppId}`,
       mockRequest
     );
   });
