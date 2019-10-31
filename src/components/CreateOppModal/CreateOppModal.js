@@ -38,6 +38,7 @@ export const CreateOppModal = props => {
     setNewValue(true)
   }, [props.opportunities, setNewValue]);
 
+
   useEffect(() => {
     validateCreateOpp(values);
     if (!values.error) {

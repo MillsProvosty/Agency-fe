@@ -16,6 +16,7 @@ export const App = props => {
   const [setMainError] = useState(false);
   const [setMainOpps] = useState(false)
 
+
   useEffect(() => {
     if (props.role) {
 
@@ -39,6 +40,7 @@ export const App = props => {
       setMainOpps(false)
     }
   }, [props.role, props.user, props.error, props.opportunities, setMainError, setMainOpps]);
+
 
 
   return (

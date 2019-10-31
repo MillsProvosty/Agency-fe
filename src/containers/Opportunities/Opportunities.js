@@ -22,7 +22,6 @@ import {
 } from "./OpportunitiesStyled";
 
 export const Opportunities = props => {
-
   const deleteOpportunity = async (userId, oppId) => {
    deleteAnOpportunity(userId, oppId);
     let allOppsForUser = await getAllOpportunitiesForSpecificUser(
@@ -44,7 +43,6 @@ export const Opportunities = props => {
         return opp;
       }
     });
-
 
     props.setAllOpps(theRightOpps)
   };

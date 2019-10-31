@@ -6,7 +6,7 @@ import { setRole } from "../../actions";
 import { Button, PTag, Header, Section, Logo } from "./LandingPageStyled";
 
 export const LandingPage = props => {
-  const [role, setTheRole] = useState(false);
+  const [userRole, setTheRole] = useState(false);
   return (
     <Section>
       <Logo disabled>
