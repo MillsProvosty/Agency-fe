@@ -83,7 +83,7 @@ export const SignInForm = props => {
               <Input
                 autoComplete="off"
                 tabIndex={0}
-                type="text"
+                type="password"
                 value={values.password || ""}
                 name="password"
                 placeholder="Password"

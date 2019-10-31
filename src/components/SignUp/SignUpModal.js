@@ -101,7 +101,7 @@ export const SignUpModal = props => {
         required
       />
       <Input
-        type="text"
+        type="password"
         placeholder="Enter your password"
         name="password"
         value={values.password || ""}
@@ -110,7 +110,7 @@ export const SignUpModal = props => {
         required
       />
       <Input
-        type="text"
+        type="password"
         placeholder="Confirm your password"
         name="confirmation"
         value={values.confirmation || ""}
