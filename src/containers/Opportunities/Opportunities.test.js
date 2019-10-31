@@ -56,11 +56,6 @@ describe('Opportunities', () => {
    expect(wrapper).toMatchSnapshot()
   })
 
- it('should call showCreateModal when clicked', () => {
-   wrapper.find('#showModal').props().onClick()
-   expect(setState).toHaveBeenCalled()
- }) 
-
  it.skip('should call deleteAnOpportunity if ids are good', async () => {
   await wrapper.find('#deleteOpp').props().onClick()
  })
