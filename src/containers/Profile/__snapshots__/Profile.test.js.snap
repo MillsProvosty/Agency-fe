@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Profile should match snapshot 1`] = `
+<styled.section
+  className="Profile"
+>
+  <Nav />
+  <p>
+    I am loading
+  </p>
+</styled.section>
+`;

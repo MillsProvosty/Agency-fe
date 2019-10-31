@@ -2,9 +2,8 @@ import { userReducer, roleReducer } from "./userReducer";
 
 describe("userReducer", () => {
   it("should return the default state", () => {
-    let expected = {};
-
-    let result = userReducer(undefined, {});
+    let expected = null;
+    let result = userReducer(null, {});
 
     expect(result).toEqual(expected);
   });

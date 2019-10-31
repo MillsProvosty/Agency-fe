@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Schedule should match snapshot 1`] = `
+<styled.section
+  className="Schedule"
+>
+  <Nav />
+  <p>
+    I am loading
+  </p>
+</styled.section>
+`;
+
+exports[`Schedule should match snapshot when a user is a volunteer 1`] = `
+<styled.section
+  className="Schedule"
+>
+  <Nav />
+  <p>
+    I am loading
+  </p>
+</styled.section>
+`;

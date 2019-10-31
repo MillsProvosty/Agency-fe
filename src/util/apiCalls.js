@@ -1,5 +1,15 @@
 export const getAllUsers = async () => {
-  const url = "http://localhost:5000/user";
+  const url = " https://the-agency-app.herokuapp.com/user";
+  let response = await fetch(url);
+  if (!response.ok) {
+    throw new Error("There was an error fetching your users");
+  } else {
+    let data = await response.json();
+    return data;
+  }
+};
+export const getReservedOpps = async (volId) => {
+  const url = `http://localhost:5000/users/${volId}/opportunities`;
   let response = await fetch(url);
   if (!response.ok) {
     throw new Error("There was an error fetching your users");
@@ -9,9 +19,18 @@ export const getAllUsers = async () => {
   }
 };
 
-export const getSpecificUser = async id => {
-  const url = `http://localhost:5000/user/${id}`;
-  let response = await fetch(url);
+export const getSpecificUser = async (userEmail, userPassword) => {
+  const url = `http://localhost:5000/login`;
+  let body = {
+    email: userEmail,
+    password: userPassword
+  }
+  const options = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body)
+  };
+  let response = await fetch(url, options);
   if (!response.ok) {
     throw new Error("There was an error accessing this user");
   } else {
@@ -21,7 +40,18 @@ export const getSpecificUser = async id => {
 };
 
 export const getAllOpportunities = async () => {
-  const url = "http://localhost:5000/users/1/opportunity/2";
+  const url = "http://localhost:5000/opportunities";
+  let response = await fetch(url);
+  if (!response.ok) {
+    throw new Error("There was an error fetching the opportunities");
+  } else {
+    let data = await response.json();
+    return data;
+  }
+};
+
+export const getAllOpportunitiesForSpecificUser = async (id) => {
+  const url = `http://localhost:5000/users/${id}/opportunity`;
   let response = await fetch(url);
   if (!response.ok) {
     throw new Error("There was an error fetching the opportunities");
@@ -49,7 +79,8 @@ export const postAUser = async userValues => {
     last_name: userValues.lastname,
     email: userValues.email,
     password: userValues.password,
-    phone_number: userValues.phone
+    phone_number: userValues.phone,
+    role: userValues.role
   };
 
   const options = {
@@ -78,7 +109,6 @@ export const postAnOpportunity = async (id, values) => {
     estimated_time: values.time,
     description: values.description
   };
-
   const options = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -122,11 +152,11 @@ export const deleteAnOpportunity = async (userId, oppId) => {
   };
   try {
     const response = await fetch(url, options);
+    console.log(response)
     if (!response.ok) {
       throw new Error("Cannot delete opportunity!");
     }
-    const deletedOpportunity = await response.json();
-    return deletedOpportunity;
+    return response.json()
   } catch (error) {
     throw new Error(error);
   }
@@ -184,3 +214,18 @@ export const patchAnOpportunity = async (userId, oppId, values) => {
     throw new Error(error);
   }
 };
+
+export const postVolToClient = async(volId, oppId) => {
+  const url = `http://localhost:5000/users/${volId}/opportunities/${oppId}`
+  const options = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" }
+  };
+  let response = await fetch(url, options);
+  if (!response.ok) {
+    throw new Error("There was an error linking you up!");
+  } else {
+    let data = await response.json();
+    return data;
+  }
+}

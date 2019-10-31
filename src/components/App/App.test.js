@@ -1,7 +1,23 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
+import { shallow } from 'enzyme';
+import { App } from './App';
 
-it('renders without crashing', () => {
-  expect(true).toEqual(true)
-});
+
+describe('App', () => {
+  let wrapper; 
+
+  const setState = jest.fn();
+  const useStateSpy = jest.spyOn(React, 'useState')
+  useStateSpy.mockImplementation((init) => [init, setState]);
+  
+  beforeEach(() => {
+    wrapper = shallow(
+      <App />
+    )
+  });
+  
+  it('should match snapshot', () => {
+    expect(wrapper).toMatchSnapshot() 
+  });
+
+})

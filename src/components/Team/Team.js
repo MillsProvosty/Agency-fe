@@ -2,35 +2,7 @@ import React from "react";
 import "./Team.scss";
 import { FaLinkedin, FaGithub } from "react-icons/fa";
 import Nav from "../Nav/Nav";
-import styled from "styled-components";
-
-const Program = styled.p`
-  margin: ${props => props.name ? '50px' : '0px'};
-  font-weight: ${props => props.name ? 'bold': ''};
-  font-size: ${props => props.name ? '2em' : '1.5em'}
-`;
-
-const ProgramSection = styled.section`
-  display: flex;
-  margin-bottom: 50px;
-`;
-
-const Member = styled.section`
-  width: 50%;
-`;
-
-const URLSection = styled.section`
-  display: flex;
-  width: 70%;
-  justify-content: space-around;
-  margin: 0px auto;
-`;
-
-const Image = styled.img`
-  width: 15em;
-  border-radius: 50%;
-  border: 2px solid darkblue;
-`;
+import { Program, ProgramSection, Member, URLSection, Image } from './TeamStyled'
 
 
 const Team = () => {

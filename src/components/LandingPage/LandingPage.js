@@ -1,132 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
 import "./LandingPage.scss";
-import { NavLink } from "react-router-dom";
-import { FaHandsHelping } from "react-icons/fa";
-import { connect } from 'react-redux'
-import styled from "styled-components";
-import { setRole } from '../../actions'
-import balloonImg from './air_support.svg'
+import { GiAirBalloon } from "react-icons/gi";
+import { connect } from "react-redux";
+import { setRole } from "../../actions";
+import { Button, PTag, Header, Section, Logo } from "./LandingPageStyled";
 
 export const LandingPage = props => {
-
-  const Button = styled.button`
-    color: white;
-    background-color: #37474E;
-    border-radius: 5px;
-    font-size: 2em;
-    width: 175px;
-    font-family: "Quicksand", sans-serif;
-    border: 2px solid white;
-    margin-top: 30px;
-    margin-right: ${props => (props.volunteer ? "20px" : "0px")};
-    margin-left: ${props => (props.client ? "20px" : "0px")}
-    @media screen and (max-width: 375px) {
-      margin: ${props => (props.client ? "20px 0px 0px 0px" : "50px 20px 0px 0px")}
-    }
-
-    :hover {
-      border: 2px solid #37474E;
-      color: #37474E;
-      background-color: white;
-    }
-  `;
-
-  const PTag = styled.p`
-    font-size: 2em;
-    margin: 2px;
-  `;
-
-  const Header = styled.h1`
-    color: #37474E
-    font-size: 6em;
-    margin: 0px;
-    @media screen and (max-width: 375px) {
-      margin: 0px 0px 30px -80px
-    }
-  `;
-
-  const Section = styled.section`
-    height: 100vh;
-    width: 100%;
-    background-color: aliceblue;
-    background-repeat: no-repeat;
-    background-size: 1000px;
-    background-position: top center;
-    background-image: url(${balloonImg});
-    @media screen and (max-width: 375px) {
-      justify-content: space-around;
-    }
-  `;
-
-
-  
-  const Button = styled.button`
-  color: white;
-  background-color: darkblue;
-  border-radius: 5px;
-  font-size: 2em;
-  width: 175px;
-  font-family: "Quicksand", sans-serif;
-  border: 2px solid white;
-  margin-top: 100px;
-  margin-right: ${props => (props.volunteer ? "20px" : "0px")};
-  margin-left: ${props => (props.client ? "20px" : "0px")}
-  @media screen and (max-width: 375px) {
-    margin: ${props => (props.client ? "20px 0px 0px 0px" : "50px 20px 0px 0px")}
-  }
-  
-  :hover {
-    border: 2px solid darkblue;
-    color: darkblue;
-    background-color: white;
-  }
-  `;
-  
-  const PTag = styled.p`
-  font-size: 2em;
-  margin: 2px;
-  `;
-  
-  const Header = styled.h1`
-  font-size: 6em;
-  margin: 0px;
-  @media screen and (max-width: 375px) {
-    margin: 0px 0px 30px -80px
-  }
-  `;
-  
-  const Section = styled.section`
-  margin: 100px;
-  height: auto;
-  @media screen and (max-width: 375px) {
-    justify-content: space-around;
-  }
-  `;
-  
-  export const LandingPage = props => {
-  
+  const [userRole, setTheRole] = useState(false);
   return (
     <Section>
-      <FaHandsHelping className="hands" size={64} />
+      <Logo disabled>
+        <GiAirBalloon className="hands" size={64} />
+      </Logo>
       <Header>Agency</Header>
-      <PTag>A Support System In Places</PTag>
+      <PTag>Help Up</PTag>
       <section>
-        <NavLink
-          to="/user-form"
-          onClick={() => {props.displayForms(); setRole('volunteer')}}
-          >
-          <Button volunteer>Volunteer</Button>
-        </NavLink>
-        <NavLink to="/user-form" onClick={() => {props.displayForms(); setRole('client')}}>
-          <Button client>Client</Button>
-        </NavLink>
+        <Button
+          volunteer
+          id='volunteer'
+          onClick={() => {
+            props.setRole("volunteer");
+            setTheRole(true);
+          }}
+        >
+          Volunteer
+        </Button>
+        <Button
+          client
+          id='client'
+          onClick={() => {
+            props.setRole("client");
+          }}
+        >
+          Client
+        </Button>
       </section>
     </Section>
   );
 };
 
 export const mapDispatchToProps = dispatch => ({
-  setRole: role =>  dispatch(setRole(role))
-})
+  setRole: role => dispatch(setRole(role))
+});
 
-export default connect(null, mapDispatchToProps)(LandingPage)
+export default connect(
+  null,
+  mapDispatchToProps
+)(LandingPage);

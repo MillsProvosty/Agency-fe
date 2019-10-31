@@ -1,51 +1,102 @@
-
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.scss";
 import SignInForm from "../SignInForm/SignInForm";
-import { Route } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 import Profile from "../../containers/Profile/Profile";
-import About from '../About/About'
-import Team from '../Team/Team'
-import Schedule from '../Schedule/Schedule'
-import History from '../History/History'
-import Tasks from '../Tasks/Tasks'
-import { LandingPage } from "../LandingPage/LandingPage";
+import About from "../About/About";
+import Team from "../Team/Team";
+import { connect } from "react-redux";
+import Schedule from "../Schedule/Schedule";
+import LandingPage from "../LandingPage/LandingPage";
 
-const App = () => {
+export const App = props => {
 
-  const [landing, hideLanding] = useState(false)
+  const [mainRole, setMainRole] = useState(false);
+  const [mainUser, setMainUser] = useState(false);
+  const [setMainError] = useState(false);
+  const [setMainOpps] = useState(false)
 
-  const displayForms = () => {
-    hideLanding(!landing);
-  };
 
-    let forms = null;
-    if (landing) {
-      forms = (
-        <>
-          <Route
-            exact
-            path="/user-form"
-            render={() => <SignInForm />}
-          />
-        </>
-      );
+  useEffect(() => {
+    if (props.role) {
+
+      setMainRole(true);
+    } else {
+      setMainRole(false);
     }
-    return (
-      <section className="App">
-        {!forms && (
-          <Route exact path='/' render={() => <LandingPage displayForms={displayForms} />}/>
-        )}
-        {forms}
-        <Route exact path="/schedule" component={Schedule} />
-        <Route exact path="/tasks" component={Tasks} />
-        <Route exact path="/team" component={Team} />
-        <Route exact path="/profile" component={Profile} />
-        <Route exact path="/about" component={About} />
-        <Route exact path="/history" component={History} />
+    if (props.user) {
+      setMainUser(true);
+    } else {
+      setMainUser(false);
+    }
+    if (props.error) {
+      setMainError(true);
+    } else {
+      setMainError(false);
+    } 
+    if (props.opportunities.length > 0) {
+      setMainOpps(true)
+    } else {
+      setMainOpps(false)
+    }
+  }, [props.role, props.user, props.error, props.opportunities, setMainError, setMainOpps]);
 
-      </section>
-    );
-  }
 
-export default App;
+
+  return (
+    <section className="App">
+
+      {
+        <Route
+          path="/profile"
+          render={() =>
+            mainRole && mainUser ? (
+              <Profile />
+            ) : (
+              <Redirect to="/profile" />
+            )
+          }
+        />
+      }
+
+      {
+        <Route
+          path="/user-form"
+          render={() =>
+            mainRole && !mainUser ? (
+              <SignInForm errors={props.error} />
+            ) : (
+              <Redirect to="/profile" />
+            )
+          }
+        />
+      }
+
+      {
+        <Route
+          path="/"
+          render={() =>
+            !mainRole ? <LandingPage /> : <Redirect to="user-form" />
+          }
+        />
+      }
+
+      <Route exact path="/schedule" component={Schedule} />
+      <Route exact path="/team" component={Team} />
+      <Route exact path="/about" component={About} />
+    </section>
+  );
+};
+
+export const mapStateToProps = state => ({
+  user: state.user,
+  role: state.role,
+  opportunities: state.opportunities,
+  error: state.error
+});
+
+
+export default connect(
+  mapStateToProps,
+  null
+)(App);
