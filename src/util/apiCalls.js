@@ -1,5 +1,5 @@
 export const getAllUsers = async () => {
-  const url = "http://localhost:5000/user";
+  const url = " https://the-agency-app.herokuapp.com/user";
   let response = await fetch(url);
   if (!response.ok) {
     throw new Error("There was an error fetching your users");
@@ -8,7 +8,6 @@ export const getAllUsers = async () => {
     return data;
   }
 };
-
 export const getReservedOpps = async (volId) => {
   const url = `http://localhost:5000/users/${volId}/opportunities`;
   let response = await fetch(url);
@@ -147,27 +146,24 @@ export const deleteAUser = async userId => {
 };
 
 export const deleteAnOpportunity = async (userId, oppId) => {
-  const url = `http://localhost:5000/users/${userId}/opportunity/${oppId}`;
+  const url = ` http://localhost:5000/users/${userId}/opportunity/${oppId}`;
   const options = {
     method: "DELETE",
     headers: { "Content-Type": "application/json" }
   };
-  console.log(url)
-  console.log(options)
   try {
     const response = await fetch(url, options);
     console.log(response)
     if (!response.ok) {
       throw new Error("Cannot delete opportunity!");
     }
-    // const deletedOpportunity = await response.json();
   } catch (error) {
     throw new Error(error);
   }
 };
 
 export const patchAUser = async (userId, userValues) => {
-  const url = `http://localhost:5000/users/${userId}`;
+  const url = ` http://localhost:5000/users/${userId}`;
   const body = {
     first_name: userValues.firstname,
     last_name: userValues.lastname,
@@ -193,7 +189,7 @@ export const patchAUser = async (userId, userValues) => {
 };
 
 export const patchAnOpportunity = async (userId, oppId, values) => {
-  const url = `http://localhost:5000/users/${userId}/opportunity/${oppId}`;
+  const url = ` http://localhost:5000/users/${userId}/opportunity/${oppId}`;
   const body = {
     title: values.title,
     type: values.type,
