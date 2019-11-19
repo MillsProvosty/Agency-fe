@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Nav from "../../components/Nav/Nav";
 import { connect } from "react-redux";
-import { setUserOpportunities } from "../../actions";
+import { setAllOpportunities } from "../../actions";
 import Opportunities from "../Opportunities/Opportunities";
+import ProfileOpportunities from "../../components/ProfileOpportunities/ProfileOpportunities";
 import { ProfileSection, Header } from "./ProfileStyled";
 import CreateOppModal from "../../components/CreateOppModal/CreateOppModal";
 import Modal from "react-modal";
@@ -43,7 +44,7 @@ export const Button = styled.button`
 
 
 export const Profile = props => {
-
+  console.log('profile props', props)
   const [isLoading, setLoading] = useState(true);
   const [createModal, showCreateModal] = React.useState(false);
   const [showOpps, setShowOpps] = useState(false);
@@ -86,7 +87,7 @@ export const Profile = props => {
           <Button>
             Edit Your Settings
           </Button>
-          {showOpps &&  <Opportunities role={user.role} />}
+          {showOpps &&  <ProfileOpportunities role={user.role} />}
         </>
       )}
     </ProfileSection>
@@ -100,7 +101,7 @@ export const mapStateToProps = state => ({
 
 export const mapDispatchToProps = dispatch => ({
   setOpportunities: opportunities =>
-    dispatch(setUserOpportunities(opportunities))
+    dispatch(setAllOpportunities(opportunities))
 });
 
 export default connect(

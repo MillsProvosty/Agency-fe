@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { validate } from "../../hooks/signInFormValidationRules";
 import { useSignInForm } from "../../hooks/useForm";
 import { postAUser, getAllOpportunities, getAllOpportunitiesForSpecificUser } from "../../util/apiCalls";
-import { setUser, setOpps } from "../../actions";
+import { setUser, setAllOpportunities } from "../../actions";
 import { connect } from "react-redux";
 import { SignUpForm, PTag, Input, Button } from './SignUpModalStyled';
 
@@ -133,7 +133,7 @@ export const mapStateToProps = state => ({
 
 export const mapDispatchToProps = dispatch => ({
   setAUser: (user) => dispatch(setUser(user)),
-  setAllOpps: (opps) => dispatch(setOpps(opps))
+  setAllOpps: (opps) => dispatch(setAllOpportunities(opps))
 });
 
 export default connect(

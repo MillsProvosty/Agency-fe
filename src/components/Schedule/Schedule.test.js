@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme'
 import { Schedule, mapDispatchToProps, mapStateToProps } from './Schedule';
-import { setOpps } from '../../actions'
+import { setAllOpportunities } from '../../actions'
 
 describe('Schedule', () => {
   let wrapper;
@@ -82,9 +82,9 @@ describe('Schedule', () => {
   })
 
   describe('mapDispatchToProps', () => {
-    it("calls setOpps with an setAllOpps action when setOpps is called", () => {
+    it("calls setAllOpportunities with an setAllOpps action when setAllOpportunities is called", () => {
       const mockDispatch = jest.fn();
-      const actionToDispatch = setOpps(mockOpp);
+      const actionToDispatch = setAllOpportunities(mockOpp);
       const mappedProps = mapDispatchToProps(mockDispatch);
       mappedProps.setAllOpps(mockOpp);
       expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);

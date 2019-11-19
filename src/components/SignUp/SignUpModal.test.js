@@ -6,7 +6,7 @@ describe('SignUpModal', () => {
   let wrapper; 
   
   const mockSetUser = jest.fn()
-  const mockSetOpps = jest.fn()
+  const mocksetAllOpportunities = jest.fn()
 
   const setState = jest.fn();
   const useStateSpy = jest.spyOn(React, 'useState')
@@ -17,7 +17,7 @@ describe('SignUpModal', () => {
       <SignUpModal 
         role='client'
         setAUser={mockSetUser}
-        setAllOpps={mockSetOpps}
+        setAllOpps={mocksetAllOpportunities}
       />
     )
   })

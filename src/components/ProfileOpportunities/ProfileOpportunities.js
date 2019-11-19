@@ -18,11 +18,12 @@ import {
   CardSection,
   Container,
   Bold
-} from "./OpportunitiesStyled";
+} from "./ProfileOpportunitiesStyled";
 
-export const Opportunities = props => {
+export const ProfileOpportunities = props => {
+  console.log('prof opps', props)
 
-  console.log('opps', props)
+
   const deleteOpportunity = async (userId, oppId) => {
     let deleted = await deleteAnOpportunity(userId, oppId);
     let allOppsForUser = await getAllOpportunitiesForSpecificUser(
@@ -66,7 +67,7 @@ export const Opportunities = props => {
       iterable = props.opportunities;
     }
 
-    return props.userOpps.map(opportunity => {
+    return iterable.map(opportunity => {
       return (
         <OpportunityCard key={opportunity.id}>
           <CardSection>
@@ -137,4 +138,4 @@ export const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Opportunities);
+)(ProfileOpportunities);

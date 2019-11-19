@@ -19,7 +19,6 @@ export const App = props => {
 
   useEffect(() => {
     if (props.role) {
-
       setMainRole(true);
     } else {
       setMainRole(false);

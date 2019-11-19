@@ -6,20 +6,38 @@ import Modal from "react-modal";
 import {
   getSpecificUser,
   getAllOpportunitiesForSpecificUser,
-  getAllOpportunities
+  getAllOpportunities,
+  getReservedOpps
 } from "../../util/apiCalls";
 import { useSignInForm } from "../../hooks/useForm";
 import { validate } from "../../hooks/signInFormValidationRules";
-import { setUser, setError, setUserOpportunities } from "../../actions";
+import {
+  setUser,
+  setError,
+  setAllOpportunities,
+  setAllOpportunitiesForSpecificUser,
+} from "../../actions";
 import { connect } from "react-redux";
 import { GiAirBalloon } from "react-icons/gi";
-import { SignIn, ModalStyle, Container, TitleSection, Titles, SignsSection, Headers, Form, Input, Logo, Button, PTag } from './SignInFormStyled' 
+import {
+  SignIn,
+  ModalStyle,
+  Container,
+  TitleSection,
+  Titles,
+  SignsSection,
+  Headers,
+  Form,
+  Input,
+  Logo,
+  Button,
+  PTag
+} from "./SignInFormStyled";
 
 export const SignInForm = props => {
   const [modalIsOpen, showModal] = useState(false);
   const [hasError, setHasError] = useState(false);
-  const [newOpportunities, setNewOpportunities] = useState(false)
-
+  const [newOpportunities, setNewOpportunities] = useState(false);
 
   const { values, errors, handleChange } = useSignInForm(validate);
 
@@ -30,10 +48,24 @@ export const SignInForm = props => {
       props.setAUser(user);
       if (user.role === "volunteer") {
         let opportunities = await getAllOpportunities();
+        console.log('opps', opportunities)
+        let userOppIds = await getReservedOpps(user.id);
+        console.log('oppIds', userOppIds)
+        let rightNums = [];
+        userOppIds.forEach(index => rightNums.push(index.opportunity_id));
+        console.log('rightNums', rightNums)
+        let theRightOpps = opportunities.filter(opp => {
+          if (rightNums.includes(opp.id)) {
+            return opp;
+          }
+        });
+        console.log("useropps", theRightOpps);
         props.setAllOpps(opportunities);
+        props.setUserOpps(theRightOpps);
       } else {
         let opportunities = await getAllOpportunitiesForSpecificUser(user.id);
-        props.setAllOpps(opportunities);
+        console.log("client specific opps", opportunities);
+        props.setUserOpps(opportunities);
       }
     } catch (error) {
       props.setAnError(error);
@@ -50,12 +82,12 @@ export const SignInForm = props => {
   }
 
   useEffect(() => {
-    if (props.opportunities != ""){
-      setNewOpportunities(true)
+    if (props.opportunities != "") {
+      setNewOpportunities(true);
     } else {
-      setNewOpportunities(false)
+      setNewOpportunities(false);
     }
-  }, [props.opportunities])
+  }, [props.opportunities]);
 
   return (
     <SignIn>
@@ -92,7 +124,11 @@ export const SignInForm = props => {
               />
               {props.errors && <PTag>Please try again!</PTag>}
               {errors.password && <PTag>{errors.password}</PTag>}
-              <Button  id='sign-in' disabled={setDisabled()} onClick={e => setUser(e)}>
+              <Button
+                id="sign-in"
+                disabled={setDisabled()}
+                onClick={e => setUser(e)}
+              >
                 Sign In
               </Button>
             </Form>
@@ -125,11 +161,9 @@ export const mapStateToProps = state => ({
 export const mapDispatchToProps = dispatch => ({
   setAUser: user => dispatch(setUser(user)),
   setAnError: error => dispatch(setError(error)),
-  setAllOpps: opportunities =>
-    dispatch(setUserOpportunities(opportunities))
+  setAllOpps: opportunities => dispatch(setAllOpportunities(opportunities)),
+  setUserOpps: opportunities =>
+    dispatch(setAllOpportunitiesForSpecificUser(opportunities))
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SignInForm);
+export default connect(mapStateToProps, mapDispatchToProps)(SignInForm);
