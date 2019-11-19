@@ -3,7 +3,7 @@ import "./Schedule.scss";
 import Nav from "../../components/Nav/Nav";
 import { connect } from "react-redux";
 import { getAllOpportunities } from "../../util/apiCalls";
-import { setOpps } from "../../actions";
+import { setAllOpportunities, setAllOpportunitiesForSpecificUser } from "../../actions";
 import Opportunities from "../../containers/Opportunities/Opportunities";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
@@ -18,8 +18,8 @@ const ScheduleSection = styled.section`
 
 const Header = styled.h1`
 color: #37474E
-font-size: 2em;
-margin: 0px;
+font-size: 2.5em;
+margin: 1em;
 @media screen and (max-width: 375px) {
   margin: 0px 0px 30px -80px
 }
@@ -50,12 +50,12 @@ export const Button = styled.button`
 `;
 
 export const Schedule = props => {
+  console.log('useropps schedule', props.userOpps)
   const [isLoading, setLoading] = useState(true);
 
   const handleResetOfOpps = async () => {
     let allOpps = await getAllOpportunities()
     props.setAllOpps(allOpps)
-
   }
 
   const getUserOpp = async () => {
@@ -94,15 +94,16 @@ export const Schedule = props => {
 
 export const mapStateToProps = state => ({
   user: state.user,
-  opportunities: state.opportunities
+  opportunities: state.opportunities,
+  userOpps: state.userOpps
 });
 
 export const mapDispatchToProps = dispatch => ({
-  setAllOpps: opps => dispatch(setOpps(opps))
+  setAllOpps: opps => dispatch(setAllOpportunities(opps)),
+  setAllOppsForSpecificUser: opps => dispatch(setAllOpportunitiesForSpecificUser(opps))
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(Schedule);
-

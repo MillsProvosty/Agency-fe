@@ -60,6 +60,10 @@ describe('Opportunities', () => {
   await wrapper.find('#deleteOpp').props().onClick()
  })
 
+ it.skip('should call deleteAnOpportunity if ids are good', async () => {
+  await wrapper.find('#deleteOpp').props().onClick()
+ })
+
   describe('mapStateToProps', () => {
     it('should return an array of opportunities', () => {
       let mockState = {

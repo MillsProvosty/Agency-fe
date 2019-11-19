@@ -1,6 +1,6 @@
 export const opportunityReducer = (state = [], action) => {
   switch(action.type) {
-    case 'SET_USER_OPPORTUNITIES':
+    case 'SET_ALL_OPPORTUNITIES':
       return [...action.opportunities]
     case 'ADD_OPP':
       return [...state, action.opp]

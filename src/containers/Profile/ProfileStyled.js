@@ -12,8 +12,8 @@ export const ProfileSection = styled.section`
 
 export const Header = styled.h1`
 color: #37474E
-font-size: 2em;
-margin: 0px;
+font-size: 2.5em;
+margin: 1em;
 @media screen and (max-width: 375px) {
   margin: 0px 0px 30px -80px
 }

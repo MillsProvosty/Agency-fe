@@ -11,6 +11,14 @@ exports[`About should match snapshot 1`] = `
     </styled.span>
      is a support networking service.
   </styled.p>
+  <styled.section>
+    <styled.p>
+      Software Developer, Mills Provosty, had a friend who needed a small bit of help to make a big difference. Developers Tay DeHerrera, Aidan McKay, and Gregory Anderson joined to build this app that connects. To give 
+      <styled.span>
+        Agency.
+      </styled.span>
+    </styled.p>
+  </styled.section>
   <styled.p
     second={true}
   >
@@ -64,7 +72,8 @@ exports[`About should match snapshot 1`] = `
     Then, Sign-In to your account
   </styled.p>
   <styled.p>
-     or Sign-Up if you haven't had the opportunity yet!
+     
+    or Sign-Up if you haven't had the opportunity yet!
   </styled.p>
   <styled.p
     second={true}
