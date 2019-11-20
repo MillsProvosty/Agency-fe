@@ -48,7 +48,7 @@ exports[`SignInForm should match snapshot 1`] = `
             placeholder="Password"
             required={true}
             tabIndex={0}
-            type="text"
+            type="password"
             value=""
           />
           <styled.button
