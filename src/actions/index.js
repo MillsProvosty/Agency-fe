@@ -8,13 +8,13 @@ export const setUser = (user) => ({
   user
 });
 
-export const setOpps = (opps) => ({
-  type: 'SET_ALL_OPPS',
-  opps
-})
+export const setAllOpportunities = opportunities => ({
+  type: 'SET_ALL_OPPORTUNITIES',
+  opportunities
+});
 
-export const setUserOpportunities = opportunities => ({
-  type: 'SET_USER_OPPORTUNITIES',
+export const setAllOpportunitiesForSpecificUser = opportunities => ({
+  type: 'SET_ALL_OPPORTUNITIES_USER',
   opportunities
 });
 

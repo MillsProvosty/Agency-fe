@@ -3,7 +3,7 @@ import "./Schedule.scss";
 import Nav from "../../components/Nav/Nav";
 import { connect } from "react-redux";
 import { getAllOpportunities } from "../../util/apiCalls";
-import { setOpps } from "../../actions";
+import { setAllOpportunities, setAllOpportunitiesForSpecificUser } from "../../actions";
 import Opportunities from "../../containers/Opportunities/Opportunities";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
@@ -55,7 +55,6 @@ export const Schedule = props => {
   const handleResetOfOpps = async () => {
     let allOpps = await getAllOpportunities()
     props.setAllOpps(allOpps)
-
   }
 
   const getUserOpp = async () => {
@@ -94,11 +93,13 @@ export const Schedule = props => {
 
 export const mapStateToProps = state => ({
   user: state.user,
-  opportunities: state.opportunities
+  opportunities: state.opportunities,
+  userOpps: state.userOpps
 });
 
 export const mapDispatchToProps = dispatch => ({
-  setAllOpps: opps => dispatch(setOpps(opps))
+  setAllOpps: opps => dispatch(setAllOpportunities(opps)),
+  setAllOppsForSpecificUser: opps => dispatch(setAllOpportunitiesForSpecificUser(opps))
 });
 
 export default connect(

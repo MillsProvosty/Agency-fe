@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { validateCreateOpp } from "../../hooks/signInFormValidationRules";
 import { useCreateOppForm } from "../../hooks/useForm";
-import { setUserOpportunities, addUserOpp } from "../../actions/";
-import { postAnOpportunity } from "../../util/apiCalls";
+import { setAllOpportunities, addUserOpp, setAllOpportunitiesForSpecificUser } from "../../actions/";
+import { postAnOpportunity, getAllOpportunities, getReservedOpps } from "../../util/apiCalls";
 import { connect } from "react-redux";
 import { CreateOppForm, PTag, Input, TextArea, Button } from './CreateOppModalStyled'
 
@@ -32,6 +32,18 @@ export const CreateOppModal = props => {
     let newOpp = await postAnOpportunity(props.user.id, values);
     let iterableSent = [...iterable, newOpp]
     await props.setAllOpps(iterableSent);
+
+
+
+    let opportunities = await getAllOpportunities();
+    let rightNums = [];
+    opportunities.forEach(index => rightNums.push(index.user_id));
+    let theRightOpps = opportunities.filter(opp => {
+      if (opp.user_id === props.user.id) {
+        return opp;
+      }
+    });
+    props.setUserOpps(theRightOpps);
   };
 
   useEffect(() => {
@@ -111,7 +123,8 @@ export const mapStateToProps = state => ({
 export const mapDispatchToProps = dispatch => ({
   addOpp: opp => dispatch(addUserOpp(opp)),
   setAllOpps: opportunities =>
-  dispatch(setUserOpportunities(opportunities))
+  dispatch(setAllOpportunities(opportunities)),
+  setUserOpps: opportunities => dispatch(setAllOpportunitiesForSpecificUser(opportunities))
 });
 
 export default connect(

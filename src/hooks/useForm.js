@@ -33,3 +33,20 @@ export const useCreateOppForm = (validateCreateOpp) => {
     errors
   }
 };
+
+export const useEditNameForm = (validateEditName) => {
+  const [values, setValues] = useState({});
+  const [errors, setErrors] = useState({});
+
+  const handleChange = (event) => {
+    event.persist();
+    setValues(values => ({ ...values, [event.target.name]: event.target.value }));
+    setErrors(validateEditName(values));
+  };
+
+  return {
+    handleChange,
+    values,
+    errors
+  }
+};

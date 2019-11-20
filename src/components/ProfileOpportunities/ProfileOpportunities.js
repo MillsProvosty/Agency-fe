@@ -18,10 +18,9 @@ import {
   CardSection,
   Container,
   Bold
-} from "./OpportunitiesStyled";
+} from "./ProfileOpportunitiesStyled";
 
-export const Opportunities = props => {
-
+export const ProfileOpportunities = props => {
   const deleteOpportunity = async (userId, oppId) => {
     let deleted = await deleteAnOpportunity(userId, oppId);
     let allOppsForUser = await getAllOpportunitiesForSpecificUser(
@@ -45,7 +44,7 @@ export const Opportunities = props => {
   };
 
   const [opportunities, setOpportunities] = useState(false);
-  
+
   useEffect(() => {
     if (props.opportunities.length > 0) {
       setOpportunities(true);
@@ -65,8 +64,7 @@ export const Opportunities = props => {
       iterable = props.opportunities;
     }
 
-    return props.userOpps.map(opportunity => {
-      console.log(opportunity)
+    return iterable.map(opportunity => {
       return (
         <OpportunityCard key={opportunity.id}>
           <CardSection>
@@ -80,11 +78,6 @@ export const Opportunities = props => {
             </PTag>
             <PTag>
               <Bold>Location:</Bold> {opportunity.location}
-            </PTag>
-            <PTag>
-              {opportunity.fulfilled && props.role === 'client' && 
-                <Bold fulfill>Fulfilled</Bold>
-              }
             </PTag>
             <PTag>
               <Bold>Estimated Time:</Bold>
@@ -142,4 +135,4 @@ export const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Opportunities);
+)(ProfileOpportunities);
