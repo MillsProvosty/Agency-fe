@@ -49,7 +49,7 @@ exports[`SignUpModal should match snapshot 1`] = `
     onChange={[Function]}
     placeholder="Enter your password"
     required={true}
-    type="text"
+    type="password"
     value=""
   />
   <styled.input
@@ -58,7 +58,7 @@ exports[`SignUpModal should match snapshot 1`] = `
     onChange={[Function]}
     placeholder="Confirm your password"
     required={true}
-    type="text"
+    type="password"
     value=""
   />
   <styled.button
