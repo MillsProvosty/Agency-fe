@@ -101,7 +101,7 @@ describe("getSpecificUser", () => {
     getSpecificUser(mockId);
 
     expect(window.fetch).toHaveBeenCalledWith(
-      'http://localhost:5000/login', {"body": "{\"email\":1}", "headers": {"Content-Type": "application/json"}, "method": "POST"}
+      'https://agency-flask.herokuapp.com/login', {"body": "{\"email\":1}", "headers": {"Content-Type": "application/json"}, "method": "POST"}
     );
   });
 
@@ -167,7 +167,7 @@ describe("getSpecificOpportunity", () => {
     getSpecificOpportunity(mockUserId, mockOppId);
 
     expect(window.fetch).toHaveBeenCalledWith(
-      `http://localhost:5000/users/${mockUserId}/opportunity/${mockOppId}`
+      `https://agency-flask.herokuapp.com/users/${mockUserId}/opportunity/${mockOppId}`
     );
   });
 
@@ -250,7 +250,7 @@ describe("postAUser", () => {
     postAUser(mockValues);
 
     expect(window.fetch).toHaveBeenCalledWith(
-      "http://localhost:5000/user",
+      "https://agency-flask.herokuapp.com/user",
       mockRequest
     );
   });
@@ -318,7 +318,7 @@ describe("postAnOpportunity", () => {
     postAnOpportunity(mockId, mockOpportunity);
 
     expect(window.fetch).toHaveBeenCalledWith(
-      `http://localhost:5000/users/${mockId}/opportunity`,
+      `https://agency-flask.herokuapp.com/users/${mockId}/opportunity`,
       mockRequest
     );
   });
@@ -391,7 +391,7 @@ describe("deleteAUser", () => {
     deleteAUser(mockId);
 
     expect(window.fetch).toHaveBeenCalledWith(
-      `http://localhost:5000/users/${mockId}`,
+      `https://agency-flask.herokuapp.com/users/${mockId}`,
       mockRequest
     );
   });
@@ -464,7 +464,7 @@ describe("deleteAnOpportunity", () => {
     deleteAnOpportunity(mockUserId, mockOppId);
 
     expect(window.fetch).toHaveBeenCalledWith(
-      `http://localhost:5000/users/${mockUserId}/opportunity/${mockOppId}`,
+      `https://agency-flask.herokuapp.com/users/${mockUserId}/opportunity/${mockOppId}`,
       mockRequest
     );
   });
@@ -510,7 +510,7 @@ describe("patchAUser", () => {
     };
 
     mockRequest = {
-      method: "PATCH",
+      method: "PUT",
       body: JSON.stringify(mockValues),
       headers: {
         "Content-Type": "application/json"
@@ -538,16 +538,16 @@ describe("patchAUser", () => {
     patchAUser(mockId, mockValues);
 
     expect(window.fetch).toHaveBeenCalledWith(
-      `http://localhost:5000/users/${mockId}`,
+      `https://agency-flask.herokuapp.com/users/${mockId}`,
       mockRequest
     );
   });
 
-  it("should return all a patched user (HAPPY)", async () => {
-    const result = await patchAUser(mockId, mockValues);
+  // it("should return all a patched user (HAPPY)", async () => {
+  //   const result = await patchAUser(mockId, mockValues);
 
-    expect(result).toEqual(mockResponse);
-  });
+  //   expect(result).toEqual(mockResponse);
+  // });
 
   it("should return an error (SAD)", () => {
     window.fetch = jest.fn().mockImplementation(() => {
@@ -610,7 +610,7 @@ describe("patchAnOpportunity", () => {
     patchAnOpportunity(mockUserId, mockOppId, mockValues);
 
     expect(window.fetch).toHaveBeenCalledWith(
-      `http://localhost:5000/users/${mockUserId}/opportunity/${mockOppId}`,
+      `https://agency-flask.herokuapp.com/users/${mockUserId}/opportunity/${mockOppId}`,
       mockRequest
     );
   });
