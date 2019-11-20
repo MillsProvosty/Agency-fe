@@ -22,7 +22,6 @@ import {
 
 export const Opportunities = props => {
 
-  console.log('opps', props)
   const deleteOpportunity = async (userId, oppId) => {
     let deleted = await deleteAnOpportunity(userId, oppId);
     let allOppsForUser = await getAllOpportunitiesForSpecificUser(
@@ -84,7 +83,7 @@ export const Opportunities = props => {
             </PTag>
             <PTag>
               {opportunity.fulfilled && props.role === 'client' && 
-                <Bold>Fulfilled</Bold>
+                <Bold fulfill>Fulfilled</Bold>
               }
             </PTag>
             <PTag>

@@ -50,7 +50,6 @@ export const Button = styled.button`
 `;
 
 export const Schedule = props => {
-  console.log('useropps schedule', props.userOpps)
   const [isLoading, setLoading] = useState(true);
 
   const handleResetOfOpps = async () => {

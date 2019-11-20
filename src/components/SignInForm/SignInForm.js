@@ -19,6 +19,7 @@ import {
 } from "../../actions";
 import { connect } from "react-redux";
 import { GiAirBalloon } from "react-icons/gi";
+
 import {
   SignIn,
   ModalStyle,
@@ -48,23 +49,18 @@ export const SignInForm = props => {
       props.setAUser(user);
       if (user.role === "volunteer") {
         let opportunities = await getAllOpportunities();
-        console.log('opps', opportunities)
         let userOppIds = await getReservedOpps(user.id);
-        console.log('oppIds', userOppIds)
         let rightNums = [];
         userOppIds.forEach(index => rightNums.push(index.opportunity_id));
-        console.log('rightNums', rightNums)
         let theRightOpps = opportunities.filter(opp => {
           if (rightNums.includes(opp.id)) {
             return opp;
           }
         });
-        console.log("useropps", theRightOpps);
         props.setAllOpps(opportunities);
         props.setUserOpps(theRightOpps);
       } else {
         let opportunities = await getAllOpportunitiesForSpecificUser(user.id);
-        console.log("client specific opps", opportunities);
         props.setUserOpps(opportunities);
       }
     } catch (error) {

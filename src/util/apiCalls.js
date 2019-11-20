@@ -161,26 +161,27 @@ export const deleteAnOpportunity = async (userId, oppId) => {
 };
 
 export const patchAUser = async (userId, userValues) => {
+  console.log('1', userValues)
   const url = `https://agency-flask.herokuapp.com/users/${userId}`;
   const body = {
-    first_name: userValues.firstname,
-    last_name: userValues.lastname,
+    first_name: userValues.firstName,
+    last_name: userValues.lastName,
     email: userValues.email,
-    phone_number: userValues.phone
+    phone_number: userValues.phone,
+    password: userValues.password
   };
   const options = {
-    method: "PATCH",
+    method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body)
   };
-
+  console.log('2', options)
   try {
     const res = await fetch(url, options);
+    console.log('3', res)
     if (!res.ok) {
       throw new Error("There was an error accessing this opportunity");
     }
-    const patchedUser = await res.json();
-    return patchedUser;
   } catch (error) {
     throw new Error(error);
   }
