@@ -20,6 +20,18 @@ describe('Opportunities', () => {
     }
   ];
 
+  const mockUserOpps = [
+    {
+      "description": "I cannot rake my yard- I need someone to come in and get the front and back yard.",
+      "estimated_time": "1 hr",
+      "id": 2,
+      "location": "2848 Roslyn St., Denver CO 80238",
+      "title": "Rake Leaves",
+      "type": "Physical Labor",
+      "user_id": 1
+    }
+  ]
+
   const mockUser = {
     id: 1,
     name: 'Joe mama'
@@ -34,6 +46,7 @@ describe('Opportunities', () => {
         opportunities={mockOpp}
         role="client"
         user={mockUser}
+        userOpps={mockUserOpps}
       />
     )
   })
@@ -51,6 +64,7 @@ describe('Opportunities', () => {
       <Opportunities 
         opportunities={mockOpp}
         role="volunteer"
+        userOpps={mockUserOpps}
       />
    )
    expect(wrapper).toMatchSnapshot()

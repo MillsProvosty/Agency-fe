@@ -1,6 +1,60 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Opportunities should match snapshot 1`] = `undefined`;
+exports[`Opportunities should match snapshot 1`] = `
+<styled.section>
+  <styled.section>
+    <styled.section
+      key="2"
+    >
+      <styled.section>
+        <styled.h1>
+          Rake Leaves
+        </styled.h1>
+        <styled.p
+          description={true}
+        >
+          I cannot rake my yard- I need someone to come in and get the front and back yard.
+        </styled.p>
+      </styled.section>
+      <styled.section>
+        <styled.p>
+          <styled.span>
+            Type: 
+          </styled.span>
+          Physical Labor
+        </styled.p>
+        <styled.p>
+          <styled.span>
+            Location:
+          </styled.span>
+           
+          2848 Roslyn St., Denver CO 80238
+        </styled.p>
+        <styled.p />
+        <styled.p>
+          <styled.span>
+            Estimated Time:
+          </styled.span>
+          1 hr
+        </styled.p>
+      </styled.section>
+      <styled.section
+        buttons={true}
+      >
+        <styled.button
+          id="deleteOpp"
+          onClick={[Function]}
+        >
+          Delete
+        </styled.button>
+        <styled.button>
+          Edit
+        </styled.button>
+      </styled.section>
+    </styled.section>
+  </styled.section>
+</styled.section>
+`;
 
 exports[`Opportunities should render a different button if role is different 1`] = `
 <styled.section>
@@ -32,6 +86,7 @@ exports[`Opportunities should render a different button if role is different 1`]
            
           2848 Roslyn St., Denver CO 80238
         </styled.p>
+        <styled.p />
         <styled.p>
           <styled.span>
             Estimated Time:
