@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { Profile, mapStateToProps, mapDispatchToProps } from './Profile';
-import { setUserOpportunities } from '../../actions'
+import { setAllOpportunities } from '../../actions'
 
 describe('Profile', () => {
   let wrapper;
@@ -71,9 +71,9 @@ describe('Profile', () => {
   })
 
   describe('mapDispatchToProps', () => {
-    it("calls setOpportnities with an setUserOpportunities action when setOpportunities is called", () => {
+    it("calls setOpportnities with an setAllOpportunities action when setOpportunities is called", () => {
       const mockDispatch = jest.fn();
-      const actionToDispatch = setUserOpportunities(mockOpp);
+      const actionToDispatch = setAllOpportunities(mockOpp);
       const mappedProps = mapDispatchToProps(mockDispatch);
       mappedProps.setOpportunities(mockOpp);
       expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);

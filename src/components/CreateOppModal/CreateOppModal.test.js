@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { CreateOppModal, mapDispatchToProps, mapStateToProps } from './CreateOppModal';
-import { setUserOpportunities, addUserOpp} from '../../actions'
+import { setAllOpportunitiesForSpecificUser, addUserOpp} from '../../actions'
 
 describe('CreateOppModal', () => {
 let wrapper;
@@ -54,11 +54,11 @@ beforeEach(() => {
 })
 
   describe('mapDispatchToProps', () => {
-    it("calls addOpp with an setUserOpportunities action when addOpp is called", () => {
+    it("calls setUserOpps with an setAllOpportunities action when setUserOpps is called", () => {
       const mockDispatch = jest.fn();
-      const actionToDispatch = setUserOpportunities(mockOpp);
+      const actionToDispatch = setAllOpportunitiesForSpecificUser(mockOpp);
       const mappedProps = mapDispatchToProps(mockDispatch);
-      mappedProps.setAllOpps(mockOpp);
+      mappedProps.setUserOpps(mockOpp);
       expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
     });
 
