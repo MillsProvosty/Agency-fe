@@ -66,6 +66,7 @@ export const Opportunities = props => {
     }
 
     return props.userOpps.map(opportunity => {
+      console.log(opportunity)
       return (
         <OpportunityCard key={opportunity.id}>
           <CardSection>
@@ -79,6 +80,11 @@ export const Opportunities = props => {
             </PTag>
             <PTag>
               <Bold>Location:</Bold> {opportunity.location}
+            </PTag>
+            <PTag>
+              {opportunity.fulfilled && props.role === 'client' && 
+                <Bold>Fulfilled</Bold>
+              }
             </PTag>
             <PTag>
               <Bold>Estimated Time:</Bold>
