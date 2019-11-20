@@ -7,9 +7,9 @@ cache:
 deploy:
   provider: s3
   access_key_id: 
-    secure: "AKIAJRUWGUOUA5QP3HRQ"
+    secure: PROCESS.ENV.ACCESS_KEY
   secret_access_key: 
-    secure: "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"
+    secure: PROCESS.ENV.SECRET_KEY
   bucket: "agency-fe"
   skip_cleanup: true
   acl: public_read 
