@@ -22,7 +22,6 @@ import {
 
 export const Opportunities = props => {
 
-  console.log('opps', props)
   const deleteOpportunity = async (userId, oppId) => {
     let deleted = await deleteAnOpportunity(userId, oppId);
     let allOppsForUser = await getAllOpportunitiesForSpecificUser(

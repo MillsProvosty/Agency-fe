@@ -36,7 +36,6 @@ export const CreateOppModal = props => {
 
 
     let opportunities = await getAllOpportunities();
-    console.log('opps', opportunities)
     let rightNums = [];
     opportunities.forEach(index => rightNums.push(index.user_id));
     let theRightOpps = opportunities.filter(opp => {
@@ -44,7 +43,6 @@ export const CreateOppModal = props => {
         return opp;
       }
     });
-    console.log('rightOpps', theRightOpps)
     props.setUserOpps(theRightOpps);
   };
 

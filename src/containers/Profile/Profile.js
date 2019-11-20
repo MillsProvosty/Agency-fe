@@ -8,9 +8,9 @@ import { ProfileSection, Header } from "./ProfileStyled";
 import CreateOppModal from "../../components/CreateOppModal/CreateOppModal";
 import Modal from "react-modal";
 import styled from "styled-components";
-
-
-
+import { useEditNameForm } from "../../hooks/useForm";
+import { validateEditName } from "../../hooks/signInFormValidationRules";
+import { patchAUser } from "../../util/apiCalls";
 
 export const ModalStyle = styled.section`
   display: flex;
@@ -42,12 +42,25 @@ export const Button = styled.button`
   }
 `;
 
+export const Input = styled.input`
+  border-radius: 5px;
+  font-size: 1.5em;
+  height: 2em;
+  border: 1px solid #37474e;
+  padding: 5px;
+  width: 300px;
+  font-family: "Quicksand", sans-serif;
+  margin-top: 10px;
+`;
 
 export const Profile = props => {
-  console.log('profile props', props)
+  console.log(props.user);
   const [isLoading, setLoading] = useState(true);
   const [createModal, showCreateModal] = React.useState(false);
   const [showOpps, setShowOpps] = useState(false);
+  const [showEditForm, setShowEditForm] = useState(false);
+  const { values, handleChange } = useEditNameForm(validateEditName);
+  console.log("values", values);
 
   const { user } = props;
   const getUserOpp = async () => {
@@ -57,6 +70,18 @@ export const Profile = props => {
   useEffect(() => {
     getUserOpp();
   }, []);
+
+  const handleClick = async () => {
+    console.log("here are the values", values);
+    let newValues = {
+      firstName: values.firstName,
+      lastName: values.lastName,
+      email: user.email,
+      phone: user.phone_number,
+      password: values.password
+    };
+    patchAUser(user.id, newValues);
+  };
 
   return (
     <ProfileSection className="Profile">
@@ -68,7 +93,7 @@ export const Profile = props => {
           <Button id="showModal" onClick={() => showCreateModal(true)}>
             Create An Opportunity
           </Button>
-          <Button>
+          <Button onClick={() => setShowEditForm(true)}>
             Edit Your Settings
           </Button>
           <ModalStyle>
@@ -84,10 +109,42 @@ export const Profile = props => {
           <Button onClick={() => setShowOpps(true)}>
             Search For Opportunities
           </Button>
-          <Button>
+          <Button onClick={() => setShowEditForm(true)}>
             Edit Your Settings
           </Button>
-          {showOpps &&  <ProfileOpportunities role={user.role} />}
+          {showOpps && <ProfileOpportunities role={user.role} />}
+        </>
+      )}
+      {showEditForm && (
+        <>
+          <Input
+            type="text"
+            placeholder={user.first_name}
+            name="firstName"
+            value={values.firstName || ""}
+            onChange={handleChange}
+            autoComplete="off"
+            required
+          />
+          <Input
+            type="text"
+            placeholder={user.last_name}
+            name="lastName"
+            value={values.lastName || ""}
+            onChange={handleChange}
+            autoComplete="off"
+            required
+          />
+          <Input
+            type="text"
+            placeholder={user.password}
+            name="password"
+            value={values.password || ""}
+            onChange={handleChange}
+            autoComplete="off"
+            required
+          />
+          <Button onClick={handleClick}>Submit</Button>
         </>
       )}
     </ProfileSection>
@@ -104,7 +161,4 @@ export const mapDispatchToProps = dispatch => ({
     dispatch(setAllOpportunities(opportunities))
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Profile);
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);

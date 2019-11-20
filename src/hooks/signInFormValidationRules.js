@@ -40,3 +40,16 @@ export function validateCreateOpp(values) {
   }
   return errors
 }
+
+export function validateEditName(values) {
+  console.log('somevalues', values)
+  let errors = {};
+  if (!values.firstName) {
+    values.error = "Time is required";
+  } else if (!values.lastName) {
+    values.error = "Address is required";
+  } else {
+    values.error = ""
+  }
+  return errors
+}

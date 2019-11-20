@@ -21,9 +21,6 @@ import {
 } from "./ProfileOpportunitiesStyled";
 
 export const ProfileOpportunities = props => {
-  console.log('prof opps', props)
-
-
   const deleteOpportunity = async (userId, oppId) => {
     let deleted = await deleteAnOpportunity(userId, oppId);
     let allOppsForUser = await getAllOpportunitiesForSpecificUser(
@@ -47,7 +44,7 @@ export const ProfileOpportunities = props => {
   };
 
   const [opportunities, setOpportunities] = useState(false);
-  
+
   useEffect(() => {
     if (props.opportunities.length > 0) {
       setOpportunities(true);
