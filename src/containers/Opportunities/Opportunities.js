@@ -83,7 +83,7 @@ export const Opportunities = props => {
             </PTag>
             <PTag>
               {opportunity.fulfilled && props.role === 'client' && 
-                <Bold>Fulfilled</Bold>
+                <Bold fulfill>Fulfilled</Bold>
               }
             </PTag>
             <PTag>

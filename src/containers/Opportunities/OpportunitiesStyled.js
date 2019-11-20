@@ -87,4 +87,5 @@ export const Container = styled.section`
 
 export const Bold = styled.span`
   font-weight: bold;
+  color: ${props => (props.fulfill ? "red" : "#37474e")}
 `;
